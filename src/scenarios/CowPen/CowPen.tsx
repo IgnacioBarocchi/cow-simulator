@@ -6,6 +6,8 @@ import { KeyboardControls, OrbitControls } from "@react-three/drei";
 import Cow from "../../components/Entities/Cow";
 import Platform from "./Platform";
 import keysMap from "../../lib/keysMap";
+import PhysicalCowCell from "./PhysicalCowCell";
+import Instancer from "../../components/Utility/Instancer/Instancer";
 
 const camera: CameraOptions = {
   fov: 45,
@@ -44,9 +46,20 @@ const CowPen = () => {
       />
       <ambientLight intensity={1} />
       <KeyboardControls map={keysMap}>
+        {/* <ExampleComponent /> */}
         <Physics timeStep="vary" debug={true}>
-          <Cow useOrbitControls={false} />
+          <PhysicalCowCell />
+          <Instancer
+            numberOfInstances={10}
+            url="/models/Cowcell.gltf"
+            columns={2}
+            offsetX={5}
+            offsetY={0}
+            offsetZ={4}
+            rows={1}
+          />
           <Platform />
+          <Cow useOrbitControls={false} />
         </Physics>
       </KeyboardControls>
     </Canvas>
