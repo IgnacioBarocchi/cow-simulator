@@ -11,12 +11,13 @@ import { Dooads, ModelUrlByName } from "../../../lib/object3DHelper";
 import { PositionalAudio } from "@react-three/drei";
 
 const CowPen = () => {
-  const { USE_SCENE_LIGHTS, USE_ORBIT_CONTROLS } = useContext(AppContext);
+  const { USE_SCENE_LIGHTS, USE_ORBIT_CONTROLS, DEBUG_PHYSICS } =
+    useContext(AppContext);
 
   return (
     <>
       <CowPenLight useSceneLights={USE_SCENE_LIGHTS} />
-      <Physics timeStep="vary" debug={true}>
+      <Physics timeStep="vary" debug={DEBUG_PHYSICS}>
         <PhysicalCowCell />
         <Instancer
           numberOfInstances={20}

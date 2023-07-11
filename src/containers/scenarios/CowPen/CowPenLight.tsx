@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { SpotLight } from "three";
 
 const CowPenLight: FC<{ useSceneLights: boolean }> = ({ useSceneLights }) => {
+  console.log(" useSceneLights " + useSceneLights);
   const lightRef = useRef<SpotLight>(null);
 
   useFrame(({ clock }) => {
