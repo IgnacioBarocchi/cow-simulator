@@ -1,10 +1,6 @@
 import { Box, useTexture } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
-import {
-  GroundPresets,
-  GroundPreset,
-  getTextureMapsResult,
-} from "../../lib/textureHelper";
+import { GroundPreset, getTextureMapsResult } from "../../lib/textureHelper";
 import { FC } from "react";
 
 const Platform: FC<{ size: number; preset: GroundPreset }> = ({
