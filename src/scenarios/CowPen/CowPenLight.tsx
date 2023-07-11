@@ -15,7 +15,7 @@ const CowPenLight = () => {
 
     gsap.to(lightRef.current, {
       power: targetPower,
-      duration: 3, // Adjust as needed
+      duration: 3,
     });
   });
 
