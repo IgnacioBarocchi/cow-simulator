@@ -20,14 +20,14 @@ const CowPen = () => {
       <Physics timeStep="vary" debug={DEBUG_PHYSICS}>
         <PhysicalCowCell />
         <Instancer
-          numberOfInstances={20}
+          numberOfInstances={9}
           url={ModelUrlByName[Dooads.COW_CELL]}
-          columns={5}
+          columns={3}
           offsetX={5}
           offsetY={0}
           offsetZ={4}
           rows={1}
-          groupPosition={[-15, 0, -12]}
+          groupPosition={[-10, 0, -8]}
           groupRotation={[0, Math.PI * 2, 0]}
         />
         <PositionalAudio
