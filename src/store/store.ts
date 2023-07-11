@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
-import { Scenario, Scenarios } from "../containers/scenarios/@types/Scenario";
+import { Scenario, Scenarios } from "../components/Scenario/@types/Scenario";
 import { CowSimulatorState } from "./types/CowSimulatorStore";
 
 export const useSktioStore = create<CowSimulatorState>()(

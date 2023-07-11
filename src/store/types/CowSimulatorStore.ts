@@ -1,4 +1,4 @@
-import { Scenario } from "../../containers/scenarios/@types/Scenario";
+import { Scenario } from "../../components/Scenario/@types/Scenario";
 
 export type CowSimulatorState = {
   currentScenario: Scenario;

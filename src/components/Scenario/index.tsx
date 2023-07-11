@@ -1,12 +1,12 @@
+import { useContext } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
+import { block } from "million/react";
+import { CameraOptions } from "./@types/CameraOptions";
 import keysMap from "../../lib/keysMap";
-import { CameraOptions } from "../../containers/scenarios/@types/CameraOptions";
-import { useContext } from "react";
 import { AppContext } from "../../containers/context/AppContext";
 import CowPen from "../../containers/scenarios/CowPen";
-import { block } from "million/react";
 
 const camera: CameraOptions = {
   fov: 45,
