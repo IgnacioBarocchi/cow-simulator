@@ -15,7 +15,7 @@ const CowPen = () => {
   return (
     <>
       <CowPenLight useSceneLights={USE_SCENE_LIGHTS} />
-      <Physics timeStep="vary" debug={false}>
+      <Physics timeStep="vary" debug={true}>
         <PhysicalCowCell />
         <Instancer
           numberOfInstances={20}

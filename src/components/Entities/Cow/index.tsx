@@ -14,9 +14,10 @@ import updateOrientation from "./helper/updateOrientation";
 import getImpulse from "./helper/getImpulse";
 import updateCameraMovement from "./helper/updateCameraMovement";
 import { useMachine } from "@xstate/react";
-import CowMachine from "../../../machines/CowMachine";
+import CowMachine, { States } from "../../../machines/CowMachine";
 import getMachineStateFromInputtedKeys from "./helper/getMachineStateFromInputtedKeys";
 import { EntitiesNames } from "../../../lib/object3DHelper";
+import CowHitbox from "./CowHitbox";
 
 const Cow: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
   const cowBody = useRef<RapierRigidBody>(null);
@@ -73,6 +74,10 @@ const Cow: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
       <Bounding args={[0.2, 0.5, 0.9]} position={[0, 0.5, 0.2]} />
       <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
       <Cow3DModel state={machineState.value} />
+      {[States.attackHeadbutt, States.attackKick].includes(
+        // @ts-ignore
+        machineState.value
+      ) && <CowHitbox orientation={orientation} state={machineState.value} />}
     </RigidBody>
   );
 };

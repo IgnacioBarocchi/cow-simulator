@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { Canvas } from "@react-three/fiber";
-import { KeyboardControls, OrbitControls } from "@react-three/drei";
-import { Perf } from "r3f-perf";
 import { block } from "million/react";
+import { KeyboardControls, OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Perf } from "r3f-perf";
 import { CameraOptions } from "./@types/CameraOptions";
 import keysMap from "../../lib/keysMap";
 import { AppContext } from "../../containers/context/AppContext";
