@@ -7,6 +7,7 @@ export const useSktioStore = create<CowSimulatorState>()(
   subscribeWithSelector((set) => ({
     currentScenario: Scenarios.COW_PEN,
     setCurrentScenario: (scenario: Scenario): void => {
+      // @ts-ignore
       set({ scenario });
     },
   }))

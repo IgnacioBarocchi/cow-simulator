@@ -20,16 +20,20 @@ type InstancerProps = {
   offsetX: number;
   offsetY: number;
   offsetZ: number;
+  groupPosition: [number, number, number];
+  groupRotation: [number, number, number];
 };
 
 const Instancer: FC<InstancerProps> = ({
   numberOfInstances,
   url,
   columns,
-  rows,
+  // rows,
   offsetX,
   offsetY,
   offsetZ,
+  groupPosition,
+  groupRotation,
 }) => {
   const { nodes } = useGLTF(url) as GLTFResult;
   const groupRef = useRef<Group>(null);
@@ -51,6 +55,8 @@ const Instancer: FC<InstancerProps> = ({
         mesh.position.copy(instanceOffset);
         mesh.position.x += column * offsetX;
         mesh.position.z += row * offsetZ;
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
         instanceGroup.add(mesh);
       });
 
@@ -58,7 +64,14 @@ const Instancer: FC<InstancerProps> = ({
     }
   }, []);
 
-  return <group ref={groupRef} dispose={null} />;
+  return (
+    <group
+      position={groupPosition}
+      rotation={groupRotation}
+      ref={groupRef}
+      dispose={null}
+    />
+  );
 };
 
 export default Instancer;

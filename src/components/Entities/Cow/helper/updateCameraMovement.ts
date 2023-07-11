@@ -8,8 +8,8 @@ export default function (state: RootState, cowPosition: Vector3) {
   const cameraPosition = new Vector3();
   cameraPosition.copy(cowPosition);
 
-  cameraPosition.z += 5;
-  cameraPosition.y += 2.5;
+  cameraPosition.z += 3;
+  cameraPosition.y += 2;
 
   const cameraTarget = new Vector3();
   cameraTarget.copy(cowPosition);

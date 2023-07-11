@@ -4,7 +4,9 @@ import { RigidBody } from "@react-three/rapier";
 const Platform = () => {
   return (
     <RigidBody colliders={"cuboid"} type={"fixed"}>
-      <Box args={[50, 0.1, 50]} />
+      <Box receiveShadow args={[50, 0.1, 50]}>
+        <meshStandardMaterial attach="material" color="gray" />
+      </Box>
     </RigidBody>
   );
 };

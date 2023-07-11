@@ -60,7 +60,14 @@ const Cow: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
   });
 
   return (
-    <RigidBody lockRotations={true} colliders={false} ref={cowBody}>
+    <RigidBody
+      lockRotations={true}
+      colliders={false}
+      ref={cowBody}
+      restitution={0.5}
+      friction={1}
+      density={100}
+    >
       <Bounding args={[0.2, 0.5, 0.9]} position={[0, 0.5, 0.2]} />
       <Sensor args={[0.2, 2]} position={[0, 0.5, 0]} sensor />
       <Cow3DModel state={machineState.value} />
