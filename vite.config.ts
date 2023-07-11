@@ -1,12 +1,15 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import million from "million/compiler";
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [million.vite(), react()],
-  base: "./", // Specify the relative path from your built app to the root of your server
-  server: {
-    cors: false,
-  },
-});
+export default ({ mode }) => {
+  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+
+  return defineConfig({
+    plugins: [million.vite(), react()],
+    base: "./",
+    server: {
+      cors: false,
+    },
+  });
+};
