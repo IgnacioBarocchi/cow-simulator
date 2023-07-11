@@ -8,6 +8,7 @@ import { GroundPresets } from "../../../lib/textureHelper";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Dooads, ModelUrlByName } from "../../../lib/object3DHelper";
+import { PositionalAudio } from "@react-three/drei";
 
 const CowPen = () => {
   const { USE_SCENE_LIGHTS, USE_ORBIT_CONTROLS } = useContext(AppContext);
@@ -27,6 +28,13 @@ const CowPen = () => {
           rows={1}
           groupPosition={[-15, 0, -12]}
           groupRotation={[0, Math.PI * 2, 0]}
+        />
+        <PositionalAudio
+          load
+          autoplay
+          loop
+          url="/sounds/CowPen/ambient.mp3"
+          distance={0.2}
         />
         <Platform size={10} preset={GroundPresets.Dirt} />
         <Cow useOrbitControls={USE_ORBIT_CONTROLS} />

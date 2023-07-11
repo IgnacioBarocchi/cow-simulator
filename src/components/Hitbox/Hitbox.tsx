@@ -40,7 +40,11 @@ const Hitbox: FC<HitboxProps> = ({
 
   return (
     <group>
-      <RigidBody ref={hitboxBody} {...rigidBodyProps}>
+      <RigidBody
+        ref={hitboxBody}
+        {...rigidBodyProps}
+        name={rigidBodyProps.name}
+      >
         {shape === "box" ? (
           <CuboidCollider
             sensor={!physical}

@@ -12,10 +12,10 @@ const HeadButtCollider: FC<HitboxColliderProps> = ({ orientation }) => {
         name: Hitboxes.HORNS,
         position: [0, 0.7, 0.8],
         density: 1000,
-        type: "fixed",
+        type: "dynamic",
       }}
       projectile={false}
-      physical={false}
+      physical={true}
       orientation={orientation}
       impulseScale={1}
       shape={"ball"}
@@ -32,10 +32,10 @@ const KickCollider: FC<HitboxColliderProps> = ({ orientation }) => {
         name: Hitboxes.HOOSES,
         position: [0, 0.7, -0.8],
         density: 1000,
-        type: "fixed",
+        type: "dynamic",
       }}
       projectile={false}
-      physical={false}
+      physical={true}
       orientation={orientation}
       impulseScale={3}
       shape={"ball"}
@@ -49,8 +49,9 @@ const CowHitbox: FC<CowHitboxProps> = ({ state, orientation }) => {
   if (state === States.attackHeadbutt)
     return (
       <>
-        <HeadButtCollider orientation={orientation} />;
+        <HeadButtCollider orientation={orientation} />
         <PositionalAudio
+          load
           autoplay
           loop={false}
           distance={1}
@@ -62,8 +63,9 @@ const CowHitbox: FC<CowHitboxProps> = ({ state, orientation }) => {
   if (state === States.attackKick)
     return (
       <>
-        <KickCollider orientation={orientation} />;
+        <KickCollider orientation={orientation} />
         <PositionalAudio
+          load
           autoplay
           loop={false}
           distance={1}
@@ -71,8 +73,6 @@ const CowHitbox: FC<CowHitboxProps> = ({ state, orientation }) => {
         />
       </>
     );
-
-  return <></>;
 };
 
 export default CowHitbox;

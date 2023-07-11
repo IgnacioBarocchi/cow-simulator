@@ -6,7 +6,7 @@ import {
   CylinderCollider as Sensor,
   RapierRigidBody,
 } from "@react-three/rapier";
-import { useKeyboardControls } from "@react-three/drei";
+import { PositionalAudio, useKeyboardControls } from "@react-three/drei";
 import { Keys } from "../../../lib/keysMap";
 import { useFrame } from "@react-three/fiber";
 import { Euler, Quaternion, Vector3 } from "three";
@@ -78,6 +78,15 @@ const Cow: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
         // @ts-ignore
         machineState.value
       ) && <CowHitbox orientation={orientation} state={machineState.value} />}
+      {machineState.matches(States.walk) && (
+        <PositionalAudio
+          load
+          autoplay
+          loop
+          distance={10}
+          url="/sounds/Cow/step.mp3"
+        />
+      )}
     </RigidBody>
   );
 };
