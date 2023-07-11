@@ -1,11 +1,11 @@
-// import { Suspense } from "react";
-// import CowPen from "./scenarios/CowPen";
+import { Suspense } from "react";
+import CowPen from "./scenarios/CowPen";
 
 export default function App() {
   return (
     <>
       <div>{`current scenario {{current scenario value}}`}</div>
-      {/* <Suspense
+      <Suspense
         fallback={
           <div className="fallback-container">
             <div className="loading-message">Loading...</div>
@@ -14,7 +14,7 @@ export default function App() {
         }
       >
         <CowPen />
-      </Suspense> */}
+      </Suspense>
     </>
   );
 }
