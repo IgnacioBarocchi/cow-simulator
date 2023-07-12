@@ -59,16 +59,7 @@ import { useState } from "react";
 export default function PhysicalCowCell() {
   const [soundUrl, setSoundUrl] = useState("");
 
-  const hand = (({ other: { rigidBodyObject } }) => {
-    console.log("rigidBodyObject?.name " + rigidBodyObject?.name);
-
-    console.log(
-      "true? " +
-        [Hitboxes.HORNS, Hitboxes.HOOSES].includes(
-          String(rigidBodyObject?.name)
-        )
-    );
-
+  const collisionEnterHandler = (({ other: { rigidBodyObject } }) => {
     setSoundUrl(
       [Hitboxes.HORNS, Hitboxes.HOOSES].includes(String(rigidBodyObject?.name))
         ? "/sounds/CowPen/cow-hit-cell.mp3"
@@ -85,26 +76,26 @@ export default function PhysicalCowCell() {
       density={500}
     >
       <CuboidCollider
-        onCollisionEnter={hand}
+        onCollisionEnter={collisionEnterHandler}
         position={[0, 0.5, -2]}
         args={[2, 0.5, 0.05]}
       />
 
       <CuboidCollider
-        onCollisionEnter={hand}
+        onCollisionEnter={collisionEnterHandler}
         position={[0, 0.5, 0.5]}
         args={[2, 0.5, 0.05]}
       />
 
       <CuboidCollider
-        onCollisionEnter={hand}
+        onCollisionEnter={collisionEnterHandler}
         position={[-2, 0.5, -0.5]}
         rotation={[0, Math.PI, 0]}
         args={[0.05, 0.5, 1.5]}
       />
 
       <CuboidCollider
-        onCollisionEnter={hand}
+        onCollisionEnter={collisionEnterHandler}
         position={[2, 0.5, -0.5]}
         rotation={[0, Math.PI, 0]}
         args={[0.05, 0.5, 1.5]}

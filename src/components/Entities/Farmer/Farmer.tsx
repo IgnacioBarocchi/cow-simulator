@@ -10,13 +10,18 @@ import { useFrame } from "@react-three/fiber";
 import getPatrolImpulse from "./helper/getPatrolImpulse";
 import { Group, Vector3 } from "three";
 import { cowPenVertices } from "../../../containers/scenarios/CowPen/CowPenMapVertices";
+import { EntitiesNames } from "../../../lib/object3DHelper";
 
 const Farmer = () => {
   const [patrolCycle, setPatrolCycle] = useState<string[]>([]);
   const [vertextIndex, setVertextIndex] = useState<number>(0);
   const [initialPosition, setInitialPostion] = useState<
     [number, number, number]
-  >([-4.5, 0, -2.5]);
+  >(
+    [-2.5, 0, 1.5]
+
+    // [-4.5, 0, -2.5]
+  );
 
   const farmerBody = useRef<RapierRigidBody>(null);
   const farmerGroup = useRef<Group>(null);
@@ -67,6 +72,7 @@ const Farmer = () => {
   return (
     <group ref={farmerGroup}>
       <RigidBody
+        name={EntitiesNames.FARMER}
         ref={farmerBody}
         lockRotations={true}
         friction={4}
