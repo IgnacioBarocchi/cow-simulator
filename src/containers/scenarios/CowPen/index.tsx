@@ -9,6 +9,9 @@ import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Dooads, ModelUrlByName } from "../../../lib/object3DHelper";
 import { PositionalAudio } from "@react-three/drei";
+import Farmer from "../../../components/Entities/Farmer/Farmer";
+import CowPenMapBounding from "./CowPenMapBounding";
+import CowPenMapVertices from "./CowPenMapVertices";
 
 const CowPen = () => {
   const { USE_SCENE_LIGHTS, USE_ORBIT_CONTROLS, DEBUG_PHYSICS } =
@@ -18,6 +21,8 @@ const CowPen = () => {
     <>
       <CowPenLight useSceneLights={USE_SCENE_LIGHTS} />
       <Physics timeStep="vary" debug={DEBUG_PHYSICS}>
+        <CowPenMapBounding />
+        <CowPenMapVertices />
         <PhysicalCowCell />
         <Instancer
           numberOfInstances={9}
@@ -38,6 +43,7 @@ const CowPen = () => {
           distance={0.2}
         />
         <Platform size={10} preset={GroundPresets.Dirt} />
+        <Farmer />
         <Cow useOrbitControls={USE_ORBIT_CONTROLS} />
       </Physics>
     </>

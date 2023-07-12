@@ -12,7 +12,7 @@ const camera: CameraOptions = {
   fov: 45,
   near: 0.1,
   far: 200,
-  position: [-2, 4, -4],
+  position: [-2, 20, -20],
 };
 
 const Scenario = () => {
@@ -21,7 +21,7 @@ const Scenario = () => {
 
   return (
     <Canvas shadows camera={camera}>
-      {MONITOR_PERFORMANCE && <Perf postion="top-left" />}
+      {/* {MONITOR_PERFORMANCE && <Perf postion="bot-left" />} */}
       <OrbitControls makeDefault />
       <KeyboardControls map={keysMap}>
         {<ScenarioExperience />}

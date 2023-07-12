@@ -18,7 +18,7 @@ const HeadButtCollider: FC<HitboxColliderProps> = ({ orientation }) => {
       physical={true}
       orientation={orientation}
       impulseScale={1}
-      shape={"ball"}
+      shape={"box"}
       boundingSize={0.4}
       Projectile3DModel={undefined}
     />
@@ -38,7 +38,7 @@ const KickCollider: FC<HitboxColliderProps> = ({ orientation }) => {
       physical={true}
       orientation={orientation}
       impulseScale={3}
-      shape={"ball"}
+      shape={"box"}
       boundingSize={0.4}
       Projectile3DModel={undefined}
     />
