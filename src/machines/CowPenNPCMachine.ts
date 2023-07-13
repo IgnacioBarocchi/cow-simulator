@@ -1,8 +1,29 @@
 import { createMachine } from "xstate";
 
+export const NPCstateEvents = {
+  IDLE: "idle",
+  RUN: "RUN",
+  WALK: "WALK",
+  PUNCH: "PUNCH",
+  KICK: "KICK",
+  INTERACT: "INTERACT",
+} as const;
+
+// todo: conver to map
+export const NPCStates = {
+  idle: "idle",
+  walk: "walk",
+  run: "run",
+  punch: "punch",
+  kick: "kick",
+} as const;
+
+export type NPCMachineStateValue = keyof typeof NPCStates;
+
 const cowPenNPCMachine = createMachine({
   id: "myStateMachine",
   initial: "idle",
+  predictableActionArguments: true,
   states: {
     idle: {
       on: {

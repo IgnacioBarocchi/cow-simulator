@@ -7,7 +7,7 @@ import {
   RigidBody,
 } from "@react-three/rapier";
 import { AppContext } from "../../context/AppContext";
-import { EntitiesNames } from "../../../lib/object3DHelper";
+import { EntityNames } from "../../../lib/object3DHelper";
 import Farmer from "../../../components/Entities/Farmer/Farmer";
 import NPCPositionReducer, {
   connectionsMap,
@@ -32,11 +32,11 @@ const CowPenControlledNPC = () => {
 
     const entityName = String(
       payload.other.rigidBodyObject?.name
-    ) as keyof typeof EntitiesNames;
+    ) as keyof typeof EntityNames;
 
     if (!currentVertextName || !entityName) return;
 
-    const { FARMER, FWORKER, MWORKER, COW } = EntitiesNames;
+    const { FARMER, FWORKER, MWORKER, COW } = EntityNames;
     const NPCInsideVertex = [FARMER, FWORKER, MWORKER, COW].includes(
       entityName
     );
@@ -54,31 +54,33 @@ const CowPenControlledNPC = () => {
       const currentVertexPosition = cowPenVertices[currentVertextName];
       const nextVertexPosition = cowPenVertices[nextVertexName];
 
-      updatePosition(
-        entityName,
-        currentVertexPosition,
-        nextVertexPosition,
-        dispatch
-      );
+      setTimeout(() => {
+        updatePosition(
+          entityName,
+          currentVertexPosition,
+          nextVertexPosition,
+          dispatch
+        );
+      }, 500);
     }
   }) as IntersectionEnterHandler;
 
   return (
     <group>
       <Farmer
-        initialVertext={state[EntitiesNames.FARMER].startingPosition}
-        nextVertexPosition={state[EntitiesNames.FARMER].nextPosition}
-        currentVertexPosition={state[EntitiesNames.FARMER].currentPosition}
+        initialVertext={state[EntityNames.FARMER].startingPosition}
+        nextVertexPosition={state[EntityNames.FARMER].nextPosition}
+        currentVertexPosition={state[EntityNames.FARMER].currentPosition}
       />
       <FWorker
-        initialVertext={state[EntitiesNames.FWORKER].startingPosition}
-        nextVertexPosition={state[EntitiesNames.FWORKER].nextPosition}
-        currentVertexPosition={state[EntitiesNames.FWORKER].currentPosition}
+        initialVertext={state[EntityNames.FWORKER].startingPosition}
+        nextVertexPosition={state[EntityNames.FWORKER].nextPosition}
+        currentVertexPosition={state[EntityNames.FWORKER].currentPosition}
       />
       <MWorker
-        initialVertext={state[EntitiesNames.MWORKER].startingPosition}
-        nextVertexPosition={state[EntitiesNames.MWORKER].nextPosition}
-        currentVertexPosition={state[EntitiesNames.MWORKER].currentPosition}
+        initialVertext={state[EntityNames.MWORKER].startingPosition}
+        nextVertexPosition={state[EntityNames.MWORKER].nextPosition}
+        currentVertexPosition={state[EntityNames.MWORKER].currentPosition}
       />
       <RigidBody type={"fixed"}>
         {Object.entries(cowPenVertices).map(([nodeName, vec], i) => {

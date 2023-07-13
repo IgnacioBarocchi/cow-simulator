@@ -9,7 +9,6 @@ export default function getPatrolImpulse(
   const nextX = nextVertex?.x;
   const nextZ = nextVertex?.z;
   if (!currentX || !currentZ || !nextX || !nextZ) return new Vector3(0, 0, 0);
-  debugger;
   const holdX = currentX === nextX;
   const holdZ = currentZ === nextZ;
   const goRight = !holdX && nextX > currentX;

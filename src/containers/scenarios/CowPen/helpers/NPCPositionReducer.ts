@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { Vector3 } from "three";
-import { EntitiesNames } from "../../../../lib/object3DHelper";
+import { EntityNames } from "../../../../lib/object3DHelper";
 import { Entity } from "../../../../lib/object3DHelper";
 
 export const cowPenVertices: { [x: string]: Vector3 } = {
@@ -60,19 +60,19 @@ export const initialNPCPositionsState: {
     nextPosition: Vector3;
   };
 } = {
-  [EntitiesNames.FARMER]: {
+  [EntityNames.FARMER]: {
     // readonly
     startingPosition: cowPenVertices.AL,
     currentPosition: cowPenVertices.AL,
     nextPosition: cowPenVertices.IC,
   },
-  [EntitiesNames.FWORKER]: {
+  [EntityNames.FWORKER]: {
     // readonly
     startingPosition: cowPenVertices.GL,
     currentPosition: cowPenVertices.GL,
     nextPosition: cowPenVertices.LC,
   },
-  [EntitiesNames.MWORKER]: {
+  [EntityNames.MWORKER]: {
     // readonly
     startingPosition: cowPenVertices.FL,
     currentPosition: cowPenVertices.FL,

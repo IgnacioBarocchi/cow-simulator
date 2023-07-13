@@ -4,77 +4,57 @@ Command: npx gltfjsx@6.1.11 public/models/FWorker.glb -t -r public
 */
 
 import * as THREE from "three";
-import { useEffect, useRef } from "react";
+import { FC, useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { GLTF } from "three-stdlib";
+import { GLTFActions, GLTFResult } from "./@types/FWorker3DModelTypes";
+import {
+  Generic3DModelProps,
+  NPCloopableAnimationClips,
+} from "../AbstractPersonel/@types/Generic3DModelProps";
+import NPCanimationsByMachineStateMap from "../AbstractPersonel/helper/NPCanimationsByMachineStateMap";
+import getAnimationClipMilliseconds from "../../../lib/getAnimationClipDuration";
 
-type GLTFResult = GLTF & {
-  nodes: {
-    Worker_Body_1: THREE.SkinnedMesh;
-    Worker_Body_2: THREE.SkinnedMesh;
-    Worker_Body_3: THREE.SkinnedMesh;
-    Worker_Body_4: THREE.SkinnedMesh;
-    Worker_Feet_1: THREE.SkinnedMesh;
-    Worker_Feet_2: THREE.SkinnedMesh;
-    Worker_Head_1: THREE.SkinnedMesh;
-    Worker_Head_2: THREE.SkinnedMesh;
-    Worker_Head_3: THREE.SkinnedMesh;
-    Worker_Head_4: THREE.SkinnedMesh;
-    Worker_Legs_1: THREE.SkinnedMesh;
-    Worker_Legs_2: THREE.SkinnedMesh;
-    Root: THREE.Bone;
-  };
-  materials: {
-    Skin: THREE.MeshStandardMaterial;
-    Worker_Vest: THREE.MeshStandardMaterial;
-    Worker_Yellow: THREE.MeshStandardMaterial;
-    White: THREE.MeshStandardMaterial;
-    Black: THREE.MeshStandardMaterial;
-    DarkBrown: THREE.MeshStandardMaterial;
-    Brown: THREE.MeshStandardMaterial;
-    Brown_02: THREE.MeshStandardMaterial;
-    Brown2: THREE.MeshStandardMaterial;
-  };
-};
-
-type ActionName =
-  | "CharacterArmature|Death"
-  | "CharacterArmature|Gun_Shoot"
-  | "CharacterArmature|HitRecieve"
-  | "CharacterArmature|HitRecieve_2"
-  | "CharacterArmature|Idle"
-  | "CharacterArmature|Idle_Gun"
-  | "CharacterArmature|Idle_Gun_Pointing"
-  | "CharacterArmature|Idle_Gun_Shoot"
-  | "CharacterArmature|Idle_Neutral"
-  | "CharacterArmature|Idle_Sword"
-  | "CharacterArmature|Interact"
-  | "CharacterArmature|Kick_Left"
-  | "CharacterArmature|Kick_Right"
-  | "CharacterArmature|Punch_Left"
-  | "CharacterArmature|Punch_Right"
-  | "CharacterArmature|Roll"
-  | "CharacterArmature|Run"
-  | "CharacterArmature|Run_Back"
-  | "CharacterArmature|Run_Left"
-  | "CharacterArmature|Run_Right"
-  | "CharacterArmature|Run_Shoot"
-  | "CharacterArmature|Sword_Slash"
-  | "CharacterArmature|Walk"
-  | "CharacterArmature|Wave";
-type GLTFActions = Record<ActionName, THREE.AnimationAction>;
-
-export default function FWorker3DModel(props: JSX.IntrinsicElements["group"]) {
+const FWorker3DModel: FC<Generic3DModelProps> = ({ state, ...props }) => {
   const group = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF(
     "/models/FWorker.glb"
   ) as GLTFResult;
   // @ts-ignore
   const { actions } = useAnimations<GLTFActions>(animations, group);
+
   useEffect(() => {
     // @ts-ignore
-    actions["CharacterArmature|Walk"]?.play();
-  });
+    const availableAnimations = NPCanimationsByMachineStateMap?.get(state);
+    const currentAnimation = availableAnimations
+      ? availableAnimations[
+          Math.floor(Math.random() * availableAnimations.length)
+        ]
+      : undefined;
+
+    if (NPCloopableAnimationClips.includes(currentAnimation as string)) {
+      actions[currentAnimation]?.reset().fadeIn(0.2).play();
+
+      return () => {
+        actions[currentAnimation]?.fadeOut(0.2);
+      };
+    } else {
+      const secondsOfDeathAnimation = getAnimationClipMilliseconds(
+        actions,
+        currentAnimation
+      );
+      actions[currentAnimation]?.getClip().duration;
+      actions[currentAnimation]?.reset().play();
+
+      setTimeout(() => {
+        actions[currentAnimation]?.stop();
+      }, secondsOfDeathAnimation);
+    }
+
+    return () => {
+      actions[currentAnimation]?.fadeOut(0.2);
+    };
+  }, [state]);
+
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Root_Scene">
@@ -170,6 +150,8 @@ export default function FWorker3DModel(props: JSX.IntrinsicElements["group"]) {
       </group>
     </group>
   );
-}
+};
 
 useGLTF.preload("/models/FWorker.glb");
+
+export default FWorker3DModel;

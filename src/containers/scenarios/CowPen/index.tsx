@@ -10,7 +10,7 @@ import { AppContext } from "../../context/AppContext";
 import { Dooads, ModelUrlByName } from "../../../lib/object3DHelper";
 import { PositionalAudio } from "@react-three/drei";
 import CowPenMapBounding from "./CowPenMapBounding";
-import CowPenControlledNPC from "./CowPenMapVertices";
+import CowPenControlledNPC from "./CowPenControlledNPC";
 
 const CowPen = () => {
   const { USE_SCENE_LIGHTS, USE_ORBIT_CONTROLS, DEBUG_PHYSICS } =

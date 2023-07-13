@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Vector3 } from "three";
-import { EntitiesNames } from "../../../lib/object3DHelper";
+import { EntityNames } from "../../../lib/object3DHelper";
 import AbstractPersonel from "../AbstractPersonel/AbstractPersonel";
 
 const Farmer: FC<{
@@ -13,7 +13,7 @@ const Farmer: FC<{
       initialVertext={initialVertext}
       currentVertexPosition={currentVertexPosition}
       nextVertexPosition={nextVertexPosition}
-      entity={EntitiesNames.FARMER}
+      entity={EntityNames.FARMER}
     />
   );
 };
