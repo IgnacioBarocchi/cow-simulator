@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.1.11 public/models/Farmer.glb -t -r public
 */
 
 import * as THREE from "three";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 
@@ -61,6 +61,7 @@ type ActionName =
   | "CharacterArmature|Sword_Slash"
   | "CharacterArmature|Walk"
   | "CharacterArmature|Wave";
+
 type GLTFActions = Record<ActionName, THREE.AnimationAction>;
 
 const Farmer3DModel = (props: JSX.IntrinsicElements["group"]) => {
@@ -69,6 +70,10 @@ const Farmer3DModel = (props: JSX.IntrinsicElements["group"]) => {
     "/models/Farmer.glb"
   ) as GLTFResult;
   const { actions } = useAnimations<GLTFActions>(animations, group);
+
+  useEffect(() => {
+    actions["CharacterArmature|Walk"]?.play();
+  });
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Root_Scene">

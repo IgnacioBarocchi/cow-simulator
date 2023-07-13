@@ -1,20 +1,22 @@
+import { useFrame } from "@react-three/fiber";
 import {
   CapsuleCollider,
   RapierRigidBody,
   RigidBody,
 } from "@react-three/rapier";
-import Farmer3DModel from "./Farmer3DModel";
 import { FC, useEffect, useRef } from "react";
 import { Group, Vector3 } from "three";
-import { EntitiesNames } from "../../../lib/object3DHelper";
-import { useFrame } from "@react-three/fiber";
 import getPatrolImpulse from "./helper/getPatrolImpulse";
+import { EntitiesNames } from "../../../lib/object3DHelper";
+import Farmer3DModel from "../Farmer/Farmer3DModel";
 
-const Farmer: FC<{
+export const AbstractPersonel: FC<{
   initialVertext: Vector3;
   currentVertexPosition: Vector3;
   nextVertexPosition: Vector3;
 }> = ({ initialVertext, currentVertexPosition, nextVertexPosition }) => {
+
+    const NPCModelByEntity =
   const farmerBody = useRef<RapierRigidBody>(null);
   const farmerGroup = useRef<Group>(null);
   const farmer3DModelGroup = useRef<Group>(null);
@@ -28,15 +30,6 @@ const Farmer: FC<{
 
   useFrame(() => {
     if (!farmerBody?.current) return;
-
-    // farmerBody.current.applyImpulseAtPoint(
-    //   getPatrolImpulse(
-    //     currentVertexPosition,
-    //     nextVertexPosition
-    //   ).multiplyScalar(3),
-    //   currentVertexPosition,
-    //   true
-    // );
 
     farmerBody.current.setLinvel(
       getPatrolImpulse(
@@ -68,39 +61,4 @@ const Farmer: FC<{
   );
 };
 
-export default Farmer;
-// useFrame(() => {
-//   if (
-//     patrolCycle?.length === 0 ||
-//     !farmerBody?.current ||
-//     !farmerGroup?.current ||
-//     !farmer3DModelGroup?.current
-//   ) {
-//     return;
-//   }
-
-//   farmer3DModelGroup.current.lookAt(new Vector3(7, 9, 10));
-//   const currentWorldPosition = farmerGroup?.current.getWorldPosition(
-//     new Vector3()
-//   );
-
-//   const currentNameVertext = patrolCycle[vertextIndex];
-//   const nextNameVertext = patrolCycle[vertextIndex + 1];
-
-//   const [nextVertexXPosition, nextVertexZPosition] =
-//     cowPenVertices[nextNameVertext];
-
-//   farmerBody.current.applyImpulse(
-//     getPatrolImpulse(currentNameVertext, nextNameVertext).multiplyScalar(2),
-//     true
-//   );
-
-//   if (
-//     currentWorldPosition.x === nextVertexXPosition ||
-//     currentWorldPosition.z === nextVertexZPosition
-//   ) {
-//     alert("a");
-//     farmerBody.current.applyImpulse(new Vector3(0, 0, 0), true);
-//     setVertextIndex((prev) => prev + 1);
-//   }
-// });
+export default AbstractPersonel;

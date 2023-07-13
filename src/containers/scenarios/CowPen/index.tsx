@@ -43,7 +43,6 @@ const CowPen = () => {
           distance={0.2}
         />
         <Platform size={10} preset={GroundPresets.Dirt} />
-        <Farmer />
         <Cow useOrbitControls={USE_ORBIT_CONTROLS} />
       </Physics>
     </>
