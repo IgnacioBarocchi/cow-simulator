@@ -65,13 +65,15 @@ type ActionName =
 type GLTFActions = Record<ActionName, THREE.AnimationAction>;
 
 const Farmer3DModel = (props: JSX.IntrinsicElements["group"]) => {
-  const group = useRef<THREE.Group>();
+  const group = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF(
     "/models/Farmer.glb"
   ) as GLTFResult;
+  // @ts-ignore
   const { actions } = useAnimations<GLTFActions>(animations, group);
 
   useEffect(() => {
+    // @ts-ignore
     actions["CharacterArmature|Walk"]?.play();
   });
   return (

@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.1.11 public/models/FWorker.glb -t -r public
 */
 
 import * as THREE from "three";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 
