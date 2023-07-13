@@ -3,13 +3,13 @@ import { FC, useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTFActions, GLTFResult } from "./@types/Farmer3DModelTypes";
 import {
-  Generic3DModelProps,
+  GenericNPC3DModelProps,
   NPCloopableAnimationClips,
-} from "../AbstractPersonel/@types/Generic3DModelProps";
+} from "../AbstractPersonel/@types/GenericNPC3DModelTypes";
 import NPCanimationsByMachineStateMap from "../AbstractPersonel/helper/NPCanimationsByMachineStateMap";
 import getAnimationClipMilliseconds from "../../../lib/getAnimationClipDuration";
 
-const Farmer3DModel: FC<Generic3DModelProps> = ({ state, ...props }) => {
+const Farmer3DModel: FC<GenericNPC3DModelProps> = ({ state, ...props }) => {
   const group = useRef<THREE.Group>(null);
   const { nodes, materials, animations } = useGLTF(
     "/models/Farmer.glb"

@@ -22,6 +22,7 @@ import cowPenNPCMachine from "../../../machines/CowPenNPCMachine";
 import { useMachine } from "@xstate/react";
 import { Text } from "@react-three/drei";
 import { AppContext } from "../../../containers/context/AppContext";
+import { useCowSimulatorStore } from "../../../store/store";
 
 export const AbstractPersonel: FC<{
   entity: "FARMER" | "MWORKER" | "FWORKER";
@@ -34,6 +35,10 @@ export const AbstractPersonel: FC<{
   nextVertexPosition,
   entity,
 }) => {
+  const { cow3DModelGroup } = useCowSimulatorStore((state) => ({
+    cow3DModelGroup: state.cow3DModelGroup,
+  }));
+
   const { DEBUG_PHYSICS } = useContext(AppContext);
 
   const [machineState, send] = useMachine(cowPenNPCMachine);
@@ -65,25 +70,37 @@ export const AbstractPersonel: FC<{
 
   useEffect(() => {
     if (!NPC3DModelGroup?.current) return;
-    if (machineState.matches("idle")) send("WALK");
+    if (machineState.matches("idle")) {
+      send("WALK");
+    }
 
     if (machineState.matches("walk") || machineState.matches("idle")) {
       NPC3DModelGroup.current.lookAt(nextVertexPosition);
       NPC3DModelGroup.current.rotation.x = 0;
       NPC3DModelGroup.current.rotation.z = 0;
     }
-  }, [nextVertexPosition.x, nextVertexPosition.z]);
+  }, [nextVertexPosition.x, nextVertexPosition.z, machineState.value]);
 
   useFrame(() => {
     if (!NPCBody?.current) return;
+    if (machineState.matches("walk")) {
+      NPCBody.current.setLinvel(
+        getPatrolImpulse(
+          currentVertexPosition,
+          nextVertexPosition
+        ).multiplyScalar(2),
+        false
+      );
+    }
 
-    NPCBody.current.setLinvel(
-      getPatrolImpulse(
-        currentVertexPosition,
-        nextVertexPosition
-      ).multiplyScalar(2),
-      false
-    );
+    if (
+      (machineState.matches("punch") || machineState.matches("kick")) &&
+      cow3DModelGroup &&
+      NPC3DModelGroup?.current
+    ) {
+      const cowPosition = cow3DModelGroup.getWorldPosition(new Vector3());
+      NPC3DModelGroup.current.lookAt(cowPosition);
+    }
   });
 
   // @ts-ignore

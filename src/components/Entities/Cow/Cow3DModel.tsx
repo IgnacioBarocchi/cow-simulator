@@ -1,17 +1,22 @@
 import { Group } from "three";
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useEffect as onLoadEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import {
   ExtendedAnimationClip,
   GLTFResult,
   loopableAnimationClips,
-} from "./types/Cow3DModelTypes";
+} from "./@types/Cow3DModelTypes";
 import { StateValue } from "xstate";
 import animationsByMachineStateMap from "./helper/animationByMachineStateMap";
 import getAnimationClipMilliseconds from "../../../lib/getAnimationClipDuration";
+import { useCowSimulatorStore } from "../../../store/store";
 
 const Cow3DModel: FC<{ state: StateValue }> = ({ state }) => {
-  const group = useRef<Group>(null);
+  const { setCow3DModelGroup } = useCowSimulatorStore((state) => ({
+    setCow3DModelGroup: state.setCow3DModelGroup,
+  }));
+
+  const groupRef = useRef<Group>(null);
 
   const { nodes, materials, animations } = useGLTF(
     "/models/Cow.gltf"
@@ -19,8 +24,14 @@ const Cow3DModel: FC<{ state: StateValue }> = ({ state }) => {
 
   const { actions } = useAnimations<ExtendedAnimationClip>(
     animations as ExtendedAnimationClip[],
-    group
+    groupRef
   );
+
+  onLoadEffect(() => {
+    if (groupRef?.current !== null || groupRef?.current !== undefined) {
+      setCow3DModelGroup(groupRef.current!);
+    }
+  }, []);
 
   useEffect(() => {
     const availableAnimations = animationsByMachineStateMap?.get(state);
@@ -58,7 +69,7 @@ const Cow3DModel: FC<{ state: StateValue }> = ({ state }) => {
   }, [state]);
 
   return (
-    <group ref={group} dispose={null}>
+    <group ref={groupRef} dispose={null}>
       <group name="Scene">
         <group name="RootNode" scale={0.22}>
           <group

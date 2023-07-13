@@ -1,7 +1,7 @@
 import {
   AnimationClips,
   ModelAnimationClipName,
-} from "../types/Cow3DModelTypes";
+} from "../@types/Cow3DModelTypes";
 import { StateValue } from "xstate";
 
 const {

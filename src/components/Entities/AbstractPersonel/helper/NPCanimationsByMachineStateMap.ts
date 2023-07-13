@@ -1,5 +1,5 @@
 import { StateValue } from "xstate";
-import { NPCAnimationClips } from "../@types/Generic3DModelProps";
+import { NPCAnimationClips } from "../@types/GenericNPC3DModelTypes";
 
 const { IDLE, WALK, PUNCH, KICK, INTERACT } = NPCAnimationClips;
 

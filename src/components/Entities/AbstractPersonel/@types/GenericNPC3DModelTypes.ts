@@ -1,6 +1,6 @@
 import { StateValue } from "xstate";
 
-export interface Generic3DModelProps {
+export interface GenericNPC3DModelProps {
   state: StateValue;
   props: JSX.IntrinsicElements["group"];
 }

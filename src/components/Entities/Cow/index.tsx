@@ -74,7 +74,7 @@ const Cow: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
       <Bounding args={[0.2, 0.5, 0.9]} position={[0, 0.5, 0.2]} />
       <Sensor
         name={SensorNames.COW_SENSOR}
-        args={[0.2, 2]}
+        args={[0.2, 1.5]}
         position={[0, 0.5, 0]}
         sensor
       />
