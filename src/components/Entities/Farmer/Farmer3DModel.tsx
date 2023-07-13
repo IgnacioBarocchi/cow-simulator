@@ -27,9 +27,11 @@ const Farmer3DModel: FC<GenericNPC3DModelProps> = ({ state, ...props }) => {
       : undefined;
 
     if (NPCloopableAnimationClips.includes(currentAnimation as string)) {
+      // @ts-ignore
       actions[currentAnimation]?.reset().fadeIn(0.2).play();
 
       return () => {
+        // @ts-ignore
         actions[currentAnimation]?.fadeOut(0.2);
       };
     } else {
@@ -37,15 +39,19 @@ const Farmer3DModel: FC<GenericNPC3DModelProps> = ({ state, ...props }) => {
         actions,
         currentAnimation
       );
+      // @ts-ignore
       actions[currentAnimation]?.getClip().duration;
+      // @ts-ignore
       actions[currentAnimation]?.reset().play();
 
       setTimeout(() => {
+        // @ts-ignore
         actions[currentAnimation]?.stop();
       }, secondsOfDeathAnimation);
     }
 
     return () => {
+      // @ts-ignore
       actions[currentAnimation]?.fadeOut(0.2);
     };
   }, [state]);

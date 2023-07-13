@@ -120,9 +120,13 @@ export const AbstractPersonel: FC<{
       entityOrSensor
     );
 
-    if (interactWithCoworkers) send("INTERACT");
+    if (interactWithCoworkers) {
+      send("INTERACT");
+    }
 
-    if (interactingWithCow) send("PUNCH");
+    if (interactingWithCow) {
+      send(["PUNCH", "KICK"][Math.floor(Math.random() * 2)]);
+    }
   }) as IntersectionEnterHandler;
 
   return (
