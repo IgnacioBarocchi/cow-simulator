@@ -89,16 +89,16 @@ export default function PhysicalCowCell() {
 
       <CuboidCollider
         onCollisionEnter={collisionEnterHandler}
-        position={[-2, 0.5, -0.5]}
+        position={[-2, 0.5, -0.75]}
         rotation={[0, Math.PI, 0]}
-        args={[0.05, 0.5, 1.5]}
+        args={[0.05, 0.5, 1.2]}
       />
 
       <CuboidCollider
         onCollisionEnter={collisionEnterHandler}
-        position={[2, 0.5, -0.5]}
+        position={[2, 0.5, -0.75]}
         rotation={[0, Math.PI, 0]}
-        args={[0.05, 0.5, 1.5]}
+        args={[0.05, 0.5, 1.2]}
       />
       {soundUrl && (
         <PositionalAudio

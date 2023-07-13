@@ -1,15 +1,13 @@
-import { useContext, useReducer, useState } from "react";
-import { PositionalAudio, Text } from "@react-three/drei";
+import { useContext, useReducer } from "react";
+import { Text } from "@react-three/drei";
 import {
-  CollisionEnterHandler,
-  CuboidCollider,
   CylinderCollider,
   IntersectionEnterHandler,
   IntersectionEnterPayload,
   RigidBody,
 } from "@react-three/rapier";
 import { AppContext } from "../../context/AppContext";
-import { EntitiesNames, Hitboxes } from "../../../lib/object3DHelper";
+import { EntitiesNames } from "../../../lib/object3DHelper";
 import Farmer from "../../../components/Entities/Farmer/Farmer";
 import NPCPositionReducer, {
   connectionsMap,
@@ -17,8 +15,10 @@ import NPCPositionReducer, {
   initialNPCPositionsState,
   updatePosition,
 } from "./helpers/NPCPositionReducer";
+import FWorker from "../../../components/Entities/FWorker/FWorker";
+import MWorker from "../../../components/Entities/MWorker/MWorker";
 
-const CowPenMapVertices = () => {
+const CowPenControlledNPC = () => {
   const { DEBUG_PHYSICS } = useContext(AppContext);
 
   const [state, dispatch] = useReducer(
@@ -51,19 +51,15 @@ const CowPenMapVertices = () => {
           Math.floor(Math.random() * connectionsMap[currentVertextName].length)
         ];
 
-      if (entityName === EntitiesNames.FARMER) {
-        const currentVertexPosition = cowPenVertices[currentVertextName];
-        const nextVertexPosition = cowPenVertices[nextVertexName];
+      const currentVertexPosition = cowPenVertices[currentVertextName];
+      const nextVertexPosition = cowPenVertices[nextVertexName];
 
-        console.table({ entityName, currentVertextName, nextVertexName });
-
-        updatePosition(
-          EntitiesNames.FARMER,
-          currentVertexPosition,
-          nextVertexPosition,
-          dispatch
-        );
-      }
+      updatePosition(
+        entityName,
+        currentVertexPosition,
+        nextVertexPosition,
+        dispatch
+      );
     }
   }) as IntersectionEnterHandler;
 
@@ -73,6 +69,16 @@ const CowPenMapVertices = () => {
         initialVertext={state[EntitiesNames.FARMER].startingPosition}
         nextVertexPosition={state[EntitiesNames.FARMER].nextPosition}
         currentVertexPosition={state[EntitiesNames.FARMER].currentPosition}
+      />
+      <FWorker
+        initialVertext={state[EntitiesNames.FWORKER].startingPosition}
+        nextVertexPosition={state[EntitiesNames.FWORKER].nextPosition}
+        currentVertexPosition={state[EntitiesNames.FWORKER].currentPosition}
+      />
+      <MWorker
+        initialVertext={state[EntitiesNames.MWORKER].startingPosition}
+        nextVertexPosition={state[EntitiesNames.MWORKER].nextPosition}
+        currentVertexPosition={state[EntitiesNames.MWORKER].currentPosition}
       />
       <RigidBody type={"fixed"}>
         {Object.entries(cowPenVertices).map(([nodeName, vec], i) => {
@@ -108,4 +114,4 @@ const CowPenMapVertices = () => {
   );
 };
 
-export default CowPenMapVertices;
+export default CowPenControlledNPC;

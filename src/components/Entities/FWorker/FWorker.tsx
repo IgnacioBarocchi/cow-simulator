@@ -3,7 +3,7 @@ import { Vector3 } from "three";
 import { EntitiesNames } from "../../../lib/object3DHelper";
 import AbstractPersonel from "../AbstractPersonel/AbstractPersonel";
 
-const Farmer: FC<{
+const FWorker: FC<{
   initialVertext: Vector3;
   currentVertexPosition: Vector3;
   nextVertexPosition: Vector3;
@@ -13,9 +13,9 @@ const Farmer: FC<{
       initialVertext={initialVertext}
       currentVertexPosition={currentVertexPosition}
       nextVertexPosition={nextVertexPosition}
-      entity={EntitiesNames.FARMER}
+      entity={EntitiesNames.FWORKER}
     />
   );
 };
 
-export default Farmer;
+export default FWorker;

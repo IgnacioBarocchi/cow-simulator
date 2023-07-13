@@ -54,29 +54,29 @@ type ActionType = {
 };
 
 export const initialNPCPositionsState: {
-  [x: Entity]: {
+  [x: Entity | string]: {
     startingPosition: Vector3;
-    currentPostion: Vector3;
+    currentPosition: Vector3;
     nextPosition: Vector3;
   };
 } = {
   [EntitiesNames.FARMER]: {
     // readonly
     startingPosition: cowPenVertices.AL,
-    currentPostion: cowPenVertices.AL,
+    currentPosition: cowPenVertices.AL,
     nextPosition: cowPenVertices.IC,
   },
   [EntitiesNames.FWORKER]: {
     // readonly
-    startingPosition: cowPenVertices.FL,
-    currentPostion: cowPenVertices.FL,
-    nextPosition: cowPenVertices.KC,
+    startingPosition: cowPenVertices.GL,
+    currentPosition: cowPenVertices.GL,
+    nextPosition: cowPenVertices.LC,
   },
   [EntitiesNames.MWORKER]: {
     // readonly
-    startingPosition: cowPenVertices.GL,
-    currentPostion: cowPenVertices.GL,
-    nextPosition: cowPenVertices.LC,
+    startingPosition: cowPenVertices.FL,
+    currentPosition: cowPenVertices.FL,
+    nextPosition: cowPenVertices.KC,
   },
 };
 
@@ -97,7 +97,7 @@ export default function NPCPositionReducer(
       };
     }
     default:
-      throw new Error("Unknown action: " + action.type);
+      throw new Error(`Unknown action: ${action.type}`);
   }
 }
 
@@ -112,64 +112,3 @@ export const updatePosition = (
     payload: { entity, currentPosition, newPosition },
   });
 };
-
-// export default function NPCPositionReducer(
-//   state: typeof initialNPCPositionsState,
-//   action: ActionType
-// ) {
-//   switch (action.type) {
-//     case Actions.UPDATE_FARMER_POSITION: {
-//       return {
-//         ...state,
-//         [EntitiesNames.FARMER]: {
-//           ...state[EntitiesNames.FARMER],
-//           startingPosition: action.payload.newPosition,
-//         },
-//       };
-//     }
-//     case Actions.UPDATE_FWORKER_POSITION: {
-//       return {
-//         ...state,
-//         [EntitiesNames.FWORKER]: {
-//           ...state[EntitiesNames.FWORKER],
-//           startingPosition: action.payload.newPosition,
-//         },
-//       };
-//     }
-//     case Actions.UPDATE_MWORKER_POSITION: {
-//       return {
-//         ...state,
-//         [EntitiesNames.MWORKER]: {
-//           ...state[EntitiesNames.MWORKER],
-//           startingPosition: action.payload.newPosition,
-//         },
-//       };
-//     }
-//     default:
-//       throw new Error("Unknown action: " + action.type);
-//   }
-// }
-
-// export const updateFarmerPosition = (
-//   currentPosition: Vector3,
-//   newPosition: Vector3,
-//   dispatch: Dispatch<ActionType>
-// ) => {
-//   dispatch({ type: Actions.UPDATE_FARMER_POSITION, payload: { newPosition } });
-// };
-
-// export const updateFWorkerPosition = (
-//   currentPosition: Vector3,
-//   newPosition: Vector3,
-//   dispatch: Dispatch<ActionType>
-// ) => {
-//   dispatch({ type: Actions.UPDATE_FWORKER_POSITION, payload: { newPosition } });
-// };
-
-// export const updateMWorkerPosition = (
-//   currentPosition: Vector3,
-//   newPosition: Vector3,
-//   dispatch: Dispatch<ActionType>
-// ) => {
-//   dispatch({ type: Actions.UPDATE_MWORKER_POSITION, payload: { newPosition } });
-// };

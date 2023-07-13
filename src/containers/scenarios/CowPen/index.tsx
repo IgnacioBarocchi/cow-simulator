@@ -9,9 +9,8 @@ import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Dooads, ModelUrlByName } from "../../../lib/object3DHelper";
 import { PositionalAudio } from "@react-three/drei";
-import Farmer from "../../../components/Entities/Farmer/Farmer";
 import CowPenMapBounding from "./CowPenMapBounding";
-import CowPenMapVertices from "./CowPenMapVertices";
+import CowPenControlledNPC from "./CowPenMapVertices";
 
 const CowPen = () => {
   const { USE_SCENE_LIGHTS, USE_ORBIT_CONTROLS, DEBUG_PHYSICS } =
@@ -22,7 +21,7 @@ const CowPen = () => {
       <CowPenLight useSceneLights={USE_SCENE_LIGHTS} />
       <Physics timeStep="vary" debug={DEBUG_PHYSICS}>
         <CowPenMapBounding />
-        <CowPenMapVertices />
+        <CowPenControlledNPC />
         <PhysicalCowCell />
         <Instancer
           numberOfInstances={9}
@@ -35,6 +34,8 @@ const CowPen = () => {
           groupPosition={[-10, 0, -8]}
           groupRotation={[0, Math.PI * 2, 0]}
         />
+        <Platform size={10} preset={GroundPresets.Dirt} />
+        <Cow useOrbitControls={USE_ORBIT_CONTROLS} />
         <PositionalAudio
           load
           autoplay
@@ -42,8 +43,6 @@ const CowPen = () => {
           url="/sounds/CowPen/ambient.mp3"
           distance={0.2}
         />
-        <Platform size={10} preset={GroundPresets.Dirt} />
-        <Cow useOrbitControls={USE_ORBIT_CONTROLS} />
       </Physics>
     </>
   );
