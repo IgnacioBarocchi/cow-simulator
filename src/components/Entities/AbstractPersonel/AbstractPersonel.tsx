@@ -83,12 +83,19 @@ export const AbstractPersonel: FC<{
   }, [nextVertexPosition.x, nextVertexPosition.z, machineState.value]);
 
   useFrame(() => {
+    if (!NPC3DModelGroup?.current) return;
+
+    const NPCWorldPosition = NPC3DModelGroup.current.getWorldPosition(
+      new Vector3()
+    );
+
     if (!NPCBody?.current) return;
     if (machineState.matches("walk")) {
       NPCBody.current.setLinvel(
         getPatrolImpulse(
           currentVertexPosition,
-          nextVertexPosition
+          nextVertexPosition,
+          NPCWorldPosition
         ).multiplyScalar(2),
         false
       );
@@ -101,6 +108,17 @@ export const AbstractPersonel: FC<{
     ) {
       const cowPosition = cow3DModelGroup.getWorldPosition(new Vector3());
       NPC3DModelGroup.current.lookAt(cowPosition);
+    }
+
+    if (machineState.matches("interact") && Math.random() > 0.5) {
+      NPCBody.current.setLinvel(
+        getPatrolImpulse(
+          currentVertexPosition,
+          nextVertexPosition,
+          NPCWorldPosition
+        ).multiplyScalar(2.5),
+        false
+      );
     }
   });
 
@@ -137,7 +155,7 @@ export const AbstractPersonel: FC<{
         ref={NPCBody}
         lockRotations={true}
         friction={4}
-        restitution={0.5}
+        restitution={2}
         density={62}
         colliders={false}
         position={initialVertext}

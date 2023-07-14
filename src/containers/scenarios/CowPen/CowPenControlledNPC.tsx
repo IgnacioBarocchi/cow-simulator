@@ -84,9 +84,9 @@ const CowPenControlledNPC = () => {
         currentVertexPosition={state[EntityNames.MWORKER].currentPosition}
       />
       <RigidBody type={"fixed"}>
-        {Object.entries(cowPenVertices).map(([nodeName, vec], i) => {
-          const x = vec.x;
-          const z = vec.z;
+        {Object.entries(cowPenVertices).map(([nodeName, vector3], i) => {
+          const x = vector3.x;
+          const z = vector3.z;
           return (
             <>
               {DEBUG_PHYSICS && (

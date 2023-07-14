@@ -10,6 +10,7 @@ import {
 
 import { Hitboxes } from "../../../lib/object3DHelper";
 import { PositionalAudio } from "@react-three/drei";
+import { useControls } from "leva";
 import { useState } from "react";
 
 // type GLTFResult = GLTF & {
@@ -58,6 +59,12 @@ import { useState } from "react";
 // };
 
 export default function PhysicalCowCell() {
+  const { px, pz, dx, dz } = useControls({
+    px: { value: 5, max: 30, min: -30, step: 0.1 },
+    pz: { value: -1, max: 30, min: -30, step: 0.1 },
+    dx: { value: 2, max: 30, min: -30, step: 0.1 },
+    dz: { value: 1.2, max: 30, min: -30, step: 0.1 },
+  });
   const [soundUrl, setSoundUrl] = useState("");
 
   const collisionEnterHandler = (({ other: { rigidBodyObject } }) => {
@@ -101,6 +108,18 @@ export default function PhysicalCowCell() {
         rotation={[0, Math.PI, 0]}
         args={[0.05, 0.5, 1.2]}
       />
+
+      <CuboidCollider position={[5, 0.5, 3.5]} args={[2, 0.5, 1.5]} />
+      <CuboidCollider position={[5, 0.5, -0.8]} args={[2, 0.5, 1.2]} />
+      <CuboidCollider position={[5, 0.5, -4.5]} args={[2, 0.5, dz]} />
+
+      <CuboidCollider position={[0, 0.5, -4.5]} args={[2, 0.5, dz]} />
+      <CuboidCollider position={[0, 0.5, 3.5]} args={[2, 0.5, 1.5]} />
+
+      <CuboidCollider position={[-5, 0.5, -4.5]} args={[2, 0.5, dz]} />
+      <CuboidCollider position={[-5, 0.5, -0.8]} args={[2, 0.5, 1.2]} />
+
+      <CuboidCollider position={[-5, 0.5, 3.5]} args={[2, 0.5, 1.5]} />
       {soundUrl && (
         <PositionalAudio
           autoplay
