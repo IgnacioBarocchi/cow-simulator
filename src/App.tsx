@@ -5,7 +5,7 @@ import { Leva } from "leva";
 import Scenario from "./components/Scenario";
 
 export default function App() {
-  const { USE_FULL_SCREEN } = useContext(AppContext);
+  const { USE_FULL_SCREEN, DEBUG_PHYSICS } = useContext(AppContext);
 
   useEffect(() => {
     if (USE_FULL_SCREEN) {
@@ -28,7 +28,12 @@ export default function App() {
 
   return (
     <>
-      <Leva />
+      <Leva
+        isRoot
+        collapsed
+        // titleBar={{ position: { x: 0, y: 5 } }}
+        hidden={!DEBUG_PHYSICS}
+      />
       {/* <div>{`current scenario {{current scenario value}}`}</div> */}
       <Suspense
         fallback={

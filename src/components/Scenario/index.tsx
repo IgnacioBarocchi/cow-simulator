@@ -22,7 +22,8 @@ const Scenario = () => {
 
   return (
     <Canvas shadows camera={camera}>
-      {/* {MONITOR_PERFORMANCE && <Perf postion="bot-left" />} */}
+      {MONITOR_PERFORMANCE && <Perf position="top-left" />}
+
       <OrbitControls makeDefault />
       <KeyboardControls map={keysMap}>
         {<ScenarioExperience />}
