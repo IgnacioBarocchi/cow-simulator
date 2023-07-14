@@ -1,4 +1,3 @@
-import { useFrame } from "@react-three/fiber";
 import {
   CapsuleCollider,
   CylinderCollider,
@@ -6,23 +5,25 @@ import {
   RapierRigidBody,
   RigidBody,
 } from "@react-three/rapier";
+import {
+  Entity,
+  EntityNames,
+  EntitySensor,
+  SensorNames,
+} from "../../../lib/object3DHelper";
 import { FC, useContext, useEffect, useMemo, useRef } from "react";
 import { Group, Vector3 } from "three";
-import getPatrolImpulse from "./helper/getPatrolImpulse";
-import {
-  EntityNames,
-  Entity,
-  SensorNames,
-  EntitySensor,
-} from "../../../lib/object3DHelper";
-import Farmer3DModel from "../Farmer/Farmer3DModel";
-import FWorker3DModel from "../FWorker/FWorker3DModel";
-import MWorker3DModel from "../MWorker/MWorker3DModel";
-import cowPenNPCMachine from "../../../machines/CowPenNPCMachine";
-import { useMachine } from "@xstate/react";
-import { Text } from "@react-three/drei";
+
 import { AppContext } from "../../../containers/context/AppContext";
+import FWorker3DModel from "../FWorker/FWorker3DModel";
+import Farmer3DModel from "../Farmer/Farmer3DModel";
+import MWorker3DModel from "../MWorker/MWorker3DModel";
+import { Text } from "@react-three/drei";
+import cowPenNPCMachine from "../../../machines/CowPenNPCMachine";
+import getPatrolImpulse from "./helper/getPatrolImpulse";
 import { useCowSimulatorStore } from "../../../store/store";
+import { useFrame } from "@react-three/fiber";
+import { useMachine } from "@xstate/react";
 
 export const AbstractPersonel: FC<{
   entity: "FARMER" | "MWORKER" | "FWORKER";

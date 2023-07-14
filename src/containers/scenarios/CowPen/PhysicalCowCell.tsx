@@ -7,6 +7,7 @@ import {
   CuboidCollider,
   RigidBody,
 } from "@react-three/rapier";
+
 import { Hitboxes } from "../../../lib/object3DHelper";
 import { PositionalAudio } from "@react-three/drei";
 import { useState } from "react";

@@ -1,8 +1,9 @@
-import { create } from "zustand";
-import { subscribeWithSelector } from "zustand/middleware";
 import { Scenario, Scenarios } from "../components/Scenario/@types/Scenario";
+
 import { CowSimulatorState } from "./types/CowSimulatorStore";
 import { Group } from "three";
+import { create } from "zustand";
+import { subscribeWithSelector } from "zustand/middleware";
 
 export const useCowSimulatorStore = create<CowSimulatorState>()(
   subscribeWithSelector((set) => ({

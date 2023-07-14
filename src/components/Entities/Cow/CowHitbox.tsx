@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { Hitboxes } from "../../../lib/object3DHelper";
 import Hitbox from "../../Hitbox/Hitbox";
+import { Hitboxes } from "../../../lib/object3DHelper";
+import { PositionalAudio } from "@react-three/drei";
 import { StateValue } from "xstate";
 import { States } from "../../../machines/CowMachine";
-import { PositionalAudio } from "@react-three/drei";
 
 const HeadButtCollider: FC<HitboxColliderProps> = ({ orientation }) => {
   return (

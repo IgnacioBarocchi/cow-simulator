@@ -1,16 +1,17 @@
-import { Physics } from "@react-three/rapier";
-import Cow from "../../../components/Entities/Cow";
-import Platform from "../../../components/Platform/Platform";
-import PhysicalCowCell from "./PhysicalCowCell";
-import Instancer from "../../../components/Utility/Instancer/Instancer";
-import CowPenLight from "./CowPenLight";
-import { GroundPresets } from "../../../lib/textureHelper";
-import { useContext } from "react";
-import { AppContext } from "../../context/AppContext";
 import { Dooads, ModelUrlByName } from "../../../lib/object3DHelper";
-import { PositionalAudio } from "@react-three/drei";
-import CowPenMapBounding from "./CowPenMapBounding";
+
+import { AppContext } from "../../context/AppContext";
+import Cow from "../../../components/Entities/Cow";
 import CowPenControlledNPC from "./CowPenControlledNPC";
+import CowPenLight from "./CowPenLight";
+import CowPenMapBounding from "./CowPenMapBounding";
+import { GroundPresets } from "../../../lib/textureHelper";
+import Instancer from "../../../components/Utility/Instancer/Instancer";
+import PhysicalCowCell from "./PhysicalCowCell";
+import { Physics } from "@react-three/rapier";
+import Platform from "../../../components/Platform/Platform";
+import { PositionalAudio } from "@react-three/drei";
+import { useContext } from "react";
 
 const CowPen = () => {
   const { USE_SCENE_LIGHTS, USE_ORBIT_CONTROLS, DEBUG_PHYSICS } =

@@ -4,13 +4,15 @@ Command: npx gltfjsx@6.1.11 public/models/MWorker.glb -t -r public
 */
 
 import * as THREE from "three";
+
 import { FC, useEffect, useRef } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTFActions, GLTFResult } from "./@types/MWorker3DModelTypes";
 import {
   GenericNPC3DModelProps,
   NPCloopableAnimationClips,
 } from "../AbstractPersonel/@types/GenericNPC3DModelTypes";
+import { useAnimations, useGLTF } from "@react-three/drei";
+
 import NPCanimationsByMachineStateMap from "../AbstractPersonel/helper/NPCanimationsByMachineStateMap";
 import getAnimationClipMilliseconds from "../../../lib/getAnimationClipDuration";
 

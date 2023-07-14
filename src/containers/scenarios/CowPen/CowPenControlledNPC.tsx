@@ -1,22 +1,23 @@
-import { useContext, useReducer } from "react";
-import { Text } from "@react-three/drei";
 import {
   CylinderCollider,
   IntersectionEnterHandler,
   IntersectionEnterPayload,
   RigidBody,
 } from "@react-three/rapier";
-import { AppContext } from "../../context/AppContext";
-import { EntityNames } from "../../../lib/object3DHelper";
-import Farmer from "../../../components/Entities/Farmer/Farmer";
 import NPCPositionReducer, {
   connectionsMap,
   cowPenVertices,
   initialNPCPositionsState,
   updatePosition,
 } from "./helpers/NPCPositionReducer";
+import { useContext, useReducer } from "react";
+
+import { AppContext } from "../../context/AppContext";
+import { EntityNames } from "../../../lib/object3DHelper";
 import FWorker from "../../../components/Entities/FWorker/FWorker";
+import Farmer from "../../../components/Entities/Farmer/Farmer";
 import MWorker from "../../../components/Entities/MWorker/MWorker";
+import { Text } from "@react-three/drei";
 
 const CowPenControlledNPC = () => {
   const { DEBUG_PHYSICS } = useContext(AppContext);

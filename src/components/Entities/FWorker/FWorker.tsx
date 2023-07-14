@@ -1,7 +1,7 @@
+import AbstractPersonel from "../AbstractPersonel/AbstractPersonel";
+import { EntityNames } from "../../../lib/object3DHelper";
 import { FC } from "react";
 import { Vector3 } from "three";
-import { EntityNames } from "../../../lib/object3DHelper";
-import AbstractPersonel from "../AbstractPersonel/AbstractPersonel";
 
 const FWorker: FC<{
   initialVertext: Vector3;

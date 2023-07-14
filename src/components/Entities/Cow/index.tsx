@@ -1,23 +1,24 @@
-import { FC, useRef, useState } from "react";
-import Cow3DModel from "./Cow3DModel";
 import {
-  RigidBody,
   CuboidCollider as Bounding,
-  CylinderCollider as Sensor,
   RapierRigidBody,
+  RigidBody,
+  CylinderCollider as Sensor,
 } from "@react-three/rapier";
-import { PositionalAudio, useKeyboardControls } from "@react-three/drei";
-import { Keys } from "../../../lib/keysMap";
-import { useFrame } from "@react-three/fiber";
-import { Euler, Quaternion, Vector3 } from "three";
-import updateOrientation from "./helper/updateOrientation";
-import getImpulse from "./helper/getImpulse";
-import updateCameraMovement from "./helper/updateCameraMovement";
-import { useMachine } from "@xstate/react";
 import CowMachine, { States } from "../../../machines/CowMachine";
-import getMachineStateFromInputtedKeys from "./helper/getMachineStateFromInputtedKeys";
 import { EntityNames, SensorNames } from "../../../lib/object3DHelper";
+import { Euler, Quaternion, Vector3 } from "three";
+import { FC, useRef, useState } from "react";
+import { PositionalAudio, useKeyboardControls } from "@react-three/drei";
+
+import Cow3DModel from "./Cow3DModel";
 import CowHitbox from "./CowHitbox";
+import { Keys } from "../../../lib/keysMap";
+import getImpulse from "./helper/getImpulse";
+import getMachineStateFromInputtedKeys from "./helper/getMachineStateFromInputtedKeys";
+import updateCameraMovement from "./helper/updateCameraMovement";
+import updateOrientation from "./helper/updateOrientation";
+import { useFrame } from "@react-three/fiber";
+import { useMachine } from "@xstate/react";
 
 const Cow: FC<{ useOrbitControls: boolean }> = ({ useOrbitControls }) => {
   const cowBody = useRef<RapierRigidBody>(null);

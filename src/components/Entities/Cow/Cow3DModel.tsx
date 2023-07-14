@@ -1,11 +1,12 @@
-import { Group } from "three";
-import { FC, useEffect, useEffect as onLoadEffect, useRef } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
 import {
   ExtendedAnimationClip,
   GLTFResult,
   loopableAnimationClips,
 } from "./@types/Cow3DModelTypes";
+import { FC, useEffect as onLoadEffect, useEffect, useRef } from "react";
+import { useAnimations, useGLTF } from "@react-three/drei";
+
+import { Group } from "three";
 import { StateValue } from "xstate";
 import animationsByMachineStateMap from "./helper/animationByMachineStateMap";
 import getAnimationClipMilliseconds from "../../../lib/getAnimationClipDuration";

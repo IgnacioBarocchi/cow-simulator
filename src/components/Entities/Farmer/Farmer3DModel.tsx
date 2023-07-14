@@ -1,11 +1,13 @@
 import * as THREE from "three";
+
 import { FC, useEffect, useRef } from "react";
-import { useGLTF, useAnimations } from "@react-three/drei";
 import { GLTFActions, GLTFResult } from "./@types/Farmer3DModelTypes";
 import {
   GenericNPC3DModelProps,
   NPCloopableAnimationClips,
 } from "../AbstractPersonel/@types/GenericNPC3DModelTypes";
+import { useAnimations, useGLTF } from "@react-three/drei";
+
 import NPCanimationsByMachineStateMap from "../AbstractPersonel/helper/NPCanimationsByMachineStateMap";
 import getAnimationClipMilliseconds from "../../../lib/getAnimationClipDuration";
 

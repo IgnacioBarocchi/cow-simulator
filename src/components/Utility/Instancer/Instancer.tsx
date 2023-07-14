@@ -1,7 +1,8 @@
 import { FC, useEffect, useRef } from "react";
-import { useGLTF } from "@react-three/drei";
 import { Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
+
 import { GLTF } from "three-stdlib";
+import { useGLTF } from "@react-three/drei";
 
 type GLTFResult = GLTF & {
   nodes: {

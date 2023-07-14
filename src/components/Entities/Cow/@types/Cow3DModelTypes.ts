@@ -1,4 +1,5 @@
-import { Mesh, MeshStandardMaterial, SkinnedMesh, Bone } from "three";
+import { Bone, Mesh, MeshStandardMaterial, SkinnedMesh } from "three";
+
 import { GLTF } from "three-stdlib";
 
 export type GLTFResult = GLTF & {

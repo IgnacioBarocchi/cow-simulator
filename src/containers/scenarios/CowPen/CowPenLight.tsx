@@ -1,7 +1,8 @@
-import { useFrame } from "@react-three/fiber";
 import { FC, useRef } from "react";
-import gsap from "gsap";
+
 import { SpotLight } from "three";
+import gsap from "gsap";
+import { useFrame } from "@react-three/fiber";
 
 const CowPenLight: FC<{ useSceneLights: boolean }> = ({ useSceneLights }) => {
   console.log(" useSceneLights " + useSceneLights);
