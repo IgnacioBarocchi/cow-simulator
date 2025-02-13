@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useEffect, useMemo, useRef } from "react";
 import { Group, Mesh, MeshStandardMaterial, Vector3 } from "three";
 
 import { GLTF } from "three-stdlib";
@@ -39,7 +39,7 @@ const Instancer: FC<InstancerProps> = ({
   const { nodes } = useGLTF(url) as GLTFResult;
   const groupRef = useRef<Group>(null);
 
-  useEffect(() => {
+  useMemo(() => {
     if (groupRef.current === null) return;
 
     const group = groupRef.current;
@@ -64,6 +64,9 @@ const Instancer: FC<InstancerProps> = ({
       group.add(instanceGroup);
     }
   }, []);
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <group

@@ -3,6 +3,9 @@ import { Suspense, useContext, useEffect } from "react";
 import { AppContext } from "./containers/context/AppContext";
 import { Leva } from "leva";
 import Scenario from "./components/Scenario";
+import { PlayerProvider } from "./context/player-provider";
+import usePlayerMachine from "./hooks/usePlayerMachine";
+import { PageOverlay } from "./features/page/page";
 
 export default function App() {
   const { USE_FULL_SCREEN, DEBUG_PHYSICS } = useContext(AppContext);
@@ -28,23 +31,26 @@ export default function App() {
 
   return (
     <>
-      <Leva
-        isRoot
-        collapsed
-        // titleBar={{ position: { x: 0, y: 5 } }}
-        hidden={!DEBUG_PHYSICS}
-      />
-      {/* <div>{`current scenario {{current scenario value}}`}</div> */}
-      <Suspense
-        fallback={
-          <div className="fallback-container">
-            <div className="loading-message">Loading...</div>
-            <div className="spinner"></div>
-          </div>
-        }
-      >
+      <PlayerProvider>
+        <Leva
+          isRoot
+          collapsed
+          // titleBar={{ position: { x: 0, y: 5 } }}
+          hidden={!DEBUG_PHYSICS}
+        />
+        {/* <div>{`current scenario {{current scenario value}}`}</div> */}
+        {/* <Suspense
+          fallback={
+              <div className="fallback-container">
+              <div className="loading-message">Loading...</div>
+              <div className="spinner"></div>
+            </div>
+          }
+        > */}
         <Scenario />
-      </Suspense>
+        {/* <PageOverlay /> */}
+        {/* </Suspense> */}
+      </PlayerProvider>
     </>
   );
 }
