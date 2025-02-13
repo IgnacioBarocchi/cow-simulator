@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 import {
   Bloom,
   BrightnessContrast,
@@ -8,20 +10,19 @@ import { BlurPass, KernelSize, Resolution } from "postprocessing";
 
 import { CameraOptions } from "./@types/CameraOptions";
 import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
-import { useGLTF } from "@react-three/drei";
+import Cow from "./features/character";
+import CowPenScene from "./features/cow-pen-scene";
 import { GLTF } from "three-stdlib";
+import Loading from "./features/page/loading";
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import { degToRad } from "three/src/math/MathUtils.js";
-import Cow from "./features/character";
-import { PlayerProvider } from "./context/player-provider";
 import { Physics } from "@react-three/rapier";
+import { PlayerProvider } from "./context/player-provider";
 import { Update } from "./containers/scenarios/CowPen/update";
-import { useAtom } from "jotai";
+import { degToRad } from "three/src/math/MathUtils.js";
 import { terrainLoadedAtom } from "./store/store";
-import CowPenScene from "./features/cow-pen-scene";
-import Loading from "./features/page/loading";
+import { useAtom } from "jotai";
+import { useGLTF } from "@react-three/drei";
 
 const camera: CameraOptions = {
   fov: 45,
@@ -35,7 +36,7 @@ const ExperimentalApp = () => {
 
   return (
     <Canvas shadows camera={camera} fallback={<Loading />}>
-      <Perf position="top-left" />
+      {/* <Perf position="top-left" /> */}
       <OrbitControls
         makeDefault
         minDistance={3.5}
