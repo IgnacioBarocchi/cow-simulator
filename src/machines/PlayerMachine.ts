@@ -1,14 +1,12 @@
 // todo check archange against the demons repo.
 // todo> i think that handles the animations within the machine.
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Vector3 } from "three";
 import { assign, createMachine } from "xstate";
 import animationsByMachineStateMap from "../features/character/helpers/animationByMachineStateMap";
-import getMachineStateFromInputtedKeys from "../features/character/helpers/getMachineStateFromInputtedKeys";
 import { playOneShotAnimation } from "../lib/animationHelper";
-import { Matrix4, Quaternion, Vector3 } from "three";
-import { VectorSpringSimulator } from "../lib/physics/VectorSpringSimulator";
 import { RelativeSpringSimulator } from "../lib/physics/RelativeSpringSimulator";
-import updateMovement from "../lib/movementHelper";
+import { VectorSpringSimulator } from "../lib/physics/VectorSpringSimulator";
 
 // todo: conver to map
 export const stateEvents = {

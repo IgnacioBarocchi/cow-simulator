@@ -1,10 +1,8 @@
-import { RigidBody, CuboidCollider } from "@react-three/rapier";
+import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 import { terrainLoadedAtom } from "../../store/store";
-import { Ground3DModel } from "./models/ground";
 import CowPenLights from "./FX/lights";
-import { Fence3DModel } from "./models/fence";
 
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";

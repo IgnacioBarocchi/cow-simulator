@@ -19,7 +19,7 @@ export default function (
 
   if (leftward && rightward && numberOfKeysPressed === 2) leftward = false;
 
-  let impulse = {
+  const impulse = {
     x: leftward ? -normalizedSpeed : rightward ? normalizedSpeed : 0,
     y: linvelY,
     z: forward ? -normalizedSpeed : backward ? normalizedSpeed : 0,

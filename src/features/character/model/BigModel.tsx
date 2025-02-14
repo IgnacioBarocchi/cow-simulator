@@ -1,8 +1,4 @@
 import { useGLTF } from "@react-three/drei";
-import { cowLoadedAtom } from "../../../store/store";
-import { useSetAtom } from "jotai";
-import { RigidBody } from "@react-three/rapier";
-import { useEffect } from "react";
 
 const BigModel = () => {
   const { nodes, materials } = useGLTF("/models/cow_character2.glb");

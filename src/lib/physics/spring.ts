@@ -13,7 +13,7 @@ export function spring(
   velocity += acceleration;
   velocity *= damping;
 
-  let position = source + velocity;
+  const position = source + velocity;
 
   return new SimulationFrame(position, velocity);
 }
@@ -25,7 +25,7 @@ export function springV(
   mass: number,
   damping: number
 ): void {
-  let acceleration = new Vector3().subVectors(dest, source);
+  const acceleration = new Vector3().subVectors(dest, source);
   acceleration.divideScalar(mass);
   velocity.add(acceleration);
   velocity.multiplyScalar(damping);

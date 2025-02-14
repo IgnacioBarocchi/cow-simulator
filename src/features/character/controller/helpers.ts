@@ -21,10 +21,10 @@ export function lerpVectors(
 export function getAngleBetweenVectors(
   v1: THREE.Vector3,
   v2: THREE.Vector3,
-  dotTreshold: number = 0.0005
+  dotTreshold = 0.0005
 ): number {
   let angle: number;
-  let dot = v1.dot(v2);
+  const dot = v1.dot(v2);
 
   // If dot is close to 1, we'll round angle to zero
   if (dot > 1 - dotTreshold) {

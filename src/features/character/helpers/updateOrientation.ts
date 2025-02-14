@@ -15,7 +15,7 @@ export default function updateOrientation(
   setOrientation: (value: SetStateAction<number>) => void,
   keys: Keys
 ) {
-  let { forward, backward, leftward, rightward } = keys;
+  const { forward, backward, leftward, rightward } = keys;
 
   let aTanAngle = Math.atan2(Math.sin(orientation), Math.cos(orientation));
   aTanAngle = aTanAngle < 0 ? aTanAngle + Math.PI * 2 : aTanAngle;

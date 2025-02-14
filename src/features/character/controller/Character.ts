@@ -169,7 +169,7 @@ export class Character {
   updateRotationSpring(timeStep: number): void {
     // Spring rotation
     // Figure out angle between current and target orientation
-    let angle = getSignedAngleBetweenVectors(
+    const angle = getSignedAngleBetweenVectors(
       this.orientation,
       this.orientationTarget
     );
@@ -177,7 +177,7 @@ export class Character {
     // Simulator
     this.rotationSimulator.target = angle;
     this.rotationSimulator.simulate(timeStep * 1.74);
-    let rot = this.rotationSimulator.position;
+    const rot = this.rotationSimulator.position;
 
     // Updating values
     this.orientation.applyAxisAngle(this.UP, rot);
@@ -209,7 +209,7 @@ export class Character {
   }
 
   updateOrientationTarget() {
-    let moveVector = this.getCameraRelativeMovementVector();
+    const moveVector = this.getCameraRelativeMovementVector();
     const noInputDirection =
       moveVector.x === 0 && moveVector.y === 0 && moveVector.z === 0;
     if (noInputDirection) {
@@ -239,29 +239,6 @@ export class Character {
 
   physicsPostStep(worldApi: WorldApi) {
     if (!this.rigidbody.current) return;
-
-    // // Update foot ray position
-    // const pos = this.rigidbody.current.translation();
-    // this.footShape.origin.x = pos.x;
-    // this.footShape.origin.y = pos.y;
-    // this.footShape.origin.z = pos.z;
-
-    // // TODO: work on grounded logic
-    // const world = worldApi.raw();
-    // const result = world.castRay(
-    //   this.footShape,
-    //   1.16 / 2 + 0.316,
-    //   true,
-    //   undefined,
-    //   undefined,
-    //   undefined,
-    //   this.rigidbody.current
-    // );
-    // const grounded = Boolean(result && result.collider);
-    // if (this.grounded !== grounded) {
-    //   console.log(grounded ? "Grounded" : "Not Grounded");
-    // }
-    // this.grounded = grounded;
 
     const velocity = this.rigidbody.current.linvel();
     this.simulatedVelocity.set(velocity.x, velocity.y, velocity.z);

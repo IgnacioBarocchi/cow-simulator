@@ -16,10 +16,10 @@ function applyVectorMatrixXZ(
 export function getAngleBetweenVectors(
   v1: THREE.Vector3,
   v2: THREE.Vector3,
-  dotTreshold: number = 0.0005
+  dotTreshold = 0.0005
 ): number {
   let angle: number;
-  let dot = v1.dot(v2);
+  const dot = v1.dot(v2);
 
   // If dot is close to 1, we'll round angle to zero
   if (dot > 1 - dotTreshold) {
@@ -93,7 +93,7 @@ const updateMovementSpring = ({ context, event }) => {
 const updateRotationSpring = ({ context, event }) => {
   // Spring rotation
   // Figure out angle between current and target orientation
-  let angle = getSignedAngleBetweenVectors(
+  const angle = getSignedAngleBetweenVectors(
     context.movementInfo.orientation,
     context.movementInfo.orientationTarget
   );
@@ -101,7 +101,7 @@ const updateRotationSpring = ({ context, event }) => {
   // Simulator
   context.movementInfo.rotationSimulator.target = angle;
   context.movementInfo.rotationSimulator.simulate(event.timeStep * 1.74);
-  let rot = context.movementInfo.rotationSimulator.position;
+  const rot = context.movementInfo.rotationSimulator.position;
 
   // Updating values
   context.movementInfo.orientation.applyAxisAngle(new Vector3(0, 1, 0), rot);
@@ -143,7 +143,7 @@ const getCameraRelativeMovementVector = ({ context, event }) => {
 };
 
 const updateOrientationTarget = ({ context, event }) => {
-  let moveVector = getCameraRelativeMovementVector({ context, event });
+  const moveVector = getCameraRelativeMovementVector({ context, event });
   const noInputDirection =
     moveVector.x === 0 && moveVector.y === 0 && moveVector.z === 0;
   if (noInputDirection) {

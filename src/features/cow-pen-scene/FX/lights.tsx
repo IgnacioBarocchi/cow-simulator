@@ -2,24 +2,6 @@ import { SpotLight } from "@react-three/drei";
 import { useAtom } from "jotai";
 import { useEffect, useState } from "react";
 import { cowLoadedAtom } from "../../../store/store";
-// const { position, angle, penumbra, intensity, distance, decay, color } =
-//   useControls({
-//     position: { value: [0, 4.5, 0], step: 0.1 },
-//     angle: { value: 0.73, min: 0, max: Math.PI / 2 },
-//     penumbra: { value: 44, min: 0, max: 100, step: 1 },
-//     intensity: { value: 40, min: 0, max: 100, step: 1 },
-//     distance: { value: 10.4, min: 0, max: 100, step: 1 },
-//     decay: { value: 5, min: 1, max: 100, step: 1 },
-//     color: { value: "#fef8dd" },
-//   });
-// position={position}
-// angle={angle}
-// penumbra={penumbra}
-// intensity={intensity}
-// distance={distance}
-// decay={decay}
-// color={color}
-// castShadow
 
 const CowPenLights = () => {
   const [cowIsLoaded] = useAtom(cowLoadedAtom);
@@ -30,16 +12,16 @@ const CowPenLights = () => {
       const interval = setInterval(() => {
         setIntensity((prev) => {
           if (prev < 40) {
-            return Math.min(prev + 1, 40); // Increment intensity to a maximum of 40
+            return Math.min(prev + 1, 40);
           }
-          clearInterval(interval); // Clear interval when max intensity reached
+          clearInterval(interval);
           return prev;
         });
-      }, 50); // Adjust the duration of the transition as needed
+      }, 50);
 
-      return () => clearInterval(interval); // Cleanup on unmount
+      return () => clearInterval(interval);
     } else {
-      setIntensity(1); // Reset intensity if cowIsLoaded is false
+      setIntensity(1);
     }
   }, [cowIsLoaded]);
 
