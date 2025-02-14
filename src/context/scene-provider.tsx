@@ -1,14 +1,12 @@
-import { OrbitControls } from "@react-three/drei";
-import { Canvas, ReactThreeFiber } from "@react-three/fiber";
-import { Physics } from "@react-three/rapier";
-import { useAtom } from "jotai";
-import { Perf } from "r3f-perf";
 import { Camera, OrthographicCamera, PerspectiveCamera } from "three";
-import { degToRad } from "three/src/math/MathUtils.js";
-import { terrainLoadedAtom } from "../store/store";
-import { LoadingScreen } from "../features/page/loading-screen";
+import { Canvas, ReactThreeFiber } from "@react-three/fiber";
+
 import { InputControls } from "../features/character/controller/input";
 import Loading from "../features/page/loading";
+import { OrbitControls } from "@react-three/drei";
+import { Perf } from "r3f-perf";
+import { Physics } from "@react-three/rapier";
+import { degToRad } from "three/src/math/MathUtils.js";
 
 type CameraOptions = (
   | Camera
@@ -36,7 +34,7 @@ const camera: CameraOptions = {
 
 const isDev = window.location.pathname.endsWith("/dev");
 const SceneProvider = ({ children }) => {
-  const terrainLoaded = useAtom(terrainLoadedAtom);
+  // const terrainLoaded = useAtom(terrainLoadedAtom);
 
   return (
     <>
