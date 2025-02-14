@@ -39,7 +39,6 @@ const SceneProvider = ({ children }) => {
   return (
     <>
       {/* <LoadingScreen /> */}
-      <InputControls />
       <Canvas shadows camera={camera} fallback={<Loading />}>
         {isDev && <Perf />}
         <OrbitControls
@@ -54,6 +53,7 @@ const SceneProvider = ({ children }) => {
           {children}
         </Physics>
       </Canvas>
+      <InputControls />
     </>
   );
 };
