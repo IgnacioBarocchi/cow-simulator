@@ -1,9 +1,8 @@
+import { Box, Collapsible, Text } from "grommet";
 import { useAtom } from "jotai";
-import usePlayerMachine from "../../hooks/usePlayerMachine";
-import { cowLoadedAtom } from "../../store/store";
-import { Collapsible, Text, Box } from "grommet";
-import Loading from "./loading";
 import styled from "styled-components";
+import { cowLoadedAtom } from "../../store/store";
+import Loading from "./loading";
 
 const Overlay = styled.div`
   position: fixed;
@@ -17,8 +16,7 @@ const Overlay = styled.div`
   pointer-events: none;
 `;
 
-export const PageOverlay = () => {
-  const { state } = usePlayerMachine();
+export const PageOverlayNoseUsa = () => {
   const [gameLoaded] = useAtom(cowLoadedAtom);
 
   return (
@@ -40,19 +38,3 @@ export const PageOverlay = () => {
     </Overlay>
   );
 };
-{
-  /* <div
-style={{
-  position: "absolute",
-  top: 0,
-  right: "5px",
-  color: "white",
-  fontSize: "50",
-  background: "red",
-  width: "100px",
-  height: "50px",
-}}
->
-{state?.value}
-</div> */
-}

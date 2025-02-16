@@ -1,60 +1,66 @@
-import { Camera, OrthographicCamera, PerspectiveCamera } from "three";
-import { Canvas, ReactThreeFiber } from "@react-three/fiber";
-
-import { InputControls } from "../features/character/controller/input";
-import Loading from "../features/page/loading";
 import { OrbitControls } from "@react-three/drei";
+import { Canvas, CanvasProps } from "@react-three/fiber";
+import {
+  CuboidCollider,
+  Physics,
+  PhysicsProps,
+  RigidBody,
+} from "@react-three/rapier";
 import { Perf } from "r3f-perf";
-import { Physics } from "@react-three/rapier";
+import { FC, ReactNode } from "react";
 import { degToRad } from "three/src/math/MathUtils.js";
+import Loading from "../features/page/loading";
+import { CameraOptions } from "../types";
 
-type CameraOptions = (
-  | Camera
-  | Partial<
-      ReactThreeFiber.Object3DNode<Camera, typeof Camera> &
-        ReactThreeFiber.Object3DNode<
-          PerspectiveCamera,
-          typeof PerspectiveCamera
-        > &
-        ReactThreeFiber.Object3DNode<
-          OrthographicCamera,
-          typeof OrthographicCamera
-        >
-    >
-) & {
-  manual?: boolean;
-};
+const isDev = window.location.pathname.endsWith("/dev");
 
 const camera: CameraOptions = {
   fov: 45,
   near: 0.001,
   far: 200,
-  position: [-2, 4, -10],
+  position: [-2, 4, 10],
 };
 
-const isDev = window.location.pathname.endsWith("/dev");
-const SceneProvider = ({ children }) => {
-  // const terrainLoaded = useAtom(terrainLoadedAtom);
+const canvasProps = {
+  shadows: true,
+  camera,
+  fallback: <Loading />,
+} as CanvasProps;
 
+const physicProps = {
+  timeStep: "vary",
+  debug: isDev,
+  gravity: [0, -9.8, 0],
+} as PhysicsProps;
+
+const orbitControlsProps = {
+  enableDamping: false,
+  makeDefault: true,
+  minDistance: 3.5,
+  maxDistance: 10,
+  enablePan: false,
+  minPolarAngle: degToRad(30),
+  maxPolarAngle: degToRad(90),
+};
+
+const GroundCollider = () => {
   return (
-    <>
-      {/* <LoadingScreen /> */}
-      <Canvas shadows camera={camera} fallback={<Loading />}>
-        {isDev && <Perf />}
-        <OrbitControls
-          makeDefault
-          minDistance={3.5}
-          maxDistance={50}
-          enablePan={false}
-          minPolarAngle={degToRad(30)}
-          maxPolarAngle={degToRad(90)}
-        />
-        <Physics timeStep="vary" debug={isDev} gravity={[0, -9.8, 0]}>
-          {children}
-        </Physics>
-      </Canvas>
-      <InputControls />
-    </>
+    <RigidBody type={"fixed"} colliders={false}>
+      <CuboidCollider friction={2} args={[5, 0, 5]} position={[0, 0, 0]} />
+    </RigidBody>
+  );
+};
+
+const SceneProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  return (
+    <Canvas {...canvasProps}>
+      {isDev && <Perf />}
+      <OrbitControls {...orbitControlsProps} />
+      <Physics {...physicProps}>
+        <GroundCollider />
+        {children}
+      </Physics>
+    </Canvas>
   );
 };
 

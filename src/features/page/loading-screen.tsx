@@ -20,13 +20,21 @@ const Overlay = styled.div`
 export const LoadingScreen = () => {
   const [gameLoaded] = useAtom(cowLoadedAtom);
 
-  if (!gameLoaded) {
+  if (gameLoaded) {
     return null;
   }
 
   return (
     <Overlay>
-      <Loading />
+      <div
+        style={{
+          position: "relative",
+          top: "50%",
+          transform: "translateY(-50%)",
+        }}
+      >
+        <Loading />
+      </div>
     </Overlay>
   );
 };

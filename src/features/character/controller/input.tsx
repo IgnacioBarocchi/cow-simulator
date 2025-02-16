@@ -67,14 +67,7 @@ const MobileControls = () => {
   const bindBackward = useControlPress(Controls.BACKWARD);
 
   return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: "10px",
-        left: "10px",
-        zIndex: 9999,
-      }}
-    >
+    <div style={{ position: "absolute" }}>
       <div style={{ position: "relative", width: "150px", height: "150px" }}>
         {/* Forward (W) */}
         <div
