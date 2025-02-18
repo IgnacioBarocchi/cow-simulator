@@ -1,22 +1,25 @@
-import { context, useFrame } from "@react-three/fiber";
-import { useAfterPhysicsStep } from "@react-three/rapier";
-import useCameraOperator from "./hooks/useCameraOpeator";
-import usePlayerMachine from "./hooks/usePlayerMachine";
+import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
+
 import { input } from "./features/character/controller/input";
+import { useAfterPhysicsStep } from "@react-three/rapier";
 import useCharacterAnimations from "./hooks/useCharacterAnimations";
-// import { Keys } from "../../../lib/keysMap";
+import { useFrame } from "@react-three/fiber";
+import usePlayerMachine from "./hooks/usePlayerMachine";
+
+const createWorker = createWorkerFactory(() => import("./worker"));
 
 export const Update = () => {
+  const worker = useWorker(createWorker);
+
   const {
     state: {
       context: { mesh3DRef, rapierRigidBodyRef, actions, controller },
     },
     send,
   } = usePlayerMachine();
-  const cameraOperator = useCameraOperator();
   useCharacterAnimations();
-  useAfterPhysicsStep((api) => {
-    controller?.physicsPostStep(api);
+  useAfterPhysicsStep(async (api) => {
+    await worker.updatePlayerVelocity(controller, api);
   });
 
   useFrame(({ camera }, delta) => {
@@ -26,16 +29,6 @@ export const Update = () => {
       return;
     }
 
-    // cameraOperator.update(mesh3DRef.current);
-
-    // const keys = getKeys() as unknown as Keys;
-    // const numberOfKeysPressed = Object.values(keys).filter((key) => key).length;
-
-    // send(
-    //   numberOfKeysPressed > 0
-    //     ? getMachineStateFromInputtedKeys(keys)
-    //     : { type: "idle" }
-    // );
     send({
       type: "UPDATE",
       input,
@@ -46,3 +39,14 @@ export const Update = () => {
 
   return null;
 };
+
+// cameraOperator.update(mesh3DRef.current);
+
+// const keys = getKeys() as unknown as Keys;
+// const numberOfKeysPressed = Object.values(keys).filter((key) => key).length;
+
+// send(
+//   numberOfKeysPressed > 0
+//     ? getMachineStateFromInputtedKeys(keys)
+//     : { type: "idle" }
+// );

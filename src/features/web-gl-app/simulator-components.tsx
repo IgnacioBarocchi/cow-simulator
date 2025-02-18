@@ -1,9 +1,9 @@
-import { useAtom } from "jotai";
-import { PlayerProvider } from "../../context/player-provider";
-import { terrainLoadedAtom } from "../../store/store";
 import Cow from "../character";
 import CurrentScene from "../scenes/current-scene";
+import { PlayerProvider } from "../../context/player-provider";
 import { Update } from "../../update";
+import { terrainLoadedAtom } from "../../store/store";
+import { useAtom } from "jotai";
 
 const GameLogic = () => (
   <PlayerProvider>
@@ -12,7 +12,7 @@ const GameLogic = () => (
   </PlayerProvider>
 );
 
-const Experience = () => {
+const SimulatorComponents = () => {
   const terrainLoaded = useAtom(terrainLoadedAtom);
 
   return (
@@ -23,4 +23,4 @@ const Experience = () => {
   );
 };
 
-export default Experience;
+export default SimulatorComponents;

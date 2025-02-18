@@ -1,19 +1,20 @@
-import { lazy, Suspense } from "react";
+import { Suspense, lazy } from "react";
+
 import Connecting from "./features/ui/connecting/index.tsx";
 
-const Experience = lazy(() => import("./features/experience/index.tsx"));
-const UIProvider = lazy(() => import("./context/ui-provider.tsx"));
-const SceneProvider = lazy(() => import("./context/scene-provider.tsx"));
+const UI = lazy(() => import("./features/ui"));
+const WebGlApp = lazy(() => import("./features/web-gl-app"));
 
 const App = () => {
   return (
-    <Suspense fallback={<Connecting />}>
-      <UIProvider>
-        <SceneProvider>
-          <Experience />
-        </SceneProvider>
-      </UIProvider>
-    </Suspense>
+    <>
+      <Suspense fallback={<Connecting party="3D" background="yellow" />}>
+        <WebGlApp />
+      </Suspense>
+      <Suspense fallback={<Connecting party="UI" background="green" />}>
+        <UI />
+      </Suspense>
+    </>
   );
 };
 

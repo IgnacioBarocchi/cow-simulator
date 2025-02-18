@@ -1,9 +1,11 @@
 import { Box, Button, Text } from "grommet";
 import { FormNext, FormPrevious } from "grommet-icons";
-import { atom, useAtom } from "jotai";
-import styled from "styled-components";
-const primary = "white";
+import { atom, useAtom, useAtomValue } from "jotai";
 
+import { block } from "million/react";
+import styled from "styled-components";
+
+const primary = "white";
 const scenes = ["Corral", "Ordeñador", "Matadero"];
 export const selectedSceneAtom = atom(0);
 
@@ -16,8 +18,12 @@ const Dot = styled(Box)`
   transition: background 0.3s;
 `;
 
-const SceneSelector = () => {
-  const [selectedScene, setSelectedScene] = useAtom(selectedSceneAtom);
+// Memoized Dot component to prevent re-renders
+const MemoizedDot = block(({ active }) => <Dot active={active} />);
+
+const SceneSelector = block(() => {
+  const selectedScene = useAtomValue(selectedSceneAtom);
+  const [, setSelectedScene] = useAtom(selectedSceneAtom);
 
   const nextScene = () => {
     setSelectedScene((prev) => (prev + 1) % scenes.length);
@@ -48,15 +54,15 @@ const SceneSelector = () => {
       >
         <Button
           style={{ pointerEvents: "auto" }}
-          icon={<FormPrevious color="primary" />}
+          icon={<FormPrevious color="white" />}
           onClick={downScene}
         />
-        <Text size="large" weight="bold" color="text">
+        <Text size="large" weight="bold" color="text" color="white">
           {scenes[selectedScene]}
         </Text>
         <Button
           style={{ pointerEvents: "auto" }}
-          icon={<FormNext color="primary" />}
+          icon={<FormNext color="white" />}
           onClick={nextScene}
         />
       </Box>
@@ -68,11 +74,11 @@ const SceneSelector = () => {
         width="500px"
       >
         {scenes.map((_, index) => (
-          <Dot key={index} active={index === selectedScene} />
+          <MemoizedDot key={index} active={index === selectedScene} />
         ))}
       </Box>
     </Box>
   );
-};
+});
 
 export default SceneSelector;

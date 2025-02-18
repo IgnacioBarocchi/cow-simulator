@@ -1,9 +1,9 @@
 import { Box, Text } from "grommet";
 
-const Connecting = () => {
+const Connecting = ({ party, background }) => {
   return (
-    <Box background="green" full pad="small">
-      <Text color="white">Conectando a Intervención V</Text>
+    <Box background={background} full pad="small">
+      <Text color="white">[{party}]: Conectando a Intervención V</Text>
     </Box>
   );
 };
