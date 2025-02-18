@@ -1,15 +1,29 @@
-import { Canvas } from "@react-three/offscreen";
-import Experience from "./experience";
+import { Canvas } from "@react-three/fiber";
+import { Canvas as EnhancedCanvas } from "@react-three/offscreen";
 import WorkerFile from "./worker.jsx?worker";
 import { config } from "./experience-config";
 import { lazy } from "react";
-// const Experience = lazy(() => import("./experience"));
+const Experience = lazy(() => import("./experience"));
 
 const worker = new WorkerFile();
 
+const enableWebWorkersExperiment = window.location.pathname.endsWith("/ww");
+
 export default function WebGlApp() {
+  if (enableWebWorkersExperiment) {
+    return (
+      <EnhancedCanvas
+        worker={worker}
+        fallback={<Experience />}
+        {...config.canvasProps}
+      />
+    );
+  }
+
   return (
-    <Canvas worker={worker} fallback={<Experience />} {...config.canvasProps} />
+    <Canvas {...config.canvasProps}>
+      <Experience />
+    </Canvas>
   );
 }
 
