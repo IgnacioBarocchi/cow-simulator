@@ -8,10 +8,29 @@ export default ({ mode }) => {
 
   return defineConfig({
     plugins: [million.vite(), react({ fastRefresh: false })],
-    worker: { plugins: [react()] },
+    worker: {
+      plugins: [react()],
+      format: 'es',
+      // --- or this
+      // rollupOptions: {
+      //   output: {
+      //     inlineDynamicImports: true,
+      //   },
+      // },
+    },
     base: "./",
     server: {
       cors: false,
     },
+    build: {
+      rollupOptions: {
+        output: {
+          format: "umd",
+        },
+      },
+      // Disable code splitting (not recommended for large projects)
+      inlineDynamicImports: true,
+    },
+
   });
 };
