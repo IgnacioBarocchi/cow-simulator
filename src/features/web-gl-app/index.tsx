@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Canvas as EnhancedCanvas } from "@react-three/offscreen";
 import WorkerFile from "./worker.jsx?worker";
-import { config } from "./experience-config";
+import { config } from "../../constants/experience-config";
 import { lazy } from "react";
 const Experience = lazy(() => import("./experience"));
 

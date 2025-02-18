@@ -1,9 +1,8 @@
-import { Box, Layer } from "grommet";
+import { Suspense, lazy } from "react";
 
+import Connecting from "../../ui/connecting";
 import { KeyboardControls } from "@react-three/drei";
-import { block } from "million/react";
 import { useDevice } from "use-device-react";
-import { useLongPress } from "use-long-press";
 
 export enum Controls {
   FORWARD = "FORWARD",
@@ -38,65 +37,97 @@ export const setControl = (control: Controls, engaged: boolean) => {
   input[control] = engaged;
 };
 
-const useControlPress = (control: Controls) =>
-  useLongPress(() => setControl(control, true), {
-    onFinish: () => setControl(control, false),
-    onCancel: () => setControl(control, false),
-    threshold: 100,
-    captureEvent: true,
-    cancelOnMovement: 20,
-    detect: "pointer",
-  });
-
-const ControlButton = block(({ bind, position }) => (
-  <Box
-    round="full"
-    background="rgba(255, 255, 255, 0.7)"
-    width="50px"
-    height="50px"
-    style={{ position: "absolute", ...position }}
-    {...bind()}
-  />
-));
-
-const MobileControls = block(() => {
-  const bindForward = useControlPress(Controls.FORWARD);
-  const bindLeft = useControlPress(Controls.LEFT);
-  const bindRight = useControlPress(Controls.RIGHT);
-  const bindBackward = useControlPress(Controls.BACKWARD);
-
-  return (
-    <Layer
-      position="bottom-left"
-      margin="small"
-      modal={false}
-      responsive={false}
-      background="transparent"
-    >
-      <Box width="150px" height="150px" style={{ position: "relative" }}>
-        <ControlButton bind={bindForward} position={{ top: 0, left: "50px" }} />
-        <ControlButton bind={bindLeft} position={{ top: "50px", left: 0 }} />
-        <ControlButton
-          bind={bindRight}
-          position={{ top: "50px", left: "100px" }}
-        />
-        <ControlButton
-          bind={bindBackward}
-          position={{ top: "100px", left: "50px" }}
-        />
-      </Box>
-    </Layer>
-  );
-});
+const MobileControls = lazy(() => import("./mobile-controls"));
 
 export function InputControls() {
   const { isDesktop } = useDevice();
-  return isDesktop ? (
-    <KeyboardControls map={keyMap} children={null} onChange={setControl} />
-  ) : (
-    <MobileControls />
+
+  if (isDesktop) {
+    return (
+      <KeyboardControls map={keyMap} children={null} onChange={setControl} />
+    );
+  }
+
+  return (
+    <Suspense fallback={<Connecting party="Controles" color="orange" />}>
+      <MobileControls />
+    </Suspense>
   );
 }
 
 type ControlsState<T extends string = string> = { [K in T]: boolean };
 export type Input = ControlsState<Controls>;
+
+// const useControlPress = (control: Controls) =>
+//   useLongPress(() => setControl(control, true), {
+//     onFinish: () => setControl(control, false),
+//     onCancel: () => setControl(control, false),
+//     threshold: 100,
+//     captureEvent: true,
+//     cancelOnMovement: 20,
+//     // detect: "pointer",
+//   });
+
+// const ControlButton = block(({ bind, position }) => (
+//   <Box
+//     round="full"
+//     background="rgba(255, 255, 255, 0.7)"
+//     width="50px"
+//     height="50px"
+//     style={{ poinerEvents: "auto", position: "absolute", ...position }}
+//     {...bind()}
+//   />
+// ));
+
+// const MobileControls = block(() => {
+//   const bindForward = useControlPress(Controls.FORWARD);
+//   const bindLeft = useControlPress(Controls.LEFT);
+//   const bindRight = useControlPress(Controls.RIGHT);
+//   const bindBackward = useControlPress(Controls.BACKWARD);
+
+//   return (
+//     <>
+//       <Layer
+//         position="bottom-left"
+//         margin="small"
+//         modal={false}
+//         responsive={false}
+//         background="transparent"
+//       >
+//         <Box width="150px" height="150px" style={{ position: "relative" }}>
+//           <ControlButton
+//             bind={bindForward}
+//             position={{ top: 0, left: "50px" }}
+//           />
+//           <ControlButton bind={bindLeft} position={{ top: "50px", left: 0 }} />
+//           <ControlButton
+//             bind={bindRight}
+//             position={{ top: "50px", left: "100px" }}
+//           />
+//           <ControlButton
+//             bind={bindBackward}
+//             position={{ top: "100px", left: "50px" }}
+//           />
+//         </Box>
+//       </Layer>
+//       <Layer
+//         position="bottom-right"
+//         margin="small"
+//         modal={false}
+//         responsive={false}
+//         background="transparent"
+//       >
+//         <Box width="100px" height="150px" style={{ position: "relative" }}>
+//           <ControlButton
+//             // bind={bindAttack1}
+//             position={{ top: 0, left: "25px" }}
+//           />
+//           <ControlButton
+//             // bind={bindAttack2}
+//             position={{ top: "50px", left: "25px" }}
+//           />
+//         </Box>
+//       </Layer>
+//     </>
+//   );
+// });

@@ -3,7 +3,10 @@ import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import SimulatorComponents from "./simulator-components";
-import { config } from "./experience-config";
+import { config } from "../../constants/experience-config";
+import { publicExperimentalFeatures } from "../../constants/features";
+
+const { debug } = publicExperimentalFeatures;
 
 const GroundCollider = () => {
   return (
@@ -16,11 +19,11 @@ const GroundCollider = () => {
 const Experience = () => {
   return (
     <>
-      {config.isDev && <Perf />}
-      <Physics {...config.physicProps}>
+      <Physics {...config.physicProps} debug={debug}>
         <GroundCollider />
         <SimulatorComponents />
       </Physics>
+      {debug && <Perf />}
       <OrbitControls {...config.orbitControlsProps} />
     </>
   );

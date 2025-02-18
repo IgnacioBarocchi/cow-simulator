@@ -21,9 +21,8 @@ const canvasProps = {
 
 const physicProps = {
     timeStep: "vary",
-    debug: isDev,
     gravity: [0, -9.8, 0],
-} as PhysicsProps;
+} as Omit<PhysicsProps, "debug">;
 
 const orbitControlsProps = {
     enableDamping: false,
