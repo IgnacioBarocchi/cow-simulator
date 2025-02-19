@@ -2,7 +2,7 @@ import { FC, ReactNode } from "react";
 
 import ActionPanel from "./action-panel";
 import { Grommet } from "grommet";
-import { InputControls } from "../character/controller/input";
+import { InputControls } from "../character/controller/input-controls";
 import { LoadingScreen } from "../page/loading-screen";
 import SceneSelector from "../scene-selector";
 

@@ -6,18 +6,26 @@ import {
   Vector3,
   Vector3Tuple,
 } from "three";
-// import { Ray } from "@dimforge/rapier3d-compat";
-RelativeSpringSimulator;
-import { RelativeSpringSimulator } from "../../../lib/physics/RelativeSpringSimulator";
-import { VectorSpringSimulator } from "../../../lib/physics/VectorSpringSimulator";
 import { ObjectRef, RigidBodyRef } from "../../../types";
-import { input } from "./input";
-import { WorldApi } from "@react-three/rapier";
 import {
   applyVectorMatrixXZ,
   getSignedAngleBetweenVectors,
   lerpVectors,
 } from "./helpers";
+
+import { RelativeSpringSimulator } from "../../../lib/physics/RelativeSpringSimulator";
+import { VectorSpringSimulator } from "../../../lib/physics/VectorSpringSimulator";
+import { WorldApi } from "@react-three/rapier";
+import { input } from "./input-controls";
+
+// import { Ray } from "@dimforge/rapier3d-compat";
+RelativeSpringSimulator;
+
+
+
+
+
+
 
 const runSpeed = 4;
 const walkSpeed = 1;

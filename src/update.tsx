@@ -1,6 +1,6 @@
 import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
 
-import { input } from "./features/character/controller/input";
+import { input } from "./features/character/controller/input-controls";
 import { useAfterPhysicsStep } from "@react-three/rapier";
 import useCharacterAnimations from "./hooks/useCharacterAnimations";
 import { useFrame } from "@react-three/fiber";

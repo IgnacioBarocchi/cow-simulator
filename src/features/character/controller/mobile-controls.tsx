@@ -1,5 +1,5 @@
 import { Box, Layer } from "grommet";
-import { Controls, setControl } from "./input";
+import { Controls, setControl } from "./input-controls";
 
 import { block } from "million/react";
 import { useLongPress } from "use-long-press";
@@ -16,7 +16,7 @@ const useControlPress = (control: Controls) =>
 const ControlButton = block(({ bind, position }) => (
   <Box
     round="full"
-    background="rgba(255, 255, 255, 0.7)"
+    background="rgba(255, 255, 255, 0.3)"
     width="50px"
     height="50px"
     style={{ poinerEvents: "auto", position: "absolute", ...position }}
@@ -29,6 +29,10 @@ const MobileControls = block(() => {
   const bindLeft = useControlPress(Controls.LEFT);
   const bindRight = useControlPress(Controls.RIGHT);
   const bindBackward = useControlPress(Controls.BACKWARD);
+  const bindJump = useControlPress(Controls.JUMP);
+  const bindAttack1 = useControlPress(Controls.ATTACK1);
+  const bindAttack2 = useControlPress(Controls.ATTACK2);
+  const bindSprint = useControlPress(Controls.SPRINT);
 
   return (
     <>
@@ -62,14 +66,19 @@ const MobileControls = block(() => {
         responsive={false}
         background="transparent"
       >
-        <Box width="150px" height="100px" style={{ position: "relative" }}>
+        <Box width="150px" height="150px" style={{ position: "relative" }}>
+          <ControlButton bind={bindJump} position={{ top: 0, left: "50px" }} />
           <ControlButton
-            // bind={bindAttack1}
-            position={{ top: 0, left: "25px" }}
+            bind={bindSprint}
+            position={{ top: "50px", left: 0 }}
           />
           <ControlButton
-            // bind={bindAttack2}
-            position={{ top: "50px", left: "25px" }}
+            bind={bindAttack1}
+            position={{ top: "50px", left: "100px" }}
+          />
+          <ControlButton
+            bind={bindAttack2}
+            position={{ top: "100px", left: "50px" }}
           />
         </Box>
       </Layer>
