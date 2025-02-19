@@ -20,6 +20,7 @@ const ControlButton = block(({ bind, position }) => (
     width="50px"
     height="50px"
     style={{ poinerEvents: "auto", position: "absolute", ...position }}
+    onContextMenu={(e) => e.preventDefault()}
     {...bind?.()}
   />
 ));
