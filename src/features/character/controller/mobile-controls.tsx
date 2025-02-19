@@ -1,7 +1,7 @@
 import { Box, Layer } from "grommet";
 import { Controls, setControl } from "./input-controls";
 
-import { block } from "million/react";
+// import { block } from "million/react";
 import { useLongPress } from "use-long-press";
 
 const useControlPress = (control: Controls) =>
@@ -13,7 +13,7 @@ const useControlPress = (control: Controls) =>
     cancelOnMovement: 20,
   });
 
-const ControlButton = block(({ bind, position }) => (
+const ControlButton = ({ bind, position }) => (
   <Box
     round="full"
     background="rgba(255, 255, 255, 0.3)"
@@ -23,9 +23,9 @@ const ControlButton = block(({ bind, position }) => (
     onContextMenu={(e) => e.preventDefault()}
     {...bind?.()}
   />
-));
+);
 
-const MobileControls = block(() => {
+const MobileControls = () => {
   const bindForward = useControlPress(Controls.FORWARD);
   const bindLeft = useControlPress(Controls.LEFT);
   const bindRight = useControlPress(Controls.RIGHT);
@@ -85,6 +85,6 @@ const MobileControls = block(() => {
       </Layer>
     </>
   );
-});
+};
 
 export default MobileControls;

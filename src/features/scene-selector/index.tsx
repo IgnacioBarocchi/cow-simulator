@@ -57,7 +57,7 @@ const SceneSelector = block(() => {
           icon={<FormPrevious color="white" />}
           onClick={downScene}
         />
-        <Text size="large" weight="bold" color="text" color="white">
+        <Text size="large" weight="bold" color="white">
           {scenes[selectedScene]}
         </Text>
         <Button
