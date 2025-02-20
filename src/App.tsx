@@ -8,10 +8,10 @@ const WebGlApp = lazy(() => import("./features/web-gl-app"));
 const App = () => {
   return (
     <>
-      <Suspense fallback={<Connecting party="3D" background="yellow" />}>
+      <Suspense fallback={<Connecting party="3D" background="grey" />}>
         <WebGlApp />
       </Suspense>
-      <Suspense fallback={<Connecting party="UI" background="green" />}>
+      <Suspense fallback={<Connecting party="UI" background="grey" />}>
         <UI />
       </Suspense>
     </>
