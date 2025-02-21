@@ -47,6 +47,9 @@ dependencies:
   jotai:
     specifier: ^2.11.3
     version: 2.11.3(@types/react@18.2.14)(react@18.2.0)
+  jotai-xstate:
+    specifier: ^0.6.1
+    version: 0.6.1(jotai@2.11.3)(xstate@5.19.2)
   leva:
     specifier: ^0.9.35
     version: 0.9.35(@types/react-dom@18.2.6)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
@@ -2490,6 +2493,16 @@ packages:
       react: 18.2.0
     transitivePeerDependencies:
       - '@types/react'
+    dev: false
+
+  /jotai-xstate@0.6.1(jotai@2.11.3)(xstate@5.19.2):
+    resolution: {integrity: sha512-graSDsorui1a4Zt4jCJ40GuOzOkfOY317XcazYnNx0EHS+D/rOr4aLzZRy0NLaPQZsypfcGSMbNCwksfhwkixA==}
+    peerDependencies:
+      jotai: '>=2.0.0'
+      xstate: '>=5.0.0'
+    dependencies:
+      jotai: 2.11.3(@types/react@18.2.14)(react@18.2.0)
+      xstate: 5.19.2
     dev: false
 
   /jotai@2.11.3(@types/react@18.2.14)(react@18.2.0):

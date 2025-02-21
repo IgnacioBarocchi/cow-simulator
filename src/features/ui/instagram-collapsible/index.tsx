@@ -5,10 +5,19 @@ import { Text } from "grommet";
 const InstagramLinks = () => (
   <>
     <Text margin={{ top: "small" }}>
-      <a href="https://instagram.com/intervencion_v">@intervencion_v</a>
+      <a href="https://instagram.com/intervencion_v" target="_blank">
+        @intervencion_v
+      </a>
     </Text>
     <Text margin={{ top: "small" }}>
-      <a href="https://instagram.com/santuariosalvajes">@santuariosalvajes</a>
+      <a href="https://instagram.com/santuariosalvajes" target="_blank">
+        @santuariosalvajes
+      </a>
+    </Text>
+    <Text>
+      <a href="https://www.instagram.com/ignacio_barocchi" target="_blank">
+        @ignacio_barocchi
+      </a>
     </Text>
   </>
 );

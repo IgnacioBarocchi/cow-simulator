@@ -1,8 +1,20 @@
-import { Html } from "@react-three/drei";
-import { Button, Text } from "grommet";
-import { Info } from "grommet-icons";
+import { Box, Button, Grommet, Heading, Layer, Text } from "grommet";
+import { Close, Info } from "grommet-icons";
 
-const Hint3D = ({ position, index }) => {
+import { Html } from "@react-three/drei";
+import { useState } from "react";
+
+const theme = {
+  global: {
+    font: {
+      family: "Arial",
+    },
+  },
+};
+
+const Hint3D = ({ position, info }) => {
+  const [show, setShow] = useState(false);
+
   return (
     <group position={position}>
       <Html
@@ -16,13 +28,33 @@ const Hint3D = ({ position, index }) => {
         sprite
         onOcclude={(hidden) => null}
       >
-        <Button
-          style={{
-            pointerEvents: "auto",
-          }}
-          color="white"
-          icon={<Info />}
-        />
+        {!show && (
+          <Button
+            style={{ pointerEvents: "auto" }}
+            color="white"
+            icon={<Info />}
+            onClick={() => setShow(!show)}
+          />
+        )}
+        {show && (
+          // <Layer
+          //   onEsc={() => setShow(false)}
+          //   onClickOutside={() => setShow(false)}
+          //   background="transparent"
+          // >
+          <Box pad="medium" gap="small" width="medium">
+            <Box direction="row" align="center" justify="between">
+              <Heading level={3} margin="none">
+                {info.title}
+              </Heading>
+              <Button icon={<Close />} onClick={() => setShow(false)} plain />
+            </Box>
+            {info.body.map((body) => (
+              <Text>{body}</Text>
+            ))}
+          </Box>
+          // </Layer>
+        )}
       </Html>
     </group>
   );

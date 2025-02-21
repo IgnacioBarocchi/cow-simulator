@@ -1,6 +1,8 @@
 import { Box } from "grommet";
+import Button from "../button";
 import InstagramSidebar from "../instagram-collapsible";
 import Sidebar from "../info-collapsible";
+import { Up } from "grommet-icons";
 import { useDevice } from "use-device-react";
 
 const ActionPanel = () => {
@@ -17,6 +19,14 @@ const ActionPanel = () => {
     >
       <Sidebar />
       <InstagramSidebar />
+      <Button
+        icon={<Up />}
+        onClick={() => {
+          document
+            .getElementById("landing-container")
+            ?.scrollIntoView({ behavior: "smooth" });
+        }}
+      />
     </Box>
   );
 };

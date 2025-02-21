@@ -24,6 +24,7 @@
     "grommet-icons": "^4.12.4",
     "gsap": "^3.12.2",
     "jotai": "^2.11.3",
+    "jotai-xstate": "^0.6.1",
     "leva": "^0.9.35",
     "million": "^2.4.9",
     "nanoid": "^5.1.0",

@@ -1,23 +1,25 @@
-import { useEffect } from "react";
+import { playerContextAtom, playerStateValueAtom } from "../store/store";
+
+import animationsByMachineStateMap from "../features/character/helpers/animationByMachineStateMap";
 import getAnimationClipMilliseconds from "../lib/getAnimationClipDuration";
 import { loopableAnimationClips } from "../features/character/@types/Cow3DModelTypes";
-import animationsByMachineStateMap from "../features/character/helpers/animationByMachineStateMap";
-import usePlayerMachine from "./usePlayerMachine";
+import { useAtomValue } from "jotai";
+import { useEffect } from "react";
 
 export default function useCharacterAnimations() {
-  const { state } = usePlayerMachine();
-  const { actions } = state.context;
+  const { actions } = useAtomValue(playerContextAtom);
+  const stateValue = useAtomValue(playerStateValueAtom)
 
   useEffect(() => {
-    const availableAnimations = animationsByMachineStateMap?.get(state?.value);
+    const availableAnimations = animationsByMachineStateMap?.get(stateValue);
     const currentAnimation = availableAnimations
       ? availableAnimations[
-          Math.floor(Math.random() * availableAnimations.length)
-        ]
+      Math.floor(Math.random() * availableAnimations.length)
+      ]
       : undefined;
 
     // Early return if conditions are not met
-    if (!actions || !currentAnimation || !state?.value) {
+    if (!actions || !currentAnimation || !stateValue) {
       return;
     }
 
@@ -40,7 +42,7 @@ export default function useCharacterAnimations() {
     return () => {
       fadeOutAnimation(actions, currentAnimation);
     };
-  }, [actions, state?.value]);
+  }, [actions, stateValue]);
 }
 
 function playLoopableAnimation(actions, animation) {

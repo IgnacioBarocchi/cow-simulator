@@ -54,7 +54,11 @@ const ControlButton = block(({ bind, position }) => (
     background="rgba(255, 255, 255, 0.7)"
     width="50px"
     height="50px"
-    style={{ poinerEvents: "auto", position: "absolute", ...position }}
+    style={{
+      poinerEvents: "auto",
+      position: /*"absolute"*/ "relative",
+      ...position,
+    }}
     {...bind()}
   />
 ));

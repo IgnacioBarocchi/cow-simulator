@@ -1,20 +1,25 @@
-import { Suspense, lazy } from "react";
-
-import Connecting from "./features/ui/connecting/index.tsx";
-
-const UI = lazy(() => import("./features/ui"));
-const WebGlApp = lazy(() => import("./features/web-gl-app"));
+import { Box } from "grommet";
+import CowSimulator from "./features/page/cow-simulator.tsx";
+import LandingPage from "./features/page/landing-page.tsx";
+import { useRef } from "react";
 
 const App = () => {
+  const simulationRef = useRef(null);
+
   return (
-    <>
-      <Suspense fallback={<Connecting party="3D" background="grey" />}>
-        <WebGlApp />
-      </Suspense>
-      <Suspense fallback={<Connecting party="UI" background="grey" />}>
-        <UI />
-      </Suspense>
-    </>
+    <Box>
+      <Box height="100vh" id="landing-container">
+        <LandingPage
+          scrollToSimulation={() => {
+            simulationRef.current?.scrollIntoView({ behavior: "smooth" });
+          }}
+        />
+      </Box>
+
+      <Box ref={simulationRef} height="100vh">
+        <CowSimulator />
+      </Box>
+    </Box>
   );
 };
 

@@ -1,6 +1,8 @@
 import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
+import { useAtom, useAtomValue } from "jotai";
 
 import { input } from "./features/character/controller/input-controls";
+import { playerMachineAtom } from "./store/store";
 import { useAfterPhysicsStep } from "@react-three/rapier";
 import useCharacterAnimations from "./hooks/useCharacterAnimations";
 import { useFrame } from "@react-three/fiber";
@@ -11,12 +13,13 @@ const createWorker = createWorkerFactory(() => import("./worker"));
 export const Update = () => {
   const worker = useWorker(createWorker);
 
-  const {
-    state: {
+  const [
+    {
       context: { mesh3DRef, rapierRigidBodyRef, actions, controller },
     },
     send,
-  } = usePlayerMachine();
+  ] = useAtom(playerMachineAtom); //usePlayerMachine();
+
   useCharacterAnimations();
   useAfterPhysicsStep(async (api) => {
     await worker.updatePlayerVelocity(controller, api);

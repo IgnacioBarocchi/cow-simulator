@@ -20,7 +20,11 @@ const ControlButton = ({ bind, position }) => (
     background="rgba(255, 255, 255, 0.3)"
     width="50px"
     height="50px"
-    style={{ pointerEvents: "auto", position: "absolute", ...position }}
+    style={{
+      pointerEvents: "auto",
+      position: "absolute", // Absolute positioning inside the control layout
+      ...position,
+    }}
     onContextMenu={(e) => e.preventDefault()}
     {...bind}
   />
@@ -127,7 +131,7 @@ export default MobileControls;
 //     background="rgba(255, 255, 255, 0.3)"
 //     width="50px"
 //     height="50px"
-//     style={{ pointerEvents: "auto", position: "absolute", ...position }}
+//     style={{ pointerEvents: "auto", position: /*"absolute"*/"relative", ...position }}
 //     onContextMenu={(e) => e.preventDefault()}
 //     {...bind?.()}
 //   />

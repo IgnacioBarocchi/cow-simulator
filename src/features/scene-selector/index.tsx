@@ -1,9 +1,12 @@
 import { Box, Button, Text } from "grommet";
 import { FormNext, FormPrevious } from "grommet-icons";
+import { Matrix4, Quaternion, Vector3 } from "three";
 import { atom, useAtom, useAtomValue } from "jotai";
 
 import { block } from "million/react";
+import { playerContextAtom } from "../../store/store";
 import styled from "styled-components";
+import { useCallback } from "react";
 
 const primary = "white";
 const scenes = ["Corral", "Ordeñador", "Matadero"];
@@ -24,20 +27,43 @@ const MemoizedDot = block(({ active }) => <Dot active={active} />);
 const SceneSelector = block(() => {
   const selectedScene = useAtomValue(selectedSceneAtom);
   const [, setSelectedScene] = useAtom(selectedSceneAtom);
+  const { rapierRigidBodyRef, controller } = useAtomValue(playerContextAtom);
+
+  const setRigidBody = useCallback(
+    (next) => {
+      if (next !== 1) return;
+
+      if (!rapierRigidBodyRef?.current) return;
+
+      controller.rigidbody.current.setTranslation({ x: 0, y: 0, z: 0 }, true);
+      controller.setOrientation(new Vector3(0, 0, -1));
+      controller.orientationTarget.set(0, 0, -1);
+      controller.rigidbody.current?.wakeUp();
+    },
+    [setSelectedScene, rapierRigidBodyRef]
+  );
 
   const nextScene = () => {
-    setSelectedScene((prev) => (prev + 1) % scenes.length);
+    setSelectedScene((prev) => {
+      const next = (prev + 1) % scenes.length;
+      setRigidBody(next);
+      return next;
+    });
   };
 
-  const downScene = () => {
-    setSelectedScene((prev) => (prev - 1 + scenes.length) % scenes.length);
+  const prevScene = () => {
+    setSelectedScene((prev) => {
+      const next = (prev - 1 + scenes.length) % scenes.length;
+      setRigidBody(next);
+      return next;
+    });
   };
 
   return (
     <Box
       background="transparent"
       style={{
-        position: "absolute",
+        position: /*"absolute"*/ "relative",
         top: 0,
         left: "50%",
         transform: "translateX(-50%)",
@@ -55,7 +81,7 @@ const SceneSelector = block(() => {
         <Button
           style={{ pointerEvents: "auto" }}
           icon={<FormPrevious color="white" />}
-          onClick={downScene}
+          onClick={prevScene}
         />
         <Text size="large" weight="bold" color="white">
           {scenes[selectedScene]}

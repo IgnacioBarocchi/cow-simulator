@@ -1,5 +1,3 @@
-import { FC, ReactNode } from "react";
-
 import ActionPanel from "./action-panel";
 import { Grommet } from "grommet";
 import { InputControls } from "../character/controller/input-controls";
@@ -24,7 +22,14 @@ const UI = () => {
       <InputControls />
       <Grommet
         theme={darkTheme}
-        style={{ position: "absolute", top: 0, left: 0, pointerEvents: "none" }}
+        style={{
+          position: "absolute", // Ensure UI overlays the canvas
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          pointerEvents: "none",
+        }}
         full
       >
         <SceneSelector />

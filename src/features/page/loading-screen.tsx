@@ -1,12 +1,10 @@
-import { useAtom } from "jotai";
-import usePlayerMachine from "../../hooks/usePlayerMachine";
-import { cowLoadedAtom } from "../../store/store";
-import { Collapsible, Text, Box } from "grommet";
 import Loading from "./loading";
+import { cowLoadedAtom } from "../../store/store";
 import styled from "styled-components";
+import { useAtom } from "jotai";
 
 const Overlay = styled.div`
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;

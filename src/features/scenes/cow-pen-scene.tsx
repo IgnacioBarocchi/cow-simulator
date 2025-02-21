@@ -1,11 +1,12 @@
 import { CuboidCollider, RigidBody } from "@react-three/rapier";
-import { useSetAtom } from "jotai";
-import { useEffect } from "react";
-import { terrainLoadedAtom } from "../../store/store";
 
-import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import Hint3D from "../ui/hint-3d";
+import { hint3DText } from "../../constants/hint-data";
+import { terrainLoadedAtom } from "../../store/store";
+import { useEffect } from "react";
+import { useGLTF } from "@react-three/drei";
+import { useSetAtom } from "jotai";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -26,7 +27,7 @@ export function CowPen3DModel(props: JSX.IntrinsicElements["group"]) {
   return (
     <group {...props} dispose={null}>
       <group>
-        <Hint3D position={[-1.5, 1, 1.5]} index={1} />
+        <Hint3D position={[-1.5, 1, 1.5]} index={1} info={hint3DText.fence} />
         <mesh
           receiveShadow
           geometry={nodes.Wall.geometry}
@@ -35,7 +36,7 @@ export function CowPen3DModel(props: JSX.IntrinsicElements["group"]) {
         />
       </group>
       <group>
-        <Hint3D position={[3, 0, 5]} index={2} />
+        <Hint3D position={[3, 0, 5]} index={2} info={hint3DText.fence} />
         <mesh
           receiveShadow
           castShadow
@@ -45,7 +46,7 @@ export function CowPen3DModel(props: JSX.IntrinsicElements["group"]) {
         />
       </group>
       <group>
-        <Hint3D position={[3, 0, 1]} index={3} />
+        <Hint3D position={[3, 0, 1]} index={3} info={hint3DText.mud} />
         <mesh
           receiveShadow
           geometry={nodes.Ground.geometry}

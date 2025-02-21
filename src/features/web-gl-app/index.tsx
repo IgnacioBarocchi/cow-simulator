@@ -3,10 +3,9 @@ import { Canvas as EnhancedCanvas } from "@react-three/offscreen";
 import WorkerFile from "./worker.jsx?worker";
 import { config } from "../../constants/experience-config";
 import { lazy } from "react";
+
 const Experience = lazy(() => import("./experience"));
-
 const worker = new WorkerFile();
-
 const enableWebWorkersExperiment = window.location.pathname.endsWith("/ww");
 
 export default function WebGlApp() {
@@ -16,17 +15,29 @@ export default function WebGlApp() {
         worker={worker}
         fallback={<Experience />}
         {...config.canvasProps}
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
       />
     );
   }
 
   return (
-    <Canvas {...config.canvasProps}>
+    <Canvas
+      {...config.canvasProps}
+      style={{
+        width: "100vw",
+        height: "100vh",
+        position: "absolute",
+        top: 0,
+        left: 0,
+      }}
+    >
       <Experience />
     </Canvas>
   );
 }
-
-// const worker = new Worker(new URL("./worker.jsx", import.meta.url), {
-//   type: "module",
-// });

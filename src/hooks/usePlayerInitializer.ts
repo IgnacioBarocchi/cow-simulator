@@ -1,19 +1,21 @@
-import { Group } from "three";
-import usePlayerMachine from "./usePlayerMachine";
-import { useEffect, useRef } from "react";
-import { RapierRigidBody } from "@react-three/rapier";
+import { cowLoadedAtom, playerMachineAtom } from "../store/store";
 import { useAnimations, useGLTF } from "@react-three/drei";
+import { useAtom, useSetAtom } from "jotai";
+import { useEffect, useRef } from "react";
+
 import { Character } from "../features/character/controller/Character";
+import { Group } from "three";
+import { RapierRigidBody } from "@react-three/rapier";
+import usePlayerMachine from "./usePlayerMachine";
 import { useThree } from "@react-three/fiber";
-import { useSetAtom } from "jotai";
-import { cowLoadedAtom } from "../store/store";
 
 export default function usePlayerInitializer() {
   const { camera } = useThree();
   const mesh3DInfo = useGLTF("/models/cow_character2.glb");
   const mesh3DRef = useRef<Group>(null);
   const rapierRigidBodyRef = useRef<RapierRigidBody>(null);
-  const { state, send } = usePlayerMachine();
+  // const { state, send } = usePlayerMachine();
+  const [state, send] = useAtom(playerMachineAtom);
   const { actions } = useAnimations<ExtendedAnimationClip>(
     mesh3DInfo.animations as ExtendedAnimationClip[],
     mesh3DRef
