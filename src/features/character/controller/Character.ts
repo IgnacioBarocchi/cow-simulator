@@ -58,6 +58,7 @@ export class Character {
     camera: Camera;
     input: Input
   }) {
+    console.log("constructor call")
     this.rigidbody = props.rigidbody;
     this.camera = props.camera;
     // this.model = props.model;
