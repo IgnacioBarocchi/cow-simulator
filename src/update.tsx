@@ -6,10 +6,10 @@ import { useAfterPhysicsStep } from "@react-three/rapier";
 import useCharacterAnimations from "./hooks/useCharacterAnimations";
 import { useFrame } from "@react-three/fiber";
 
-// const createWorker = createWorkerFactory(() => import("./worker"));
+const createWorker = createWorkerFactory(() => import("./worker"));
 
 export const Update = () => {
-  // const worker = useWorker(createWorker);
+  const worker = useWorker(createWorker);
   const input = useAtomValue(inputAtom);
 
   const [
@@ -21,8 +21,9 @@ export const Update = () => {
 
   useCharacterAnimations();
   useAfterPhysicsStep(async (api) => {
-    controller?.physicsPostStep(api);
-    // await worker.updatePlayerVelocity(controller, api);
+    // controller?.physicsPostStep(api);
+    // console.log("post");
+    await worker.updatePlayerVelocity(controller, api);
   });
 
   useFrame(({ camera }, delta) => {
@@ -32,7 +33,8 @@ export const Update = () => {
     ) {
       return;
     }
-
+    console.log("before");
+    console.log(send);
     send({
       type: "UPDATE",
       input,

@@ -54,6 +54,9 @@ const animate = (self, context) => {
 };
 
 const update = ({ context, event, self }) => {
+  console.log("beginning");
+
+  debugger
   if (context?.controller) {
     context.controller.update(event.timeStep, event.input);
   }
@@ -89,7 +92,12 @@ const update = ({ context, event, self }) => {
   if (walk) {
     self.send({ type: "WALK" });
   }
+
+  console.log("after");
+
 };
+
+// console.log("name" + "update")
 
 const movementInfo = {
   position: new Vector3(),
@@ -141,7 +149,7 @@ const PlayerMachine = createMachine(
           WALK: "walk",
           DEATH: "death",
           UPDATE: {
-            actions: update.name,
+            actions: "update",
           },
         },
       },
@@ -149,7 +157,7 @@ const PlayerMachine = createMachine(
         entry: [stopAnimations.name],
         on: {
           UPDATE: {
-            actions: update.name,
+            actions: "update",
           },
         },
         after: {
@@ -159,7 +167,7 @@ const PlayerMachine = createMachine(
       attackKick: {
         on: {
           UPDATE: {
-            actions: update.name,
+            actions: "update",
           },
         },
         after: {
@@ -169,7 +177,7 @@ const PlayerMachine = createMachine(
       eating: {
         on: {
           UPDATE: {
-            actions: update.name,
+            actions: "update",
           },
         },
         after: {
@@ -180,7 +188,7 @@ const PlayerMachine = createMachine(
         on: {
           GALLOP_JUMP: "gallopJump",
           UPDATE: {
-            actions: update.name,
+            actions: "update",
           },
         },
       },
@@ -188,7 +196,7 @@ const PlayerMachine = createMachine(
         on: {
           JUMP_TOIDLE: "idle",
           UPDATE: {
-            actions: update.name,
+            actions: "update",
           },
         },
       },
@@ -208,14 +216,14 @@ const PlayerMachine = createMachine(
           WALK: "walk",
           DEATH: "death",
           UPDATE: {
-            actions: update.name,
+            actions: "update",
           },
         },
       },
       death: {
         type: "final",
         UPDATE: {
-          actions: update.name,
+          actions: "update",
         },
       },
     },
