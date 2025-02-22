@@ -21,8 +21,6 @@ export const Update = () => {
 
   useCharacterAnimations();
   useAfterPhysicsStep(async (api) => {
-    // controller?.physicsPostStep(api);
-    // console.log("post");
     await worker.updatePlayerVelocity(controller, api);
   });
 
@@ -33,8 +31,6 @@ export const Update = () => {
     ) {
       return;
     }
-    console.log("before");
-    console.log(send);
     send({
       type: "UPDATE",
       input,

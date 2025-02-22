@@ -55,7 +55,6 @@ function playNonLoopableAnimation(actions, animation) {
 
   setTimeout(() => {
     actions[animation]?.stop();
-    console.log("STOP!!!!");
   }, duration);
 }
 

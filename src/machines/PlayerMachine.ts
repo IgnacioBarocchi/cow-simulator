@@ -54,7 +54,6 @@ const animate = (self, context) => {
 };
 
 const update = ({ context, event, self }) => {
-  console.log("beginning");
 
   if (context?.controller) {
     context.controller.update(event.timeStep, event.input);
@@ -92,7 +91,6 @@ const update = ({ context, event, self }) => {
     self.send({ type: "WALK" });
   }
 
-  console.log("after");
 
 };
 

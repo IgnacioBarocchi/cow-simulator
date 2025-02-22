@@ -24,7 +24,6 @@ export default function usePlayerInitializer() {
   const input = useAtomValue(inputAtom)
   useEffect(() => {
     if (!mesh3DRef?.current || !rapierRigidBodyRef?.current || !input) {
-      console.log("no hay");
       return;
     }
 
@@ -34,8 +33,6 @@ export default function usePlayerInitializer() {
       }
     });
 
-    console.log("in")
-    console.log(input)
 
     send({
       type: "SET_CONTEXT",

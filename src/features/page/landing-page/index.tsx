@@ -1,7 +1,7 @@
 import { Box, Button, Heading, Text } from "grommet";
 
 import Info from "./info";
-import landingImage from "../../../../public/images/landing-image.jpg";
+import landingImage from "/images/landing-image.jpg";
 
 export default function LandingPage({ scrollToSimulation }) {
   return (
