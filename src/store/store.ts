@@ -1,3 +1,4 @@
+import { Controls } from "../types";
 import PlayerMachine from "../machines/PlayerMachine";
 import { atom } from "jotai";
 import { atomWithMachine } from "jotai-xstate";
@@ -16,3 +17,8 @@ export const simulatorState = atom({
 });
 
 
+export const inputAtom = atom(Object.keys(Controls).reduce((state, key) => {
+    // @ts-ignore
+    state[key] = false;
+    return state;
+}, {} as { [key in Controls]: boolean }));

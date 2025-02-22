@@ -1,12 +1,14 @@
 // todo check archange against the demons repo.
 // todo> i think that handles the animations within the machine.
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Vector3 } from "three";
+
 import { assign, createMachine } from "xstate";
+
+import { RelativeSpringSimulator } from "../lib/physics/RelativeSpringSimulator";
+import { Vector3 } from "three";
+import { VectorSpringSimulator } from "../lib/physics/VectorSpringSimulator";
 import animationsByMachineStateMap from "../features/character/helpers/animationByMachineStateMap";
 import { playOneShotAnimation } from "../lib/animationHelper";
-import { RelativeSpringSimulator } from "../lib/physics/RelativeSpringSimulator";
-import { VectorSpringSimulator } from "../lib/physics/VectorSpringSimulator";
 
 // todo: conver to map
 export const stateEvents = {
@@ -53,7 +55,7 @@ const animate = (self, context) => {
 
 const update = ({ context, event, self }) => {
   if (context?.controller) {
-    context.controller.update(event.timeStep);
+    context.controller.update(event.timeStep, event.input);
   }
 
   if (Object.values(event.input).every((e) => !e)) {

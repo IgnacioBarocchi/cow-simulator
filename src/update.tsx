@@ -1,17 +1,16 @@
 import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
+import { inputAtom, playerMachineAtom } from "./store/store";
 import { useAtom, useAtomValue } from "jotai";
 
-import { input } from "./features/character/controller/input-controls";
-import { playerMachineAtom } from "./store/store";
 import { useAfterPhysicsStep } from "@react-three/rapier";
 import useCharacterAnimations from "./hooks/useCharacterAnimations";
 import { useFrame } from "@react-three/fiber";
-import usePlayerMachine from "./hooks/usePlayerMachine";
 
 const createWorker = createWorkerFactory(() => import("./worker"));
 
 export const Update = () => {
   const worker = useWorker(createWorker);
+  const input = useAtomValue(inputAtom);
 
   const [
     {
@@ -26,6 +25,7 @@ export const Update = () => {
   });
 
   useFrame(({ camera }, delta) => {
+    // console.log(input);
     if (
       [mesh3DRef?.current, rapierRigidBodyRef?.current, actions].some((e) => !e)
     ) {

@@ -7,7 +7,8 @@
     "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "launch": "pnpm run build && pnpm preview --host"
   },
   "dependencies": {
     "@custom-react-hooks/use-long-press": "^1.5.1",
@@ -22,7 +23,6 @@
     "@xstate/react": "^5.0.2",
     "grommet": "^2.45.1",
     "grommet-icons": "^4.12.4",
-    "gsap": "^3.12.2",
     "jotai": "^2.11.3",
     "jotai-xstate": "^0.6.1",
     "leva": "^0.9.35",

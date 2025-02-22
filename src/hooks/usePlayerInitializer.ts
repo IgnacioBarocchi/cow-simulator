@@ -1,6 +1,6 @@
-import { cowLoadedAtom, playerMachineAtom } from "../store/store";
+import { cowLoadedAtom, inputAtom, playerMachineAtom } from "../store/store";
 import { useAnimations, useGLTF } from "@react-three/drei";
-import { useAtom, useSetAtom } from "jotai";
+import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
 
 import { Character } from "../features/character/controller/Character";
@@ -21,9 +21,9 @@ export default function usePlayerInitializer() {
     mesh3DRef
   );
   const setIsLoaded = useSetAtom(cowLoadedAtom);
-
+  const input = useAtomValue(inputAtom)
   useEffect(() => {
-    if (!mesh3DRef?.current || !rapierRigidBodyRef?.current) {
+    if (!mesh3DRef?.current || !rapierRigidBodyRef?.current || !input) {
       console.log("no hay");
       return;
     }
@@ -33,6 +33,9 @@ export default function usePlayerInitializer() {
         child.castShadow = true; // Enable shadow casting
       }
     });
+
+    console.log("in")
+    console.log(input)
 
     send({
       type: "SET_CONTEXT",
@@ -46,6 +49,7 @@ export default function usePlayerInitializer() {
         orientation: [0, 0, 1],
         rigidbody: rapierRigidBodyRef,
         camera,
+        input
       }),
     });
     setIsLoaded(true);

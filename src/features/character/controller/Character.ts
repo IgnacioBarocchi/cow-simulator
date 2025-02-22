@@ -6,7 +6,7 @@ import {
   Vector3,
   Vector3Tuple,
 } from "three";
-import { ObjectRef, RigidBodyRef } from "../../../types";
+import { Input, ObjectRef, RigidBodyRef } from "../../../types";
 import {
   applyVectorMatrixXZ,
   getSignedAngleBetweenVectors,
@@ -16,15 +16,10 @@ import {
 import { RelativeSpringSimulator } from "../../../lib/physics/RelativeSpringSimulator";
 import { VectorSpringSimulator } from "../../../lib/physics/VectorSpringSimulator";
 import { WorldApi } from "@react-three/rapier";
-import { input } from "./input-controls";
+
+// import { input } from "./input-controls";
 
 // import { Ray } from "@dimforge/rapier3d-compat";
-RelativeSpringSimulator;
-
-
-
-
-
 
 
 const runSpeed = 4;
@@ -52,19 +47,21 @@ export class Character {
   readonly position = new Vector3();
 
   private rigidbody: RigidBodyRef;
-  private model: ObjectRef;
+  // private model: ObjectRef;
   private camera: Camera;
+  input
 
   constructor(props: {
     orientation?: Vector3Tuple;
     rigidbody: RigidBodyRef;
     model: ObjectRef;
     camera: Camera;
+    input: Input
   }) {
     this.rigidbody = props.rigidbody;
     this.camera = props.camera;
-    this.model = props.model;
-
+    // this.model = props.model;
+    this.input = props.input
     const orientation = props.orientation ?? [0, 0, 1];
     this.orientation = new Vector3(
       orientation[0],
@@ -107,7 +104,8 @@ export class Character {
     this.viewVector.subVectors(this.position, this.camera.position);
   }
 
-  update(timeStep: number) {
+  update(timeStep: number, input) {
+    this.input = input;
     this.updatePositionFromRigidbody();
     this.updateViewVector();
     this.updateOrientationTarget();
@@ -129,7 +127,7 @@ export class Character {
 
     if (this.jumping || this.falling) {
       targetSpeed = this.moveSpeed;
-    } else if (input.SPRINT) {
+    } else if (this.input.SPRINT) {
       targetSpeed = runSpeed;
     }
 
@@ -155,11 +153,11 @@ export class Character {
     }
     this.falling = isFalling;
 
-    if (input.JUMP && !this.jumping && !this.falling) {
+    if (this.input.JUMP && !this.jumping && !this.falling) {
       this.preJump = true;
     }
 
-    if (!this.jumping && !this.falling && this.preJump && !input.JUMP) {
+    if (!this.jumping && !this.falling && this.preJump && !this.input.JUMP) {
       this.shouldJump = true;
     }
   }
@@ -194,10 +192,10 @@ export class Character {
 
   localMovementDirection = new Vector3();
   getLocalMovementDirection() {
-    const positiveX = input.RIGHT ? -1 : 0;
-    const negativeX = input.LEFT ? 1 : 0;
-    const positiveZ = input.FORWARD ? 1 : 0;
-    const negativeZ = input.BACKWARD ? -1 : 0;
+    const positiveX = this.input.RIGHT ? -1 : 0;
+    const negativeX = this.input.LEFT ? 1 : 0;
+    const positiveZ = this.input.FORWARD ? 1 : 0;
+    const negativeZ = this.input.BACKWARD ? -1 : 0;
     return this.localMovementDirection
       .set(positiveX + negativeX, 0, positiveZ + negativeZ)
       .normalize();

@@ -27,8 +27,11 @@ const UI = () => {
           width: "100vw",
           height: "100vh",
           pointerEvents: "none",
+          touchAction: "none",
+          userSelect: "none",
         }}
         full
+        onContextMenu={(e) => e.preventDefault()}
       >
         <LoadingScreen />
         <InputControls />

@@ -41,9 +41,6 @@ dependencies:
   grommet-icons:
     specifier: ^4.12.4
     version: 4.12.4(react-dom@18.2.0)(react@18.2.0)(styled-components@6.1.15)
-  gsap:
-    specifier: ^3.12.2
-    version: 3.12.2
   jotai:
     specifier: ^2.11.3
     version: 2.11.3(@types/react@18.2.14)(react@18.2.0)
@@ -2373,10 +2370,6 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       styled-components: 6.1.15(react-dom@18.2.0)(react@18.2.0)
-    dev: false
-
-  /gsap@3.12.2:
-    resolution: {integrity: sha512-EkYnpG8qHgYBFAwsgsGEqvT1WUidX0tt/ijepx7z8EUJHElykg91RvW1XbkT59T0gZzzszOpjQv7SE41XuIXyQ==}
     dev: false
 
   /has-flag@4.0.0:
