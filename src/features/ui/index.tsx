@@ -18,12 +18,10 @@ const darkTheme = {
 const UI = () => {
   return (
     <>
-      <LoadingScreen />
-      <InputControls />
       <Grommet
         theme={darkTheme}
         style={{
-          position: "absolute", // Ensure UI overlays the canvas
+          position: "absolute",
           top: 0,
           left: 0,
           width: "100vw",
@@ -32,6 +30,8 @@ const UI = () => {
         }}
         full
       >
+        <LoadingScreen />
+        <InputControls />
         <SceneSelector />
         <ActionPanel />
       </Grommet>

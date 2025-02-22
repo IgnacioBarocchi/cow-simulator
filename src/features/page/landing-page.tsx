@@ -1,10 +1,11 @@
 import { Box, Button, Heading, Layer, Text } from "grommet";
 
+import { useDevice } from "use-device-react";
 import { useState } from "react";
 
 export default function LandingPage({ scrollToSimulation }) {
   const [showModal, setShowModal] = useState(null);
-
+  const { isDesktop } = useDevice();
   return (
     <Box fill style={{ background: "#000", color: "#fff" }}>
       {/* Sección principal */}
@@ -21,31 +22,31 @@ export default function LandingPage({ scrollToSimulation }) {
           onClick={scrollToSimulation}
           primary
         />
-      </Box>
-
-      <Box
-        direction="row"
-        gap="medium"
-        align="center"
-        justify="center"
-        pad="medium"
-      >
-        <Button
-          label="¿Por qué un único tipo de explotación?"
-          onClick={() => setShowModal("explotacion")}
-        />
-        <Button
-          label="Quiero participar voluntariamente"
-          onClick={() => setShowModal("participar")}
-        />
-        <Button
-          label="Proyectos relacionados"
-          onClick={() => setShowModal("proyectos")}
-        />
+        <Box
+          direction={isDesktop ? "row" : "column"}
+          gap="medium"
+          align="center"
+          justify="center"
+          pad="medium"
+        >
+          <Button
+            label="¿Por qué un único tipo de explotación?"
+            onClick={() => setShowModal("explotacion")}
+          />
+          <Button
+            label="Quiero participar voluntariamente"
+            onClick={() => setShowModal("participar")}
+          />
+          <Button
+            label="Proyectos relacionados"
+            onClick={() => setShowModal("proyectos")}
+          />
+        </Box>
       </Box>
 
       {showModal === "explotacion" && (
         <Layer
+          responsive={false}
           onEsc={() => setShowModal(null)}
           onClickOutside={() => setShowModal(null)}
         >
@@ -62,6 +63,7 @@ export default function LandingPage({ scrollToSimulation }) {
 
       {showModal === "participar" && (
         <Layer
+          responsive={false}
           onEsc={() => setShowModal(null)}
           onClickOutside={() => setShowModal(null)}
         >
@@ -84,6 +86,7 @@ export default function LandingPage({ scrollToSimulation }) {
 
       {showModal === "proyectos" && (
         <Layer
+          responsive={false}
           onEsc={() => setShowModal(null)}
           onClickOutside={() => setShowModal(null)}
         >

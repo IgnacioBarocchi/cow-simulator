@@ -14,16 +14,17 @@ const useControlPress = (threshold, control: Controls) => {
   });
 };
 
-const ControlButton = ({ bind, position }) => (
+const ControlButton = ({ bind, gridArea }) => (
   <Box
+    gridArea={gridArea}
     round="full"
     background="rgba(255, 255, 255, 0.3)"
     width="50px"
     height="50px"
     style={{
       pointerEvents: "auto",
-      position: "absolute", // Absolute positioning inside the control layout
-      ...position,
+      // position: "relative",
+      // ...position,
     }}
     onContextMenu={(e) => e.preventDefault()}
     {...bind}
@@ -41,162 +42,52 @@ const MobileControls = () => {
   const bindSprint = useControlPress(0, Controls.SPRINT);
 
   return (
-    <>
-      <Layer
-        position="bottom-left"
-        margin="small"
-        modal={false}
-        responsive={false}
-        background="transparent"
+    <div
+      style={{
+        position: "absolute",
+        bottom: "10px",
+        display: "flex",
+        justifyContent: "space-around",
+        width: "100%",
+      }}
+    >
+      <Box
+        width="150px"
+        height="150px"
+        justify="center"
+        align="center"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateRows: "1fr 1fr 1fr",
+          placeItems: "center",
+        }}
       >
-        <Box width="150px" height="150px" style={{ position: "relative" }}>
-          <ControlButton
-            bind={bindForward}
-            position={{ top: 0, left: "50px" }}
-          />
-          <ControlButton bind={bindLeft} position={{ top: "50px", left: 0 }} />
-          <ControlButton
-            bind={bindRight}
-            position={{ top: "50px", left: "100px" }}
-          />
-          <ControlButton
-            bind={bindBackward}
-            position={{ top: "100px", left: "50px" }}
-          />
-        </Box>
-      </Layer>
-      <Layer
-        position="bottom-right"
-        margin="small"
-        modal={false}
-        responsive={false}
-        background="transparent"
+        <ControlButton bind={bindForward} gridArea="1 / 2" />
+        <ControlButton bind={bindLeft} gridArea="2 / 1" />
+        <ControlButton bind={bindRight} gridArea="2 / 3" />
+        <ControlButton bind={bindBackward} gridArea="3 / 2" />
+      </Box>
+
+      <Box
+        width="150px"
+        height="150px"
+        justify="center"
+        align="center"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateRows: "1fr 1fr 1fr",
+          placeItems: "center",
+        }}
       >
-        <Box width="150px" height="150px" style={{ position: "relative" }}>
-          <ControlButton bind={bindJump} position={{ top: 0, left: "50px" }} />
-          <ControlButton
-            bind={bindSprint}
-            position={{ top: "50px", left: 0 }}
-          />
-          <ControlButton
-            bind={bindAttack1}
-            position={{ top: "50px", left: "100px" }}
-          />
-          <ControlButton
-            bind={bindAttack2}
-            position={{ top: "100px", left: "50px" }}
-          />
-        </Box>
-      </Layer>
-    </>
+        <ControlButton bind={bindJump} gridArea="1 / 2" />
+        <ControlButton bind={bindSprint} gridArea="2 / 1" />
+        <ControlButton bind={bindAttack1} gridArea="2 / 3" />
+        <ControlButton bind={bindAttack2} gridArea="3 / 2" />
+      </Box>
+    </div>
   );
 };
 
 export default MobileControls;
-
-// import { Box, Layer } from "grommet";
-// import { Controls, setControl } from "./input-controls";
-
-// // import { block } from "million/react";
-// import { useLongPress } from "use-long-press";
-
-// const useControlPress = (control: Controls) =>
-//   useLongPress(
-//     (event) => {
-//       console.log("long press");
-//       event.preventDefault();
-//       event.stopPropagation();
-//       setControl(control, true);
-//     },
-//     {
-//       onFinish: (event) => {
-//         event.preventDefault();
-//         event.stopPropagation();
-//         setControl(control, false);
-//       },
-//       onCancel: (event) => {
-//         event.preventDefault();
-//         event.stopPropagation();
-//         setControl(control, false);
-//       },
-//       threshold: 100,
-//       captureEvent: true,
-//       cancelOnMovement: 20,
-//     }
-//   );
-
-// const ControlButton = ({ bind, position }) => (
-//   <Box
-//     round="full"
-//     background="rgba(255, 255, 255, 0.3)"
-//     width="50px"
-//     height="50px"
-//     style={{ pointerEvents: "auto", position: /*"absolute"*/"relative", ...position }}
-//     onContextMenu={(e) => e.preventDefault()}
-//     {...bind?.()}
-//   />
-// );
-
-// const MobileControls = () => {
-//   const bindForward = useControlPress(Controls.FORWARD);
-//   const bindLeft = useControlPress(Controls.LEFT);
-//   const bindRight = useControlPress(Controls.RIGHT);
-//   const bindBackward = useControlPress(Controls.BACKWARD);
-//   const bindJump = useControlPress(Controls.JUMP);
-//   const bindAttack1 = useControlPress(Controls.ATTACK1);
-//   const bindAttack2 = useControlPress(Controls.ATTACK2);
-//   const bindSprint = useControlPress(Controls.SPRINT);
-
-//   return (
-//     <>
-//       <Layer
-//         position="bottom-left"
-//         margin="small"
-//         modal={false}
-//         responsive={false}
-//         background="transparent"
-//       >
-//         <Box width="150px" height="150px" style={{ position: "relative" }}>
-//           <ControlButton
-//             bind={bindForward}
-//             position={{ top: 0, left: "50px" }}
-//           />
-//           <ControlButton bind={bindLeft} position={{ top: "50px", left: 0 }} />
-//           <ControlButton
-//             bind={bindRight}
-//             position={{ top: "50px", left: "100px" }}
-//           />
-//           <ControlButton
-//             bind={bindBackward}
-//             position={{ top: "100px", left: "50px" }}
-//           />
-//         </Box>
-//       </Layer>
-//       <Layer
-//         position="bottom-right"
-//         margin="small"
-//         modal={false}
-//         responsive={false}
-//         background="transparent"
-//       >
-//         <Box width="150px" height="150px" style={{ position: "relative" }}>
-//           <ControlButton bind={bindJump} position={{ top: 0, left: "50px" }} />
-//           <ControlButton
-//             bind={bindSprint}
-//             position={{ top: "50px", left: 0 }}
-//           />
-//           <ControlButton
-//             bind={bindAttack1}
-//             position={{ top: "50px", left: "100px" }}
-//           />
-//           <ControlButton
-//             bind={bindAttack2}
-//             position={{ top: "100px", left: "50px" }}
-//           />
-//         </Box>
-//       </Layer>
-//     </>
-//   );
-// };
-
-// export default MobileControls;
