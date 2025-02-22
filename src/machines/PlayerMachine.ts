@@ -56,7 +56,6 @@ const animate = (self, context) => {
 const update = ({ context, event, self }) => {
   console.log("beginning");
 
-  debugger
   if (context?.controller) {
     context.controller.update(event.timeStep, event.input);
   }

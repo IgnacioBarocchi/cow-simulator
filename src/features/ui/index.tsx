@@ -1,5 +1,6 @@
+import { Box, Grommet } from "grommet";
+
 import ActionPanel from "./action-panel";
-import { Grommet } from "grommet";
 import { InputControls } from "../character/controller/input-controls";
 import { LoadingScreen } from "../page/loading-screen";
 import SceneSelector from "../scene-selector";
@@ -18,8 +19,8 @@ const darkTheme = {
 const UI = () => {
   return (
     <>
-      <Grommet
-        theme={darkTheme}
+      <Box
+        // theme={darkTheme}
         style={{
           position: "absolute",
           top: 0,
@@ -30,14 +31,14 @@ const UI = () => {
           touchAction: "none",
           userSelect: "none",
         }}
-        full
+        // full
         onContextMenu={(e) => e.preventDefault()}
       >
         <LoadingScreen />
         <InputControls />
         <SceneSelector />
         <ActionPanel />
-      </Grommet>
+      </Box>
     </>
   );
 };
