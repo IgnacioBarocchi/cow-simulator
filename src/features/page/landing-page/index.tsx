@@ -57,7 +57,10 @@ export default function LandingPage({ scrollToSimulation }) {
         </Box>
       </Box>
       <Box
-        margin={{ bottom: "medium", right: "medium" }}
+        margin={{
+          bottom: "calc( env(safe-area-inset-bottom) + 100px )",
+          right: "medium",
+        }}
         style={{ position: "absolute", bottom: "0", right: "0" }}
       >
         <Donate />
