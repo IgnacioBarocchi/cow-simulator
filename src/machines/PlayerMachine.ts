@@ -9,6 +9,7 @@ import { Vector3 } from "three";
 import { VectorSpringSimulator } from "../lib/physics/VectorSpringSimulator";
 import animationsByMachineStateMap from "../features/character/helpers/animationByMachineStateMap";
 import { playOneShotAnimation } from "../lib/animationHelper";
+import updateMovement from "../lib/movementHelper";
 
 // todo: conver to map
 export const stateEvents = {
@@ -54,9 +55,10 @@ const animate = (self, context) => {
 };
 
 const update = ({ context, event, self }) => {
-  if (context?.controller) {
-    context.controller.update(event.timeStep, event.input);
-  }
+  updateMovement({ context, event, updateContext: (updates) => Object.assign(context, updates) })
+  // if (context?.controller) {
+  //   context.controller.update(event.timeStep, event.input);
+  // }
 
   if (Object.values(event.input).every((e) => !e)) {
     self.send({ type: "idle" });
@@ -102,8 +104,13 @@ const movementInfo = {
   orientationTarget: new Vector3(0, 0, 1),
   arcadeVelocityTarget: new Vector3(),
   localMovementDirection: new Vector3(),
+  simulatedVelocity: new Vector3(),
+  arcadeVelocity: new Vector3(),
+  combinedVelocity: new Vector3(),
+  arcadeVelocityInfluence: new Vector3(1, 0, 1),
   velocitySimulator: new VectorSpringSimulator(60, 250, 12),
   rotationSimulator: new RelativeSpringSimulator(60, 250, 12),
+  gravityLimit: -25
 };
 
 const stopAnimations = () => {
@@ -199,6 +206,17 @@ const PlayerMachine = createMachine(
       },
       walk: {
         on: {
+          UPDATE_CONTEXT: {
+            actions: assign(({ context, event }) => {
+              return {
+                ...context,
+                movementInfo: {
+                  ...context.movementInfo,
+                  ...event.updates, // This will merge the updates passed in the event
+                },
+              };
+            }),
+          },
           idle: "idle",
           ATTACK_HEADBUTT: "attackHeadbutt",
           ATTACK_KICK: "attackKick",

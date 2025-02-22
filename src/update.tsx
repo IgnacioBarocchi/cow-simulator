@@ -2,6 +2,7 @@ import { createWorkerFactory, useWorker } from "@shopify/react-web-worker";
 import { inputAtom, playerMachineAtom } from "./store/store";
 import { useAtom, useAtomValue } from "jotai";
 
+import { physicsPostStep } from "./lib/movementHelper";
 import { useAfterPhysicsStep } from "@react-three/rapier";
 import useCharacterAnimations from "./hooks/useCharacterAnimations";
 import { useFrame } from "@react-three/fiber";
@@ -10,18 +11,26 @@ const createWorker = createWorkerFactory(() => import("./worker"));
 
 export const Update = () => {
   const worker = useWorker(createWorker);
-  const input = useAtomValue(inputAtom);
+  // const input = useAtomValue(inputAtom);
 
-  const [
-    {
-      context: { mesh3DRef, rapierRigidBodyRef, actions, controller },
-    },
-    send,
-  ] = useAtom(playerMachineAtom); //usePlayerMachine();
+  const [input] = useAtom(inputAtom);
+  const [state, send] = useAtom(playerMachineAtom); //usePlayerMachine();
 
+  const {
+    context: { mesh3DRef, rapierRigidBodyRef, actions, controller },
+  } = state;
   useCharacterAnimations();
-  useAfterPhysicsStep(async (api) => {
-    await worker.updatePlayerVelocity(controller, api);
+  // useAfterPhysicsStep(async () => {
+  //   physicsPostStep({ context: state.context, updateContext: () => {} });
+  //   // await worker.updatePlayerVelocity(controller, api);
+  // });
+  useAfterPhysicsStep(async () => {
+    physicsPostStep({
+      context: state.context,
+      updateContext: (updates) => {
+        send({ type: "UPDATE_CONTEXT", updates });
+      }, // Use XState's assign to update context
+    });
   });
 
   useFrame(({ camera }, delta) => {

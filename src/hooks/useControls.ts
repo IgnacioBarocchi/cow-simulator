@@ -8,6 +8,7 @@ const useControls = () => {
     const updateInputValue = useSetAtom(inputAtom);
     const setControl = (control: Controls, engaged: boolean) => {
         updateInputValue((prevState) => {
+            // console.log(control, engaged)
             const newState = { ...prevState, [control]: engaged };
             return newState;
         });
@@ -21,7 +22,7 @@ const useControls = () => {
             {
                 threshold,
                 onStart: useCallback(() => {
-                    console.log(`onStart: ${control}`);
+                    // console.log(`onStart: ${control}`);
                     setControl(control, true);
                 }, [control]),
                 onFinish: useCallback(() => {

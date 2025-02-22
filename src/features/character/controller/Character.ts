@@ -15,7 +15,6 @@ import {
 
 import { RelativeSpringSimulator } from "../../../lib/physics/RelativeSpringSimulator";
 import { VectorSpringSimulator } from "../../../lib/physics/VectorSpringSimulator";
-import { WorldApi } from "@react-three/rapier";
 
 // import { input } from "./input-controls";
 
@@ -243,7 +242,7 @@ export class Character {
   readonly arcadeVelocity = new Vector3();
   readonly combinedVelocity = new Vector3();
 
-  physicsPostStep(worldApi: WorldApi) {
+  physicsPostStep() {
     if (!this.rigidbody.current) return;
 
     const velocity = this.rigidbody.current.linvel();

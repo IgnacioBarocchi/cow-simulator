@@ -8,13 +8,13 @@ const App = () => {
 
   return (
     <Box>
-      <Box height="100vh" id="landing-container">
+      {/* <Box height="100vh" id="landing-container">
         <LandingPage
           scrollToSimulation={() => {
             simulationRef.current?.scrollIntoView({ behavior: "smooth" });
           }}
         />
-      </Box>
+      </Box> */}
 
       <Box ref={simulationRef} height="100vh">
         <CowSimulator />
