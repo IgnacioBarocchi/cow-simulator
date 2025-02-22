@@ -1,6 +1,8 @@
 import { Box, Button, Heading, Text } from "grommet";
 
+import Donate from "./donate";
 import Info from "./info";
+import { Ticket } from "grommet-icons";
 import landingImage from "/images/landing-image.jpg";
 
 export default function LandingPage({ scrollToSimulation }) {
@@ -53,6 +55,12 @@ export default function LandingPage({ scrollToSimulation }) {
             primary
           />
         </Box>
+      </Box>
+      <Box
+        margin={{ bottom: "medium", right: "medium" }}
+        style={{ position: "absolute", bottom: "0", right: "0" }}
+      >
+        <Donate />
       </Box>
     </Box>
   );
