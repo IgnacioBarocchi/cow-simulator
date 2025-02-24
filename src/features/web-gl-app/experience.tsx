@@ -1,5 +1,6 @@
 import { CuboidCollider, Physics, RigidBody } from "@react-three/rapier";
 
+import { Leva } from "leva";
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import SimulatorComponents from "./simulator-components";
@@ -19,6 +20,7 @@ const GroundCollider = () => {
 const Experience = () => {
   return (
     <>
+      <Leva hidden={!publicExperimentalFeatures.debug} />
       <Physics {...config.physicProps} debug={debug}>
         <GroundCollider />
         <SimulatorComponents />

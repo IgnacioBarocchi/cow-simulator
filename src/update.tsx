@@ -17,7 +17,7 @@ export const Update = () => {
       context: { mesh3DRef, rapierRigidBodyRef, actions, controller },
     },
     send,
-  ] = useAtom(playerMachineAtom); //usePlayerMachine();
+  ] = useAtom(playerMachineAtom);
 
   useCharacterAnimations();
   useAfterPhysicsStep(async (api) => {
@@ -41,14 +41,3 @@ export const Update = () => {
 
   return null;
 };
-
-// cameraOperator.update(mesh3DRef.current);
-
-// const keys = getKeys() as unknown as Keys;
-// const numberOfKeysPressed = Object.values(keys).filter((key) => key).length;
-
-// send(
-//   numberOfKeysPressed > 0
-//     ? getMachineStateFromInputtedKeys(keys)
-//     : { type: "idle" }
-// );

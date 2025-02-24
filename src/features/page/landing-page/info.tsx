@@ -1,9 +1,10 @@
 import { Box, Button, Collapsible, Heading, Layer, Text } from "grommet";
 
+import { block } from "million/react";
 import { useDevice } from "use-device-react";
 import { useState } from "react";
 
-const Info = () => {
+const Info = block(() => {
   const [open, setOpen] = useState(false);
 
   const [showModal, setShowModal] = useState(null);
@@ -12,7 +13,7 @@ const Info = () => {
   return (
     <Box align="start">
       <Button onClick={() => setOpen(!open)} label="Info" />
-      <Collapsible open={open} direction="horizontal" minSpeed={1000}>
+      <Collapsible open={open} direction="vertical" minSpeed={1000}>
         <>
           <Box
             direction={isDesktop ? "row" : "column"}
@@ -100,6 +101,6 @@ const Info = () => {
       </Collapsible>
     </Box>
   );
-};
+});
 
 export default Info;

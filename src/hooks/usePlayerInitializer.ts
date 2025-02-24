@@ -6,7 +6,6 @@ import { useEffect, useRef } from "react";
 import { Character } from "../features/character/controller/Character";
 import { Group } from "three";
 import { RapierRigidBody } from "@react-three/rapier";
-import usePlayerMachine from "./usePlayerMachine";
 import { useThree } from "@react-three/fiber";
 
 export default function usePlayerInitializer() {
@@ -14,7 +13,6 @@ export default function usePlayerInitializer() {
   const mesh3DInfo = useGLTF("/models/cow_character2.glb");
   const mesh3DRef = useRef<Group>(null);
   const rapierRigidBodyRef = useRef<RapierRigidBody>(null);
-  // const { state, send } = usePlayerMachine();
   const [state, send] = useAtom(playerMachineAtom);
   const { actions } = useAnimations<ExtendedAnimationClip>(
     mesh3DInfo.animations as ExtendedAnimationClip[],

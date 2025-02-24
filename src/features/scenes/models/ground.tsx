@@ -1,4 +1,5 @@
-import { useGLTF, PositionalAudio } from "@react-three/drei";
+import { PositionalAudio, useGLTF } from "@react-three/drei";
+
 import { GLTF } from "three-stdlib";
 import ambientSFXAsset from "/sounds/ambient.mp3";
 import ambientSFXAsset2 from "/sounds/ambient-layer-2.mp3";
