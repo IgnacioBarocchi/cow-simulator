@@ -1,10 +1,10 @@
 import { CuboidCollider as Bounding, RigidBody } from "@react-three/rapier";
 
-import { EntityNames } from "../../lib/object3DHelper";
+import { EntityNames } from "../../../lib/object3DHelper";
 import { PositionalAudio } from "@react-three/drei";
-import { States } from "../../machines/PlayerMachine";
+import { States } from "../../../machines/PlayerMachine";
 import { lazy } from "react";
-import usePlayerInitializer from "../../hooks/usePlayerInitializer";
+import usePlayerInitializer from "../../../hooks/usePlayerInitializer";
 
 const Cow3DModel = lazy(() => import("./model/Cow3DModel"));
 

@@ -2,8 +2,8 @@ import { CuboidCollider, RigidBody } from "@react-three/rapier";
 
 import { GLTF } from "three-stdlib";
 import Hint3D from "../ui/hint-3d";
-import { hint3DText } from "../../constants/hint-data";
-import { terrainLoadedAtom } from "../../store/store";
+import { hint3DText } from "../../../constants/hint-data";
+import { terrainLoadedAtom } from "../../../store/store";
 import { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useSetAtom } from "jotai";

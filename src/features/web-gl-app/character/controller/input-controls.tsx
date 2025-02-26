@@ -1,9 +1,9 @@
 import { Suspense, lazy } from "react";
 
 import Connecting from "../../ui/connecting";
-import { Controls } from "../../../types";
+import { Controls } from "../../../../types";
 import { KeyboardControls } from "@react-three/drei";
-import useControls from "../../../hooks/useControls";
+import useControls from "../../../../hooks/useControls";
 import { useDevice } from "use-device-react";
 
 const MobileControls = lazy(() => import("./mobile-controls"));

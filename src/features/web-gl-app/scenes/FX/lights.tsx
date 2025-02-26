@@ -1,10 +1,9 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { SpotLight, useDepthBuffer, useHelper } from "@react-three/drei";
 
-import { SpotLightHelper } from "three";
+import { SpotLight } from "@react-three/drei";
 import { SpotLightProps } from "@react-three/fiber";
-import { cowLoadedAtom } from "../../../store/store";
-import { publicExperimentalFeatures } from "../../../constants/features";
+import { cowLoadedAtom } from "../../../../store/store";
+import { publicExperimentalFeatures } from "../../../../constants/features";
 import { useAtom } from "jotai";
 import { useControls } from "leva";
 

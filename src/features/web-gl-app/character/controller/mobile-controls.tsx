@@ -1,6 +1,6 @@
 import { Box } from "grommet";
-import { Controls } from "../../../types";
-import useControls from "../../../hooks/useControls";
+import { Controls } from "../../../../types";
+import useControls from "../../../../hooks/useControls";
 
 const ControlButton = ({ bind, gridArea }) => {
   return (

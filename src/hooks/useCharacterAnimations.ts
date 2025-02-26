@@ -1,8 +1,8 @@
 import { playerContextAtom, playerStateValueAtom } from "../store/store";
 
-import animationsByMachineStateMap from "../features/character/helpers/animationByMachineStateMap";
+import animationsByMachineStateMap from "../features/web-gl-app/character/helpers/animationByMachineStateMap";
 import getAnimationClipMilliseconds from "../lib/getAnimationClipDuration";
-import { loopableAnimationClips } from "../features/character/@types/Cow3DModelTypes";
+import { loopableAnimationClips } from "../features/web-gl-app/character/@types/Cow3DModelTypes";
 import { useAtomValue } from "jotai";
 import { useEffect } from "react";
 

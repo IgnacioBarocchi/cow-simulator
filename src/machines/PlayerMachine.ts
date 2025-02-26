@@ -7,7 +7,7 @@ import { assign, createMachine } from "xstate";
 import { RelativeSpringSimulator } from "../lib/physics/RelativeSpringSimulator";
 import { Vector3 } from "three";
 import { VectorSpringSimulator } from "../lib/physics/VectorSpringSimulator";
-import animationsByMachineStateMap from "../features/character/helpers/animationByMachineStateMap";
+import animationsByMachineStateMap from "../features/web-gl-app/character/helpers/animationByMachineStateMap";
 import { playOneShotAnimation } from "../lib/animationHelper";
 
 // todo: conver to map

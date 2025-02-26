@@ -1,10 +1,10 @@
 import { Box, Button, Text } from "grommet";
 import { FormNext, FormPrevious } from "grommet-icons";
-import { Matrix4, Quaternion, Vector3 } from "three";
 import { atom, useAtom, useAtomValue } from "jotai";
 
+import { Vector3 } from "three";
 import { block } from "million/react";
-import { playerContextAtom } from "../../store/store";
+import { playerContextAtom } from "../../../store/store";
 import styled from "styled-components";
 import { useCallback } from "react";
 

@@ -6,15 +6,15 @@ import {
   Vector3,
   Vector3Tuple,
 } from "three";
-import { Input, ObjectRef, RigidBodyRef } from "../../../types";
+import { Input, ObjectRef, RigidBodyRef } from "../../../../types";
 import {
   applyVectorMatrixXZ,
   getSignedAngleBetweenVectors,
   lerpVectors,
 } from "./helpers";
 
-import { RelativeSpringSimulator } from "../../../lib/physics/RelativeSpringSimulator";
-import { VectorSpringSimulator } from "../../../lib/physics/VectorSpringSimulator";
+import { RelativeSpringSimulator } from "../../../../lib/physics/RelativeSpringSimulator";
+import { VectorSpringSimulator } from "../../../../lib/physics/VectorSpringSimulator";
 import { WorldApi } from "@react-three/rapier";
 
 // import { input } from "./input-controls";

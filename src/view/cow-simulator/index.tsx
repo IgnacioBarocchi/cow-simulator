@@ -1,10 +1,10 @@
 import { Suspense, lazy } from "react";
 
 import { Box } from "grommet";
-import Connecting from "../../features/ui/connecting/index.tsx";
+import Connecting from "../../features/web-gl-app/ui/connecting/index.js";
 
-const UI = lazy(() => import("../../features/ui"));
-const WebGlApp = lazy(() => import("../../features/web-gl-app"));
+const UI = lazy(() => import("../../features/web-gl-app/ui/index.tsx"));
+const WebGlApp = lazy(() => import("../../features/web-gl-app/index.js"));
 
 const CowSimulator = () => {
   return (

@@ -1,9 +1,7 @@
 import { Box, Grommet } from "grommet";
 
-import CowSimulator from "./features/page/cow-simulator.tsx";
-import LandingPage from "./features/page/landing-page/";
-import { deepMerge } from "grommet/utils";
-import { grommet } from "grommet/themes";
+import CowSimulator from "./view/cow-simulator/index.tsx";
+import LandingPage from "./view/landing-page/index.tsx";
 import { standardTheme } from "./constants/ui-config.ts";
 import { useRef } from "react";
 

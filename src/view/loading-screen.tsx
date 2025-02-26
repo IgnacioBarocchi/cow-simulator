@@ -1,5 +1,5 @@
 import Loading from "./loading";
-import { cowLoadedAtom } from "../../store/store";
+import { cowLoadedAtom } from "../store/store";
 import styled from "styled-components";
 import { useAtom } from "jotai";
 

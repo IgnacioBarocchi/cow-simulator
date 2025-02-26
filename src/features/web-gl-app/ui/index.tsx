@@ -1,20 +1,10 @@
-import { Box, Grommet } from "grommet";
-
 import ActionPanel from "./action-panel";
+import { Box } from "grommet";
 import { InputControls } from "../character/controller/input-controls";
-import { LoadingScreen } from "../page/loading-screen";
+import { LoadingScreen } from "../../../view/loading-screen";
 import SceneSelector from "../scene-selector";
 
 export const primary = "white";
-const darkTheme = {
-  global: {
-    colors: {
-      background: "transparent",
-      text: "#f5f5f5",
-      primary,
-    },
-  },
-};
 
 const UI = () => {
   return (

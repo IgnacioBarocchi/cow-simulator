@@ -3,7 +3,7 @@ import { useAnimations, useGLTF } from "@react-three/drei";
 import { useAtom, useAtomValue, useSetAtom } from "jotai";
 import { useEffect, useRef } from "react";
 
-import { Character } from "../features/character/controller/Character";
+import { Character } from "../features/web-gl-app/character/controller/Character";
 import { Group } from "three";
 import { RapierRigidBody } from "@react-three/rapier";
 import { useThree } from "@react-three/fiber";
