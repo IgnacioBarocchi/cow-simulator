@@ -2,13 +2,18 @@ import { Box, Button, Heading, Text } from "grommet";
 
 import Donate from "./donate";
 import Info from "./info";
-import { Ticket } from "grommet-icons";
 import landingImage from "/images/landing-image.jpg";
 
 export default function LandingPage({ scrollToSimulation }) {
   return (
-    <Box fill style={{ position: "relative", overflow: "hidden" }}>
-      {/* Blurred Background Image */}
+    <Box
+      fill
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        background: "transparent",
+      }}
+    >
       <Box
         fill
         style={{
@@ -18,12 +23,11 @@ export default function LandingPage({ scrollToSimulation }) {
           width: "100%",
           height: "100%",
           background: `url(${landingImage}) center/cover no-repeat`,
-          filter: "blur(10px)", // 👈 Blurs only the background image
-          zIndex: -2, // 👈 Pushed behind everything
+          filter: "blur(10px)",
+          zIndex: -2,
         }}
       />
 
-      {/* Gradient Overlay */}
       <Box
         fill
         style={{
@@ -34,7 +38,7 @@ export default function LandingPage({ scrollToSimulation }) {
           height: "100%",
           background:
             "linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(255,255,255,0) 50%, rgba(0,0,0,1) 90%)",
-          zIndex: -1, // 👈 Keeps it behind the content but above the image
+          zIndex: -1,
         }}
       />
 

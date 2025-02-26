@@ -1,19 +1,47 @@
-import { Box, Button, Grommet, Heading, Layer, Text } from "grommet";
+import { Box, Button, Heading, Text } from "grommet";
 import { Close, Info } from "grommet-icons";
 
 import { Html } from "@react-three/drei";
+import ViewMoreLayer from "./view-more-layer";
 import { useState } from "react";
 
-const theme = {
-  global: {
-    font: {
-      family: "Arial",
-    },
-  },
+const limit = 140;
+
+const getTrimmedBody = (text: string[]) => {
+  let trimmedText: string[] = [];
+  let charCount = 0;
+
+  for (const paragraph of text) {
+    if (charCount + paragraph.length > limit) {
+      if (charCount === 0) {
+        let trimmed = paragraph.slice(0, limit);
+        let lastSpaceIndex = trimmed.lastIndexOf(" ");
+
+        if (lastSpaceIndex !== -1) {
+          trimmed = trimmed.slice(0, lastSpaceIndex);
+        }
+
+        trimmedText.push(trimmed + "...");
+      }
+      break;
+    }
+    trimmedText.push(paragraph);
+    charCount += paragraph.length;
+  }
+
+  if (
+    trimmedText.length > 0 &&
+    !trimmedText[trimmedText.length - 1].endsWith("...")
+  ) {
+    trimmedText[trimmedText.length - 1] += "...";
+  }
+
+  return trimmedText;
 };
 
 const Hint3D = ({ position, info }) => {
   const [show, setShow] = useState(false);
+  const [showFull, setShowFull] = useState(false);
 
   return (
     <group position={position}>
@@ -33,15 +61,10 @@ const Hint3D = ({ position, info }) => {
             style={{ pointerEvents: "auto" }}
             color="white"
             icon={<Info />}
-            onClick={() => setShow(!show)}
+            onClick={() => setShow(true)}
           />
         )}
         {show && (
-          // <Layer
-          //   onEsc={() => setShow(false)}
-          //   onClickOutside={() => setShow(false)}
-          //   background="transparent"
-          // >
           <Box pad="medium" gap="small" width="medium">
             <Box direction="row" align="center" justify="between">
               <Heading level={3} margin="none">
@@ -49,12 +72,21 @@ const Hint3D = ({ position, info }) => {
               </Heading>
               <Button icon={<Close />} onClick={() => setShow(false)} plain />
             </Box>
-            {info.body.map((body) => (
-              <Text>{body}</Text>
-            ))}
+            {getTrimmedBody(info.body).map((body, index) => {
+              return <Text key={index}>{body}</Text>;
+            })}
+            {info.body.join(" ").length > limit && (
+              <Text
+                color="brand"
+                onClick={() => setShowFull(true)}
+                style={{ cursor: "pointer" }}
+              >
+                ver más
+              </Text>
+            )}
           </Box>
-          // </Layer>
         )}
+        {showFull && <ViewMoreLayer setShowFull={setShowFull} info={info} />}
       </Html>
     </group>
   );
