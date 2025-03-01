@@ -4,7 +4,8 @@
   "description": "monorepo example",
   "scripts": {
     "test": "pnpm run -r test",
-    "dev": "pnpm run --filter website dev"
+    "dev": "pnpm run --filter website dev",
+    "build": "pnpm run --filter website build"
   },
   "author": "hsk.coder@gmail.com",
   "license": "ISC",
