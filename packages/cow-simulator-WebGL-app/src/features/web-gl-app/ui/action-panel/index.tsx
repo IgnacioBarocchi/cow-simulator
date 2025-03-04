@@ -20,7 +20,7 @@ const ActionPanel = () => {
       <Sidebar />
       <InstagramSidebar />
       <Button
-        icon={<Up />}
+        icon={<Up color="text" />}
         onClick={() => {
           document
             .getElementById("landing-container")

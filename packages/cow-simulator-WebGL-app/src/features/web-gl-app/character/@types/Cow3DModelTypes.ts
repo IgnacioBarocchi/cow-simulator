@@ -34,8 +34,8 @@ export type GLTFResult = GLTF & {
     Baseboard_material: MeshStandardMaterial;
   };
 };
-
 export type ModelAnimationClipName =
+  "rig|rig|idle_rig" | "rig|rig|run_rig" | "rig|rig|walk_rig"
   | "AnimalArmature|Attack_Headbutt"
   | "AnimalArmature|Attack_Kick"
   | "AnimalArmature|Death"
@@ -57,16 +57,23 @@ export const AnimationClips = {
   ATTACK_KICK: ["AnimalArmature|Attack_Kick"],
   DEATH: ["AnimalArmature|Death"],
   EATING: ["AnimalArmature|Eating"],
-  GALLOP: ["AnimalArmature|Gallop"],
+  GALLOP: ["rig|rig|run_rig"
+    // , "AnimalArmature|Gallop"
+  ],
   IDLE: [
-    "AnimalArmature|Idle",
-    "AnimalArmature|Idle_2",
-    "AnimalArmature|Idle_Headlow",
+    "rig|rig|idle_rig"
+    // ,
+    // "AnimalArmature|Idle",
+    // "AnimalArmature|Idle_2",
+    // "AnimalArmature|Idle_Headlow",
   ],
   IDLE_HITREACT: ["AnimalArmature|Idle_HitReact_Left", "Idle_HitReact_Right"],
   GALLOP_JUMP: ["AnimalArmature|Gallop_Jump"],
   JUMP_TOIDLE: ["AnimalArmature|Jump_toIdle"],
-  WALK: ["AnimalArmature|Walk"],
+  WALK: [
+    "rig|rig|walk_rig"
+    // "AnimalArmature|Walk"
+  ],
 } as const;
 
 export const loopableAnimationClips: Readonly<string[]> = [

@@ -39,7 +39,7 @@ const Sidebar = () => {
   return (
     <CollapsibleSidebar
       title={sceneInfo.title}
-      icon={<Info />}
+      icon={<Info color="#DADADA" />}
       Content={() =>
         sceneInfo.body.map((content) => (
           <Text key={nanoid()} margin={{ top: "small" }}>

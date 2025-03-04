@@ -135,6 +135,9 @@ importers:
 
   packages/pages:
     dependencies:
+      '@mono/shared':
+        specifier: workspace:*
+        version: link:../shared
       '@mono/ui':
         specifier: workspace:*
         version: link:../ui
@@ -190,6 +193,15 @@ importers:
       vite:
         specifier: ^5.2.0
         version: 5.2.8
+      vitest:
+        specifier: ^1.5.0
+        version: 1.5.0(jsdom@24.0.0)
+
+  packages/shared:
+    devDependencies:
+      typescript:
+        specifier: ^5.2.2
+        version: 5.4.5
       vitest:
         specifier: ^1.5.0
         version: 1.5.0(jsdom@24.0.0)
@@ -272,6 +284,9 @@ importers:
       '@mono/pages':
         specifier: workspace:*
         version: link:../packages/pages
+      '@mono/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
       '@mono/ui':
         specifier: workspace:*
         version: link:../packages/ui

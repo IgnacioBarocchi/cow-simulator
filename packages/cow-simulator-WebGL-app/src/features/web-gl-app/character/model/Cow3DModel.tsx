@@ -1,7 +1,7 @@
-import { FC, forwardRef, lazy, Suspense } from "react";
-import { ContactShadows, useGLTF } from "@react-three/drei";
-import { StateValue } from "xstate";
+import { FC, Suspense, forwardRef, lazy } from "react";
+
 import { GLTF } from "three-stdlib";
+import { useGLTF } from "@react-three/drei";
 
 const BigModel = lazy(() => import("./BigModel"));
 

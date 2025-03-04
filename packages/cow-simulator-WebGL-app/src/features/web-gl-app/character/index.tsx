@@ -6,7 +6,8 @@ import { States } from "../../../machines/PlayerMachine";
 import { lazy } from "react";
 import usePlayerInitializer from "../../../hooks/usePlayerInitializer";
 
-const Cow3DModel = lazy(() => import("./model/Cow3DModel"));
+// const Cow3DModel = lazy(() => import("./model/Cow3DModel"));
+const Cow3DModel = lazy(() => import("./model/cow-3d-model-new"));
 
 const isWalking = (m) => {
   return m.matches(States.walk);
@@ -31,7 +32,9 @@ const Cow = () => {
         friction={1}
         name={EntityNames.COW}
       >
-        <Bounding args={[0.2, 0.5, 0.8]} position={[0, 0.5, 0.2]} />
+        {/* <Bounding args={[0.2, 0.5, 0.8]} position={[0, 0.5, 0.2]} /> */}
+        <Bounding args={[0.2, 0.6, 1]} position={[0, 0, 0]} />
+
         <Cow3DModel ref={mesh3DRef} mesh3DInfo={mesh3DInfo} />
       </RigidBody>
       {isWalking(machineState) && (

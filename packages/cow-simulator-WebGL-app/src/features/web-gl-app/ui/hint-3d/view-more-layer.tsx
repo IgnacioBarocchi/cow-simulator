@@ -1,4 +1,4 @@
-import { Box, Button, Heading, InfoLayer, Layer, Text } from "@mono/ui";
+import { Box, Button, Heading, InfoLayer, Text } from "@mono/ui";
 
 import { Close } from "grommet-icons";
 

@@ -25,7 +25,7 @@ const InstagramLinks = () => (
 const InstagramSidebar = () => {
   return (
     <CollapsibleSidebar
-      icon={<Instagram />}
+      icon={<Instagram color="#DADADA" />}
       title="Instagram"
       Content={InstagramLinks}
     />

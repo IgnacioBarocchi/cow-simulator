@@ -1,11 +1,16 @@
 import "./index.css";
 
-import App from "./App.tsx";
-import React from "react";
+import React, { Suspense, lazy } from "react";
+
+import Background from "@mono/pages/src/views/landing/background";
 import ReactDOM from "react-dom/client";
+
+const App = lazy(() => import("./App"));
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={<Background />}>
+      <App />
+    </Suspense>
   </React.StrictMode>
 );

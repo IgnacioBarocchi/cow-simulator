@@ -1,20 +1,20 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from "react";
 
-import { SpotLight } from '@react-three/drei';
-import { SpotLightProps } from '@react-three/fiber';
-import { cowLoadedAtom } from '../../../../store/store';
-import { publicExperimentalFeatures } from '../../../../constants/features';
-import { useAtom } from 'jotai';
-import { useControls } from 'leva';
+import { SpotLight } from "@react-three/drei";
+import { SpotLightProps } from "@react-three/fiber";
+import { cowLoadedAtom } from "../../../../store/store";
+import { publicExperimentalFeatures } from "../../../../constants/features";
+import { useAtom } from "jotai";
+import { useControls } from "leva";
 
-const SceneSpotLight: FC<{ lightProps: Omit<SpotLightProps, 'intensity'> }> = ({
+const SceneSpotLight: FC<{ lightProps: Omit<SpotLightProps, "intensity"> }> = ({
   lightProps,
 }) => {
   const light = useRef();
 
-  const customProps = useControls('SpotLight', {
+  const customProps = useControls("SpotLight", {
     intensity: { value: lightProps.intensity, min: 0, max: 40, step: 0.1 },
-    color: '#fef8dd',
+    color: "#fef8dd",
     angle: { value: lightProps.angle, min: 0, max: Math.PI / 2 },
     distance: { value: lightProps.distance, min: 0, max: 100, step: 0.01 },
     decay: { value: lightProps.decay, min: 0, max: 100, step: 0.01 },

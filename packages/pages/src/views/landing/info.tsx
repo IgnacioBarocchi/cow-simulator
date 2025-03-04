@@ -8,6 +8,7 @@ import {
   Text,
 } from "@mono/ui";
 
+import IntervencionV from "../intervencion-v";
 import { block } from "million/react";
 import { useDevice } from "use-device-react";
 import { useState } from "react";
@@ -23,7 +24,7 @@ const Info = block(() => {
         toggle={() => {
           setOpen(!open);
         }}
-        label="Info"
+        label="más información"
       />
       <Collapsible open={open} direction="vertical" minSpeed={1000}>
         <>
@@ -99,34 +100,7 @@ const Info = block(() => {
               onEsc={() => setShowModal(null)}
               onClickOutside={() => setShowModal(null)}
             >
-              <Box pad="medium">
-                <Heading level={3}>Intervención V</Heading>
-                <Text>
-                  Se puede convencer a alguien de adoptar el veganismo, pero
-                  ¿qué implicaría que lo haga por razones equivocadas?
-                </Text>
-                <Text>
-                  A largo plazo las razones que fundamentan el veganismo podrían
-                  desvirtuarse, haciendo peligrar la misión de nuestro
-                  compromiso ético. En la región vemos como son varios los
-                  activismos que hablan de la salud y el medioambiente, entre
-                  otras cuestiones y esto nos desinforma.
-                </Text>
-                <Text>
-                  Para conservar el significado del veganismo, en 2020 se creó
-                  Intervención V, una iniciativa que ofrece mensajes claros y
-                  concisos, enfatizando su repetición para garantizar que
-                  nuestra campaña nunca pierda visibilidad.
-                </Text>
-                <Text>
-                  <a
-                    href="https://www.instagram.com/intervencion_v"
-                    target="_blank"
-                  >
-                    @intervencion_v
-                  </a>
-                </Text>
-              </Box>
+              <IntervencionV />
             </InfoLayer>
           )}
         </>

@@ -1,6 +1,7 @@
 import { deepMerge } from "grommet/utils";
 import { grommet } from "grommet";
 
+export const fontStack = "Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;"
 export const customTheme = {
     name: "pwa with siray",
     rounding: 12,
@@ -190,10 +191,6 @@ export const customTheme = {
 export const standardTheme = deepMerge(grommet,
     {
         global: {
-            // brand: {
-            //     dark: "#0011FA",
-            //     light: "#6600cc",
-            // },
             animation: {
                 duration: "2s",
                 jiggle: {
@@ -201,11 +198,10 @@ export const standardTheme = deepMerge(grommet,
                 }
             },
             font: {
-                family: "Ranade-Medium",
+                family: fontStack,
                 size: "14px",
                 height: "20px",
             },
         },
-
     }
 );

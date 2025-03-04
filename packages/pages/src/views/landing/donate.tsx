@@ -42,6 +42,7 @@ const CopyButton = ({ text }) => {
           onClose={() => {
             setShowNotification(false);
           }}
+          background="dark-1"
         />
       )}
       <Button
@@ -57,13 +58,13 @@ const CopyButton = ({ text }) => {
 
 const Donate = () => {
   const [open, setOpen] = useState(false);
-  const aliases = ["ignacio.choker", "random"];
+  const aliases = ["ignacio.choker"];
 
   return (
     <>
       <Collapsible open={open}>
         <Box pad="small" gap="small">
-          <Text color="light-2">Copia los alias</Text>
+          <Text color="light-2">¿Querés hacer un aporte?</Text>
           {aliases.map((alias) => (
             <Box key={alias} direction="row" align="center" gap="small">
               <CopyButton text={alias} />

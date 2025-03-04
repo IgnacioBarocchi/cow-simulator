@@ -4,7 +4,7 @@ import { CowSimulator } from "@mono/cow-simulator-webGL-app";
 import { LandingPage } from "@mono/pages";
 import { useRef } from "react";
 
-function App2() {
+function App() {
   const simulationRef = useRef(null);
 
   return (
@@ -23,4 +23,4 @@ function App2() {
   );
 }
 
-export default App2;
+export default App;

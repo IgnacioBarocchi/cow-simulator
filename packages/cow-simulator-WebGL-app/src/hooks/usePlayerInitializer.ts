@@ -10,7 +10,9 @@ import { useThree } from "@react-three/fiber";
 
 export default function usePlayerInitializer() {
   const { camera } = useThree();
-  const mesh3DInfo = useGLTF("/models/cow_character2.glb");
+  // const mesh3DInfo = useGLTF("/models/cow_character2.glb");
+  const mesh3DInfo = useGLTF("/models/cow-character-2.glb");
+
   const mesh3DRef = useRef<Group>(null);
   const rapierRigidBodyRef = useRef<RapierRigidBody>(null);
   const [state, send] = useAtom(playerMachineAtom);

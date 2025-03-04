@@ -1,9 +1,41 @@
-import { Box, Button, Heading, Text } from "@mono/ui";
+import { Box, Skeleton } from "@mono/ui";
+import { Suspense, lazy } from "react";
 
+import Background from "./background";
 import Donate from "./donate";
-import Info from "./info";
-import landingImage from "/images/landing-image.jpg";
 
+const Contents = lazy(() => import("./contents"));
+
+const Skeletons = () => (
+  <Box gap="medium" margin={{ top: "large" }}>
+    <Skeleton
+      style={{ background: "#444444" }}
+      width="large"
+      height="xsmall"
+      round="xsmall"
+    />
+    <Skeleton
+      style={{ background: "#444444" }}
+      width="large"
+      height="xxsmall"
+      round="xsmall"
+    />
+    <Box direction="row" justify="center" gap="large">
+      <Skeleton
+        style={{ background: "#444444" }}
+        width="xsmall"
+        height="xxsmall"
+        round="xsmall"
+      />
+      <Skeleton
+        style={{ background: "#444444" }}
+        width="xsmall"
+        height="xxsmall"
+        round="xsmall"
+      />
+    </Box>
+  </Box>
+);
 export default function LandingPage({ scrollToSimulation }) {
   return (
     <Box
@@ -14,51 +46,11 @@ export default function LandingPage({ scrollToSimulation }) {
         background: "transparent",
       }}
     >
-      <Box
-        fill
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          background: `url(${landingImage}) center/cover no-repeat`,
-          filter: "blur(10px)",
-          zIndex: -2,
-        }}
-      />
-
-      <Box
-        fill
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          background:
-            "linear-gradient(0deg, rgba(0,0,0,1) 10%, rgba(255,255,255,0) 50%, rgba(0,0,0,1) 90%)",
-          zIndex: -1,
-        }}
-      />
-
-      {/* Content */}
+      <Background />
       <Box height="100vh" align="center" pad="medium">
-        <Heading level={1} size="large" id="page-heading" color="light-1">
-          Simulador de Vaca
-        </Heading>
-        <Text size="large" color="light-4" margin={{ bottom: "medium" }}>
-          Una experiencia honesta sobre la realidad de las vacas en la industria
-          lechera.
-        </Text>
-        <Box direction="row" gap="medium">
-          <Info />
-          <Button
-            label="Empezar simulación"
-            onClick={scrollToSimulation}
-            primary
-          />
-        </Box>
+        <Suspense fallback={<Skeletons />}>
+          <Contents scrollToSimulation={scrollToSimulation} />
+        </Suspense>
       </Box>
       <Box
         margin={{
