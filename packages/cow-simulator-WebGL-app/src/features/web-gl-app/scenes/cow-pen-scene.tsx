@@ -3,10 +3,11 @@ import { CuboidCollider, RigidBody } from "@react-three/rapier";
 import { GLTF } from "three-stdlib";
 import Hint3D from "../ui/hint-3d";
 import { hint3DText } from "../../../constants/hint-data";
-import { terrainLoadedAtom } from "../../../store/store";
 import { useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useSetAtom } from "jotai";
+
+// import { terrainLoadedAtom } from "../../../store/store";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -59,15 +60,15 @@ export function CowPen3DModel(props: JSX.IntrinsicElements["group"]) {
 
 useGLTF.preload("/models/newenv2.glb");
 const CowPenScene = () => {
-  const setTerrainLoaded = useSetAtom(terrainLoadedAtom);
+  // const setTerrainLoaded = useSetAtom(terrainLoadedAtom);
 
-  useEffect(() => {
-    setTerrainLoaded(true);
-  }, []);
+  // useEffect(() => {
+  //   // setTerrainLoaded(true);
+  // }, []);
 
   return (
     <>
-      <RigidBody type={"fixed"} colliders={false}>
+      <RigidBody type="fixed" colliders={false}>
         <CuboidCollider args={[0, 2, 2]} position={[1.65, 1, 0]} />
         <CuboidCollider args={[0, 2, 2]} position={[-1.65, 1, 0]} />
         <CuboidCollider args={[2, 2, 0]} position={[0, 1, 1.65]} />

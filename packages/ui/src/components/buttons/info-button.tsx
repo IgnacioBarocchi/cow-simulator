@@ -2,7 +2,7 @@ import { ButtonExtendedProps, Button as GButton } from "grommet";
 import { FC, SetStateAction, useState } from "react";
 
 type SetProps = "onClick" | "badge" | "color";
-type InfoButtonProps = Omit<ButtonExtendedProps, SetProps> & {
+export type InfoButtonProps = Omit<ButtonExtendedProps, SetProps> & {
   toggle: () => (value: SetStateAction<boolean>) => void;
 };
 const InfoButton: FC<InfoButtonProps> = (props) => {

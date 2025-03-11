@@ -1,6 +1,7 @@
 import ActionPanel from "./action-panel";
 import { Box } from "@mono/ui";
-import { InputControls } from "../character/controller/input-controls";
+import { Player } from "@mono/characters";
+// import { InputControls } from "../character/controller/input-controls";
 // import { LoadingScreen } from "../../../view/loading-screen";
 import SceneSelector from "../scene-selector";
 
@@ -25,7 +26,7 @@ const UI = () => {
         onContextMenu={(e) => e.preventDefault()}
       >
         {/* <LoadingScreen /> */}
-        <InputControls />
+        <Player.Controls />
         <SceneSelector />
         <ActionPanel />
       </Box>

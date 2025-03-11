@@ -1,10 +1,11 @@
 import { Box, Skeleton } from "@mono/ui";
 import { Suspense, lazy } from "react";
 
-import Background from "./background";
-import Donate from "./donate";
+import Background from "./components/background";
+import Donate from "./components/donate";
+import InstagramAccounts from "./components/intragram-accounts";
 
-const Contents = lazy(() => import("./contents"));
+const Contents = lazy(() => import("./components/contents"));
 
 const Skeletons = () => (
   <Box gap="medium" margin={{ top: "large" }}>
@@ -53,6 +54,7 @@ export default function LandingPage({ scrollToSimulation }) {
         </Suspense>
       </Box>
       <Box
+        direction="row"
         margin={{
           bottom: "calc( env(safe-area-inset-bottom) + 100px )",
           right: "medium",
@@ -60,6 +62,7 @@ export default function LandingPage({ scrollToSimulation }) {
         style={{ position: "absolute", bottom: "0", right: "0" }}
       >
         <Donate />
+        <InstagramAccounts />
       </Box>
     </Box>
   );

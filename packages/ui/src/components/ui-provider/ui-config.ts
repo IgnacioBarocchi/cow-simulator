@@ -1,7 +1,8 @@
 import { deepMerge } from "grommet/utils";
 import { grommet } from "grommet";
 
-export const fontStack = "Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;"
+export const fontStack = "Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif"
+
 export const customTheme = {
     name: "pwa with siray",
     rounding: 12,

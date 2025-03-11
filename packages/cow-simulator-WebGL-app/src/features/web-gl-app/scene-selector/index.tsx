@@ -4,9 +4,10 @@ import { atom, useAtom, useAtomValue } from "jotai";
 
 import { Vector3 } from "three";
 import { block } from "million/react";
-import { playerContextAtom } from "../../../store/store";
 import styled from "styled-components";
 import { useCallback } from "react";
+
+// import { playerContextAtom } from "../../../store/store";
 
 const primary = "white";
 const scenes = ["Corral", "Ordeñador", "Matadero"];
@@ -27,26 +28,26 @@ const MemoizedDot = block(({ active }) => <Dot active={active} />);
 const SceneSelector = block(() => {
   const selectedScene = useAtomValue(selectedSceneAtom);
   const [, setSelectedScene] = useAtom(selectedSceneAtom);
-  const { rapierRigidBodyRef, controller } = useAtomValue(playerContextAtom);
+  // const { rapierRigidBodyRef, controller } = useAtomValue(playerContextAtom);
 
-  const setRigidBody = useCallback(
-    (next) => {
-      if (next !== 1) return;
+  // const setRigidBody = useCallback(
+  //   (next) => {
+  //     if (next !== 1) return;
 
-      if (!rapierRigidBodyRef?.current) return;
+  //     if (!rapierRigidBodyRef?.current) return;
 
-      controller.rigidbody.current.setTranslation({ x: 0, y: 0, z: 0 }, true);
-      controller.setOrientation(new Vector3(0, 0, -1));
-      controller.orientationTarget.set(0, 0, -1);
-      controller.rigidbody.current?.wakeUp();
-    },
-    [setSelectedScene, rapierRigidBodyRef]
-  );
+  //     controller.rigidbody.current.setTranslation({ x: 0, y: 0, z: 0 }, true);
+  //     controller.setOrientation(new Vector3(0, 0, -1));
+  //     controller.orientationTarget.set(0, 0, -1);
+  //     controller.rigidbody.current?.wakeUp();
+  //   },
+  //   [setSelectedScene, rapierRigidBodyRef]
+  // );
 
   const nextScene = () => {
     setSelectedScene((prev) => {
       const next = (prev + 1) % scenes.length;
-      setRigidBody(next);
+      // setRigidBody(next);
       return next;
     });
   };
@@ -54,7 +55,7 @@ const SceneSelector = block(() => {
   const prevScene = () => {
     setSelectedScene((prev) => {
       const next = (prev - 1 + scenes.length) % scenes.length;
-      setRigidBody(next);
+      // setRigidBody(next);
       return next;
     });
   };

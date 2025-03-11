@@ -1,6 +1,5 @@
 import { Box } from "@mono/ui";
 import Button from "../button";
-import InstagramSidebar from "../instagram-collapsible";
 import Sidebar from "../info-collapsible";
 import { Up } from "grommet-icons";
 import { useDevice } from "use-device-react";
@@ -18,7 +17,6 @@ const ActionPanel = () => {
       direction={isDesktop ? "row" : "column"}
     >
       <Sidebar />
-      <InstagramSidebar />
       <Button
         icon={<Up color="text" />}
         onClick={() => {

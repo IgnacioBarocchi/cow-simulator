@@ -1,46 +1,27 @@
-import { FC, useState } from "react";
 import { Markdown, Paragraph } from "grommet";
 
+import { FC } from "react";
 import { fontStack } from "../ui-provider/ui-config";
 
 const customComponents = {
   p: {
+    as: Paragraph,
     component: Paragraph,
     props: {
       fill: true,
     },
   },
+  img: {
+    props: {
+      style: { width: "500px" },
+    },
+  },
 };
 
 interface MarkdownTextProps {
-  gistEndpoint: string;
+  text: string;
 }
-const MarkdownText: FC<MarkdownTextProps> = ({ gistEndpoint }) => {
-  const [text, setText] = useState("");
-  const fetchData = async () => {
-    try {
-      console.log(gistEndpoint);
-      const response = await fetch(gistEndpoint);
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch");
-      }
-
-      const data = await response.json();
-      const files = data.files;
-
-      const markdownText = Object.values(files)[0].content;
-
-      console.log(markdownText);
-
-      setText(markdownText);
-    } catch (err) {
-      console.error("Error fetching Gist:", err);
-    }
-  };
-
-  fetchData();
-
+const MarkdownText: FC<MarkdownTextProps> = ({ text }) => {
   return (
     <Markdown
       style={{

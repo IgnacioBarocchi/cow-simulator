@@ -5,7 +5,7 @@ import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import SimulatorComponents from "./simulator-components";
 import { config } from "../../constants/experience-config";
-import { publicExperimentalFeatures } from "../../constants/features";
+import { publicExperimentalFeatures } from "@mono/context";
 
 const { debug } = publicExperimentalFeatures;
 
@@ -21,7 +21,7 @@ const Experience = () => {
   return (
     <>
       <Leva hidden={!publicExperimentalFeatures.debug} />
-      <Physics {...config.physicProps} debug={debug}>
+      <Physics {...config.physicProps} debug={false}>
         <GroundCollider />
         <SimulatorComponents />
       </Physics>

@@ -1,8 +1,9 @@
-import { Box, Button, Heading, Spinner, Text } from "@mono/ui";
+import { UIProvider, Box, Button, Heading, Spinner, Text } from "@mono/ui";
 import { Close, Info } from "grommet-icons";
 import { Suspense, lazy, useState } from "react";
 
 import { Html } from "@react-three/drei";
+import { fontStack } from "@mono/ui/src/components/ui-provider/ui-config.ts";
 
 const ViewMoreLayer = lazy(() => import("./view-more-layer.tsx"));
 
@@ -56,6 +57,9 @@ const Hint3D = ({ position, info }) => {
         transform
         sprite
         onOcclude={(hidden) => null}
+        style={{
+          fontFamily: fontStack,
+        }}
       >
         {!show && (
           <Button
@@ -88,7 +92,9 @@ const Hint3D = ({ position, info }) => {
         )}
         {showFull && (
           <Suspense fallback={<Spinner />}>
-            <ViewMoreLayer setShowFull={setShowFull} info={info} />
+            <UIProvider>
+              <ViewMoreLayer setShowFull={setShowFull} info={info} />
+            </UIProvider>
           </Suspense>
         )}
       </Html>

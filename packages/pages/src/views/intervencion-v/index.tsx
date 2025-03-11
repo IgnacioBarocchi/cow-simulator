@@ -6,11 +6,13 @@ import {
   Image,
   MarkdownText,
   Stack,
+  useGistMDFile,
 } from "@mono/ui";
 
-import { Endpoints } from "@mono/shared";
+import { Endpoints } from "@mono/context";
 
 const IntervencionV = () => {
+  const text = useGistMDFile(Endpoints.intervencionVText);
   return (
     <Box pad="medium" gap="small">
       <Stack anchor="center">
@@ -36,7 +38,7 @@ const IntervencionV = () => {
           />
         </Box>
       </Stack>
-      <MarkdownText gistEndpoint={Endpoints.intervencionVText} />
+      <MarkdownText text={text} />
     </Box>
   );
 };
