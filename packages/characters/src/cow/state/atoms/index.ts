@@ -15,7 +15,6 @@ export const simulatorState = atom({
     characterWasLoaded: false,
 });
 
-
 enum Controls {
     FORWARD = "FORWARD",
     BACKWARD = "BACKWARD",
@@ -27,6 +26,7 @@ enum Controls {
     ATTACK2 = "ATTACK2",
     EAT = "EAT",
 }
+
 export const inputAtom = atom(Object.keys(Controls).reduce((state, key) => {
     // @ts-ignore
     state[key] = false;

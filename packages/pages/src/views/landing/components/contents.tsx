@@ -5,7 +5,6 @@ import Info from "./info";
 const Contents = ({ scrollToSimulation }) => {
   return (
     <>
-      {" "}
       <Heading level={1} size="large" id="page-heading" color="light-1">
         Simulador de Vaca
       </Heading>

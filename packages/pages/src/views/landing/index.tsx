@@ -4,18 +4,21 @@ import { Suspense, lazy } from "react";
 import Background from "./components/background";
 import Donate from "./components/donate";
 import InstagramAccounts from "./components/intragram-accounts";
+import { useDevice } from "use-device-react";
 
 const Contents = lazy(() => import("./components/contents"));
 
 const Skeletons = () => (
   <Box gap="medium" margin={{ top: "large" }}>
     <Skeleton
+      // @ts-ignore
       style={{ background: "#444444" }}
       width="large"
       height="xsmall"
       round="xsmall"
     />
     <Skeleton
+      // @ts-ignore
       style={{ background: "#444444" }}
       width="large"
       height="xxsmall"
@@ -23,12 +26,14 @@ const Skeletons = () => (
     />
     <Box direction="row" justify="center" gap="large">
       <Skeleton
+        // @ts-ignore
         style={{ background: "#444444" }}
         width="xsmall"
         height="xxsmall"
         round="xsmall"
       />
       <Skeleton
+        // @ts-ignore
         style={{ background: "#444444" }}
         width="xsmall"
         height="xxsmall"
@@ -37,7 +42,9 @@ const Skeletons = () => (
     </Box>
   </Box>
 );
-export default function LandingPage({ scrollToSimulation }) {
+ const LandingPage =({ scrollToSimulation }) =>{
+  const { isDesktop } = useDevice();
+
   return (
     <Box
       fill
@@ -54,7 +61,7 @@ export default function LandingPage({ scrollToSimulation }) {
         </Suspense>
       </Box>
       <Box
-        direction="row"
+        direction={isDesktop ? "row" : "column"}
         margin={{
           bottom: "calc( env(safe-area-inset-bottom) + 100px )",
           right: "medium",
@@ -67,3 +74,4 @@ export default function LandingPage({ scrollToSimulation }) {
     </Box>
   );
 }
+export default LandingPage

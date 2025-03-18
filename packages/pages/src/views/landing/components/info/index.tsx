@@ -41,7 +41,7 @@ const Info = block(() => {
 
   return (
     <Box align="start">
-      <InfoButton toggle={handleToggle} label="más información" />
+      <InfoButton toggle={handleToggle} label="Más información" />
       <Collapsible open={open} direction="vertical" minSpeed={1000}>
         <Box
           direction={isDesktop ? "row" : "column"}

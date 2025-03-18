@@ -1,4 +1,8 @@
-import { CuboidCollider as Bounding, RigidBody } from "@react-three/rapier";
+import {
+  CuboidCollider as Bounding,
+  CuboidColliderProps,
+  RigidBody,
+} from "@react-three/rapier";
 
 import { PositionalAudio } from "@react-three/drei";
 import { States } from "./types";
@@ -7,7 +11,7 @@ import usePlayerInitializer from "./hooks/usePlayerInitializer";
 
 const Cow3DModel = lazy(() => import("./model/v2/hollando-cow"));
 
-const isWalking = (state) => {
+const isWalking = (state: State) => {
   return state.matches(States.walk);
 };
 
@@ -20,7 +24,7 @@ const modelProps = {
     args: [0.2, 0.6, 1],
     position: [0, 0, 0],
   },
-};
+} as { [x: string]: Partial<CuboidColliderProps> };
 
 const Cow = () => {
   const {

@@ -1,10 +1,11 @@
-import { FC, forwardRef } from "react";
+import { FC, ForwardedRef, forwardRef } from "react";
 
 import { GLTF } from "three-stdlib";
+import { Group } from "three";
 import { useGLTF } from "@react-three/drei";
 
 const Cow3DModel: FC<{ mesh3DInfo: GLTF }> = forwardRef(
-  ({ mesh3DInfo }, groupRef) => {
+  ({ mesh3DInfo }, groupRef: ForwardedRef<Group>) => {
     if (!mesh3DInfo) return null;
 
     const { nodes, materials } = mesh3DInfo;

@@ -13,7 +13,7 @@ const customComponents = {
   },
   img: {
     props: {
-      style: { width: "500px" },
+      style: { maxWidth: "500px" },
     },
   },
 };

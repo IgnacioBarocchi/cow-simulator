@@ -25,22 +25,20 @@ export const stateEvents = {
 
 // todo: conver to map
 
+// const animate = (self, context) => {
+//   const currentState = self.getSnapshot().value;
+//   const animations = animationsByMachineStateMap?.get(currentState);
+//   if (!animations) {
+//     return;
+//   }
 
+//   const animationIsOneShot = !["idle", "walk", "gallop"].includes(currentState);
 
-const animate = (self, context) => {
-  const currentState = self.getSnapshot().value;
-  const animations = animationsByMachineStateMap?.get(currentState);
-  if (!animations) {
-    return;
-  }
-
-  const animationIsOneShot = !["idle", "walk", "gallop"].includes(currentState);
-
-  if (animationIsOneShot) {
-    const animation = animations[Math.floor(Math.random() * animations.length)];
-    playOneShotAnimation(context?.actions[animation]);
-  }
-};
+//   if (animationIsOneShot) {
+//     const animation = animations[Math.floor(Math.random() * animations.length)];
+//     playOneShotAnimation(context?.actions[animation]);
+//   }
+// };
 
 const update = ({ context, event, self }) => {
 
@@ -56,9 +54,9 @@ const update = ({ context, event, self }) => {
     ATTACK1,
     ATTACK2,
     BACKWARD,
-    EAT,
+    // EAT,
     FORWARD,
-    JUMP,
+    // JUMP,
     LEFT,
     RIGHT,
     SPRINT,

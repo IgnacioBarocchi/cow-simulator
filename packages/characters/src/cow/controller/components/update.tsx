@@ -27,7 +27,6 @@ const Update = () => {
   });
 
   useFrame(({ camera }, delta) => {
-    // console.log(input);
     if (
       [mesh3DRef?.current, rapierRigidBodyRef?.current, actions].some((e) => !e)
     ) {

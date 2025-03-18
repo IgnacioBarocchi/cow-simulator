@@ -17,11 +17,6 @@ import { RelativeSpringSimulator } from "../../lib/physics/RelativeSpringSimulat
 import { VectorSpringSimulator } from "../../lib/physics/VectorSpringSimulator";
 import { WorldApi } from "@react-three/rapier";
 
-// import { input } from "./input-controls";
-
-// import { Ray } from "@dimforge/rapier3d-compat";
-
-
 const runSpeed = 4;
 const walkSpeed = 1;
 const jumpSpeed = 1;
