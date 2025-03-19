@@ -1,13 +1,15 @@
 {
   "name": "monorepo",
   "version": "1.0.0",
-  "description": "monorepo example",
+  "description": "vegan hub",
   "scripts": {
     "test": "pnpm run -r test",
-    "dev": "pnpm run --filter website dev",
-    "build": "pnpm run --filter website build"
+    "sim": "pnpm run --filter website dev",
+    "simb": "pnpm run --filter website build",
+    "blog": "pnpm run --filter blog dev",
+    "blogb": "pnpm run --filter blog build"
   },
-  "author": "hsk.coder@gmail.com",
+  "author": "barocchi.ignacio@gmail.com",
   "license": "ISC",
   "devDependencies": {
     "prettier": "^3.2.5"

@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mono/cow-simulator-webGL-app": "workspace:*",
+    "@mono/webgl-app": "workspace:*",
     "@mono/pages": "workspace:*",
     "@mono/context": "workspace:*",
     "@mono/ui": "workspace:*",

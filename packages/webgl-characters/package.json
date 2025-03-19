@@ -1,5 +1,5 @@
 {
-  "name": "@mono/webgl-app",
+  "name": "@mono/characters",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,7 +14,6 @@
   "dependencies": {
     "@custom-react-hooks/use-long-press": "^1.5.1",
     "@mono/ui": "workspace:*",
-    "@mono/characters": "workspace:*",
     "@mono/context": "workspace:*",
     "@preact/signals-react": "^1.3.4",
     "@react-three/drei": "^9.78.1",

@@ -1,6 +1,6 @@
 import { Box, UIProvider } from "@mono/ui";
 
-import { CowSimulator } from "@mono/cow-simulator-webGL-app";
+import { CowSimulator } from "@mono/webgl-app";
 import { LandingPage } from "@mono/pages";
 import { useRef } from "react";
 

@@ -1,3 +1,3 @@
-import CowSimulator from './cow-simulator-webGL-app.tsx';
+import CowSimulator from './webgl-app.tsx';
 
 export { CowSimulator };
