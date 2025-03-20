@@ -3,9 +3,10 @@ import { FormNext, FormPrevious } from "grommet-icons";
 import { atom, useAtom, useAtomValue } from "jotai";
 
 import { Vector3 } from "three";
-import { block } from "million/react";
 import styled from "styled-components";
 import { useCallback } from "react";
+
+// import { block } from "million/react";
 
 // import { playerContextAtom } from "../../../store/store";
 
@@ -23,9 +24,9 @@ const Dot = styled(Box)`
 `;
 
 // Memoized Dot component to prevent re-renders
-const MemoizedDot = block(({ active }) => <Dot active={active} />);
+const MemoizedDot = /*block*/ ({ active }) => <Dot active={active} />;
 
-const SceneSelector = block(() => {
+const SceneSelector = /*block*/ () => {
   const selectedScene = useAtomValue(selectedSceneAtom);
   const [, setSelectedScene] = useAtom(selectedSceneAtom);
   // const { rapierRigidBodyRef, controller } = useAtomValue(playerContextAtom);
@@ -106,6 +107,6 @@ const SceneSelector = block(() => {
       </Box>
     </Box>
   );
-});
+};
 
 export default SceneSelector;

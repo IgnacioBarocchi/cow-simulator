@@ -2,10 +2,10 @@ import { Box, Collapsible, Text } from "@mono/ui";
 
 import Button from "../button";
 import { Close } from "grommet-icons";
-import { block } from "million/react";
+// import { block } from "million/react";
 import { useState } from "react";
 
-const CollapsibleSidebar = block(({ icon, Content, title }) => {
+const CollapsibleSidebar = /*block*/ ({ icon, Content, title }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -22,6 +22,6 @@ const CollapsibleSidebar = block(({ icon, Content, title }) => {
       </Collapsible>
     </>
   );
-});
+};
 
 export default CollapsibleSidebar;

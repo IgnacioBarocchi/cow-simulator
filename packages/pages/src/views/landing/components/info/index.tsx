@@ -9,11 +9,11 @@ import {
 import Colaborate from "../../../colaborate";
 import IntervencionV from "../../../intervencion-v";
 import WhyOneKind from "../../../why-one-kind";
-import { block } from "million/react";
+// import { block } from "million/react";
 import { useDevice } from "use-device-react";
 import { useState } from "react";
 
-const Info = block(() => {
+const Info = /*block*/ () => {
   const [open, setOpen] = useState(false);
   const [showModal, setShowModal] = useState(null);
   const { isDesktop } = useDevice();
@@ -71,6 +71,6 @@ const Info = block(() => {
       </Collapsible>
     </Box>
   );
-});
+};
 
 export default Info;

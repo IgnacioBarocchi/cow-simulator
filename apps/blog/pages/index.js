@@ -42,7 +42,7 @@ function Blog({ posts }) {
             <Image
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUP5pxDAAEawIUhORdgwAAAABJRU5ErkJggg=="
               placeholder="blur"
-              loading="lazy"
+              // loading="lazy"
               width={650}
               height={340}
               alt={frontmatter.title}
