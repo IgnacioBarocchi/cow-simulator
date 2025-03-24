@@ -6,7 +6,7 @@ function Navbar() {
       <nav className="flex items-center flex-wrap bg-gray-900 p-3">
         <Link href="/">
           <span className="text-xl text-white font-bold tracking-wide">
-            Artículos
+            Borradores de Artículos
           </span>
         </Link>
       </nav>
