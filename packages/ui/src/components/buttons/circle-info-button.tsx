@@ -2,9 +2,10 @@ import InfoButton, { InfoButtonProps } from "./info-button";
 
 import { Box } from "grommet";
 import { FC } from "react";
-import type { Icon as IconType } from "groomet-icons";
 
-export type CircleInfoButtonProps = InfoButtonProps & { Icon: IconType };
+// import type { Icon as IconType } from "groomet-icons";
+
+export type CircleInfoButtonProps = InfoButtonProps & { Icon: FC<any> };
 
 const CircleInfoButton: FC<CircleInfoButtonProps> = ({ Icon, toggle }) => {
   return (

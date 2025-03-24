@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mono/ui": "workspace:*",
     "gray-matter": "^4.0.3",
+    "grommet": "^2.45.1",
     "markdown-it": "^12.3.2",
     "next": "15.2.3",
     "next-themes": "^0.2.1",

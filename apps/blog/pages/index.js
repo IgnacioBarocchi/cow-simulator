@@ -42,14 +42,15 @@ function Blog({ posts }) {
             <Image
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUP5pxDAAEawIUhORdgwAAAABJRU5ErkJggg=="
               placeholder="blur"
-              // loading="lazy"
-              width={650}
-              height={340}
+              loading="lazy"
               alt={frontmatter.title}
               objectFit={"cover"}
               src={`/${frontmatter.socialImage}`}
+              sizes="300px"
+              style={{ height: "300px", width: "100%", objectFit: "cover" }}
+              width={0}
+              height={0}
             />
-
             <h1 className="p-4">{frontmatter.title}</h1>
           </Link>
         </div>

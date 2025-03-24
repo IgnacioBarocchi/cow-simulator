@@ -1,58 +1,58 @@
-import fs from 'fs';
-import matter from 'gray-matter';
-import md from 'markdown-it';
+import fs from "fs";
+import matter from "gray-matter";
+import md from "markdown-it";
 
 export async function getStaticPaths() {
   try {
-    const files = fs.readdirSync('public/posts');
+    const files = fs.readdirSync("public/posts");
 
     const paths = files.map((fileName) => ({
       params: {
-        slug: fileName.replace('.md', '')
-      }
+        slug: fileName.replace(".md", ""),
+      },
     }));
 
     return {
       paths,
-      fallback: "blocking"
+      fallback: "blocking",
     };
   } catch (error) {
     console.error(error);
 
     return {
       paths: [],
-      fallback: false
+      fallback: false,
     };
   }
-};
+}
 
-export async function getStaticProps ({ params: { slug } }) {
+export async function getStaticProps({ params: { slug } }) {
   try {
-    const fileName = fs.readFileSync(`public/posts/${slug}.md`, 'utf-8');
+    const fileName = fs.readFileSync(`public/posts/${slug}.md`, "utf-8");
     const { data: frontmatter, content } = matter(fileName);
 
     return {
       props: {
         frontmatter,
-        content
-      }
+        content,
+      },
     };
   } catch (error) {
     console.error(error);
 
     return {
-      props: {}
+      props: {},
     };
   }
-};
+}
 
-function Post ({ frontmatter, content }) {
+function Post({ frontmatter, content }) {
   return (
-    <div className="prose mx-auto mt-8">
-      <h1>{ frontmatter.title }</h1>
+    <div className="prose prose-headings:text-[#E0E0E0] mx-auto mt-8 text-[#E0E0E0]">
+      <h1>{frontmatter.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: md().render(content) }} />
     </div>
   );
-};
+}
 
 export default Post;
