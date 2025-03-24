@@ -2,7 +2,7 @@
 title: "El Desafortunado Arte Animalista"
 metaTitle: "El Desafortunado Arte Animalista"
 metaDesc: "El Desafortunado Arte Animalista"
-socialImage: assets/images/desafortunadoarte.jpg
+socialImage: assets/images/desafortunadoarte.png
 date: "2022-01-12"
 tags:
 	- webrtc

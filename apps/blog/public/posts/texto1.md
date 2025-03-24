@@ -2,7 +2,7 @@
 title: "texto 1"
 metaTitle: "texto 1"
 metaDesc: "texto 1"
-socialImage: assets/images/medioambiente.jpg
+socialImage: assets/images/medioambiente.png
 date: "2022-01-12"
 tags:
 	- webrtc

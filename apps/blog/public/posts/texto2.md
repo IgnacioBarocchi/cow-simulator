@@ -2,7 +2,7 @@
 title: "texto 2"
 metaTitle: "texto 2"
 metaDesc: "texto 2"
-socialImage: assets/images/liberacionhumana.avif
+socialImage: assets/images/liberacionhumana.png
 date: "2022-01-18"
 tags:
 	- webrtc

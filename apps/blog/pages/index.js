@@ -48,8 +48,8 @@ function Blog({ posts }) {
               alt={frontmatter.title}
               objectFit={"cover"}
               src={`/${frontmatter.socialImage}`}
-              sizes="300px"
-              style={{ height: "300px", width: "100%", objectFit: "cover" }}
+              sizes="250px"
+              style={{ height: "250px", width: "100%", objectFit: "cover" }}
               width={0}
               height={0}
             />
