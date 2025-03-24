@@ -3,6 +3,8 @@ import Link from "next/link";
 import fs from "fs";
 import matter from "gray-matter";
 
+const blurDataURL =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUP5pxDAAEawIUhORdgwAAAABJRU5ErkJggg==";
 export async function getStaticProps() {
   try {
     const files = fs.readdirSync("public/posts");
@@ -40,7 +42,7 @@ function Blog({ posts }) {
         >
           <Link href={`/post/${slug}`} legacyBehaviour>
             <Image
-              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mOUP5pxDAAEawIUhORdgwAAAABJRU5ErkJggg=="
+              blurDataURL={blurDataURL}
               placeholder="blur"
               loading="lazy"
               alt={frontmatter.title}
