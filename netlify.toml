@@ -1,8 +1,7 @@
 [build]
-  base = "apps/blog"
-  command = "pnpm run build"
-  publish = "apps/blog/.next"
-  functions = ".netlify/functions"
+  base = "apps/blog" 
+  command = "pnpm run build" 
+  publish = "apps/blog/.next" 
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
