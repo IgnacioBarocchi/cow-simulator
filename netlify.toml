@@ -1,7 +1,7 @@
 [build]
   base = "apps/blog"
   command = "pnpm run build"
-  publish = ".next"
+  publish = "apps/blog/.next"
   functions = ".netlify/functions"
 
 [[plugins]]
