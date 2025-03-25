@@ -1,34 +1,122 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js 15 Markdown Boilerplate
 
-## Getting Started
+A minimal Next.js 15 application that renders content from Markdown files.
 
-First, run the development server:
+## Features
+
+- Render Markdown files as dynamic pages
+- Add React components anywhere in your Markdown
+- The folder structure becomes the URL path
+- Global styles using Tailwind CSS and DaisyUI
+
+**See a live example at [nextjs-markdown-boilerplate.vercel.app/](https://nextjs-markdown-boilerplate.vercel.app/)**
+
+## How to use it
+
+I'm lazy, so I made this extremely simple.
+
+### Pages
+
+Just write some markdown in a `.mdx` file, and it will automatically become a properly styled page.
+
+```mdx
+# My Page
+
+This is my page.
+```
+
+### Routing
+
+Add new pages by creating `.mdx` files in the `app/content` directory. The file name becomes the URL path:
+
+- `app/content/index.mdx` → `/`
+- `app/content/a-beautiful-page.mdx` → `/a-beautiful-page`
+- `app/content/more-content/another-page.mdx` → `/more-content/another-page`
+
+### React Components
+
+Add custom React components to the `components` directory. Then, import them at the top of an MDX file and use them like any other React component.
+
+```mdx
+import MyComponent from '../components/my-component'
+
+**Hey**, here's a component:
+
+<MyComponent />
+
+*And here's some more markdown content.*
+```
+
+## Requirements
+
+- Node.js 18+
+- npm 9+
+- TypeScript
+
+## Setup
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit <http://localhost:3000>
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Build for production
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```bash
+npm run build
+npm start
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Project Structure
 
-## Learn More
+I tried to make this as simple as possible, given the constraints of modern web development.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+my-markdown-app/
+.
+├── README
+├── app
+│   ├── [...slug]     # Dynamic route for all pages
+│   │   └── page.tsx    # Page component
+│   ├── content        # **This is the only folder you need to worry about.**
+│   │   ├── more-content  # Example of a nested folder
+│   │   │   └── another-page.mdx  # Another page, routes to /more-content/another-page
+│   │   └── index.mdx  # Home page content
+│   ├── globals.css    # Global styles and Tailwind imports
+│   ├── layout.tsx     # Root layout with shared styling
+│   └── page.mdx       # Home page content (renders index.mdx at root)
+├── components       # Add custom React components in this directory
+├── mdx-components.tsx # Sets up MDX components
+├── next.config.mjs    # Next.js configuration  
+├── package.json       # Project dependencies
+├── postcss.config.js  # PostCSS configuration
+├── tailwind.config.js # Tailwind CSS configuration
+└── tsconfig.json      # TypeScript configuration
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Pull requests are welcome.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+MIT
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Release Notes
+
+### 1.0.0
+
+- Initial release
+- Render Markdown files as dynamic pages
+- Add React components anywhere in your Markdown
+- The folder structure becomes the URL path
+- Global styles using Tailwind CSS and DaisyUI

@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "main": "src/index.ts",
   "devDependencies": {
-    "typescript": "^5.2.2"
+    "typescript": "^5.8.2"
   },
   "dependencies": {
     "@mono/characters": "workspace:*",
-    "jotai": "^2.11.3",
+    "jotai": "^2.12.2",
     "jotai-xstate": "^0.6.1",
     "xstate": "^5.19.2"
   }
