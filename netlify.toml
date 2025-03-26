@@ -1,6 +1,6 @@
 [build]
-  base = "apps/blog" 
-  command = "pnpm run build" 
+  base = "" 
+  command = "pnpm run blogb" 
   publish = "apps/blog/.next" 
 
 [[plugins]]
