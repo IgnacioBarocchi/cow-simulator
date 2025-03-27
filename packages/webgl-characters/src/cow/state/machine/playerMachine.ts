@@ -81,7 +81,6 @@ const update = ({ context, event, self }) => {
 
 };
 
-// console.log("name" + "update")
 
 const movementInfo = {
   position: new Vector3(),

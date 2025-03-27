@@ -26,8 +26,8 @@ type GLTFResult = GLTF & {
 
 function FenceModel(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(
-    "/models/compressed_1742262595500_fence.glb",
-    true
+    "/models/compressed_1742262595500_fence.glb"
+    // true
   ) as GLTFResult;
 
   const mesh3DRef = useRef(null);
@@ -66,8 +66,8 @@ function FenceModel(props: JSX.IntrinsicElements["group"]) {
 
 export function CowPen3DModel(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(
-    "/models/newenv2.glb",
-    true
+    "/models/newenv2.glb"
+    // true
   ) as GLTFResult;
   return (
     <group {...props} dispose={null}>
@@ -112,7 +112,6 @@ const CowPenScene = () => {
   // useEffect(() => {
   //   // setTerrainLoaded(true);
   // }, []);
-
   return (
     <>
       <RigidBody type="fixed" colliders={false}>

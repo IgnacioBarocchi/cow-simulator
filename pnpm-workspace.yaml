@@ -1,4 +1,3 @@
 packages:
   - "apps/website"
-  - "apps/blog"
   - "packages/*"

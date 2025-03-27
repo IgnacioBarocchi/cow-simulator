@@ -4,7 +4,6 @@ const useGistMDFile = (gistEndpoint: string) => {
     const [text, setText] = useState("");
     const fetchData = async () => {
         try {
-            console.log(gistEndpoint);
             const response = await fetch(gistEndpoint);
 
             if (!response.ok) {
@@ -16,7 +15,6 @@ const useGistMDFile = (gistEndpoint: string) => {
             // @ts-ignore
             const markdownText = Object.values(files)[0].content;
 
-            console.log(markdownText);
 
             setText(markdownText);
         } catch (err) {

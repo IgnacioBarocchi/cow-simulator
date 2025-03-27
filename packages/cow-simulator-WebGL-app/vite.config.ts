@@ -19,6 +19,7 @@ export default ({ mode }) => {
       // },
     },
     base: "./",
+    publicDir: '../../apps/website/public',
     server: {
       cors: false,
     },
