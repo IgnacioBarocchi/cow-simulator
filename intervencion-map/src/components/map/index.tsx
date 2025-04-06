@@ -6,11 +6,10 @@ import { AvenuesLayer } from "./layers/avenues-layer";
 import { CommunesLayer } from "./layers/comunes";
 import { InterventionVLayer } from "./layers/vspots";
 import { LatLngExpression } from "leaflet";
-import LocationMarker from "./layers/location-marker";
-// import { InterventionVLayer } from "./layers/vspots";
 import { Neighborhood } from "./layers/Neighborhoods";
 import { SatelliteLayer } from "./layers/satellite-layer";
 import { StreetsLayer } from "./layers/streets-layer";
+// import { InterventionVLayer } from "./layers/vspots";
 import { colors } from "../../constants/colors";
 
 // const obelisk: LatLngExpression = [-58.381592, -34.603722]; // [-34.603722, -58.381592];

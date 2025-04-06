@@ -1,37 +1,20 @@
 import "./index.css";
 
 import {
-  Anchor,
-  Box,
   Button,
-  Footer,
   Grommet,
-  Image,
   Page,
   PageContent,
   PageHeader,
-  Text,
   grommet,
 } from "grommet";
+import { Suspense, lazy } from "react";
 
-import { FC } from "react";
-import LoginForm from "./components/login";
-import { MainView } from "./main-view";
 import { logged } from "./store/store";
 import { useAtom } from "jotai";
 
-const RecordImage: FC<Pick<GeoRecord, "placeType">> = ({ placeType }) => {
-  const url =
-    placeType === "CPM"
-      ? "https://placehold.co/600x400"
-      : "https://placehold.co/600x400";
-
-  return (
-    <Box height="small" width="small" round="full" overflow="hidden">
-      <Image fit="cover" src={url} />
-    </Box>
-  );
-};
+const MainView = lazy(() => import("./main-view"));
+const LoginForm = lazy(() => import("./components/login"));
 
 function App() {
   const [userLogged, setUserLogged] = useAtom(logged);
@@ -52,8 +35,16 @@ function App() {
               />
             }
           />
-          {userLogged ? <MainView /> : <LoginForm />}
-          {/* </Box> */}
+
+          {userLogged ? (
+            <Suspense>
+              <MainView />
+            </Suspense>
+          ) : (
+            <Suspense>
+              <LoginForm />
+            </Suspense>
+          )}
         </PageContent>
         {/* <Footer background="brand" pad="medium">
           <Text>Copyright</Text>
@@ -174,3 +165,15 @@ const r = {
 // // import { deepMerge } from "grommet/utils";
 // import GeoRecordCard, { GeoRecordCardProps } from "./components/card";
 // parent={<Anchor label="Parent Page" />}
+// const RecordImage: FC<Pick<GeoRecord, "placeType">> = ({ placeType }) => {
+//   const url =
+//     placeType === "CPM"
+//       ? "https://placehold.co/600x400"
+//       : "https://placehold.co/600x400";
+
+//   return (
+//     <Box height="small" width="small" round="full" overflow="hidden">
+//       <Image fit="cover" src={url} />
+//     </Box>
+//   );
+// };

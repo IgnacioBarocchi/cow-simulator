@@ -1,7 +1,7 @@
-import { WhatsAppMessageForm } from "./whatsapp-message-form";
 import { NeighborhoodForm } from "./neighborhood-form";
+import { WhatsAppMessageForm } from "./whatsapp-message-form";
 
-export const CreationForm = () => {
+const CreationForm = () => {
   return (
     <>
       <NeighborhoodForm />
@@ -9,3 +9,5 @@ export const CreationForm = () => {
     </>
   );
 };
+
+export default CreationForm;

@@ -1,20 +1,29 @@
-import { Tabs, Tab } from "grommet";
-import RandomWheel from "./components/random-wheel";
-import Records from "./components/records";
-import MapComponent from "./components/map";
-import { CreationForm } from "./components/creation-form";
+import { Suspense, lazy } from "react";
+import { Tab, Tabs } from "grommet";
 
-export const MainView = () => (
+const Records = lazy(() => import("./components/records"));
+const CreationForm = lazy(() => import("./components/creation-form"));
+const MapComponent = lazy(() => import("./components/map"));
+
+const MainView = () => (
   <Tabs>
     <Tab title="Votación">
-      <CreationForm />
+      <Suspense>
+        <CreationForm />
+      </Suspense>
     </Tab>
     <Tab title="Flyer"></Tab>
     <Tab title="Mapa">
-      <MapComponent />
+      <Suspense>
+        <MapComponent />
+      </Suspense>
     </Tab>
     <Tab title="Registros">
-      <Records />
+      <Suspense>
+        <Records />
+      </Suspense>
     </Tab>
   </Tabs>
 );
+
+export default MainView;
