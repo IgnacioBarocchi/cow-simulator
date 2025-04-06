@@ -1,3 +1,4 @@
 packages:
-  - 'website'
-  - 'packages/*'
+  - "website"
+  - "intervencion-map"
+  - "packages/*"

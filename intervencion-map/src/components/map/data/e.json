@@ -1,0 +1,45 @@
+{
+  "type": "Feature",
+  "properties": {
+    "id": 1724,
+    "codigo": 16003,
+    "nomoficial": "OBLIGADO RAFAEL, Av.Costanera",
+    "alt_izqini": 4202,
+    "alt_izqfin": 4500,
+    "alt_derini": 4201,
+    "alt_derfin": 4499,
+    "nomanter": "COSTANERA NORTE, Av.",
+    "nom_mapa": "AV.COSTANERA RAFAEL OBLIGADO",
+    "tipo_c": "AVENIDA",
+    "long": 297.26,
+    "sentido": "DOBLE",
+    "cod_sent": 2,
+    "observa": null,
+    "bicisenda": "Ciclovías",
+    "lado_ciclo": null,
+    "recorrid_x": null,
+    "ciclo_obse": "Construcción Año 2014",
+    "tooltip_bi": "Ciclovía",
+    "red_jerarq": "VÍA DISTRIBUIDORA PRINCIPAL",
+    "red_tp": null,
+    "ffcc": null,
+    "tipo_ffcc": null,
+    "COMUNA": 14,
+    "COM_PAR": 14,
+    "COM_IMPAR": 14,
+    "BARRIO": "PALERMO",
+    "BARRIO_PAR": "PALERMO",
+    "BARRIO_IMP": "PALERMO"
+  },
+  "geometry": {
+    "type": "MultiLineString",
+    "coordinates": [
+      [
+        [-58.411172396524414, -34.557682324602276],
+        [-58.412109700586669, -34.557032799213275],
+        [-58.412794616763165, -34.556603778160039],
+        [-58.413771026457283, -34.556073854836114]
+      ]
+    ]
+  }
+}
