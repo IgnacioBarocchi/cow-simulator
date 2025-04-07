@@ -2,8 +2,8 @@ import { Suspense, lazy } from "react";
 import { Tab, Tabs } from "grommet";
 
 const Records = lazy(() => import("./components/records"));
-const CreationForm = lazy(() => import("./components/creation-form"));
-const MapComponent = lazy(() => import("./components/map"));
+const CreationForm = lazy(() => import("./features/form"));
+const MapComponent = lazy(() => import("./features/map"));
 
 const MainView = () => (
   <Tabs>
