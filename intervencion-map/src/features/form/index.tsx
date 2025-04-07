@@ -1,10 +1,10 @@
-import { NeighborhoodForm } from "./neighborhood-form";
+// import { NeighborhoodForm } from "./neighborhood-form";
 import { WhatsAppMessageForm } from "./whatsapp-message-form";
 
 const CreationForm = () => {
   return (
     <>
-      <NeighborhoodForm />
+      {/* <NeighborhoodForm /> */}
       <WhatsAppMessageForm />
     </>
   );

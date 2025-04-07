@@ -2,7 +2,7 @@ import { Button, Collapsible, Select } from "grommet";
 import { useCallback, useState } from "react";
 
 import { MicroForm } from "./micro-form";
-import avenues from "../../../local/data/avenidas.geo.json";
+// import avenues from "../../../local/data/avenidas.geo.json";
 import { meetupFormAtom } from "../../store/store";
 import { useAtom } from "jotai";
 
