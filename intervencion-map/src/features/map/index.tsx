@@ -2,9 +2,10 @@ import "leaflet/dist/leaflet.css";
 
 import { LayersControl, MapContainer } from "react-leaflet";
 
-import { InterventionVLayer } from "./layers/vspots";
 import { LatLngExpression } from "leaflet";
-import { SatelliteLayer } from "./layers/satellite-layer";
+import { MapContents } from "./layers/vspots";
+import { Neighborhood } from "./layers/Neighborhoods";
+import { Tilling } from "./components/tilling";
 import { colors } from "../../constants/colors";
 
 const obelisk: LatLngExpression = [-34.603722, -58.381592]; // [55.73333, 24.35];
@@ -35,12 +36,7 @@ const MapComponent = () => {
         }}
       >
         <LayersControl position="topright">
-          <InterventionVLayer />
-          <SatelliteLayer />
-          {/* <CommunesLayer />
-          <Neighborhood.Layer />
-          <StreetsLayer />
-          <AvenuesLayer /> */}
+          <MapContents />
         </LayersControl>
       </MapContainer>
     </>

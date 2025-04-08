@@ -1,8 +1,9 @@
 import { MarkerLeafletIcon, markerIconOptions } from "../rich-marker";
+import { PathOptions, marker } from "leaflet";
 
-import { Feature } from "../../../../local/data/geo-types";
+import { Feature } from "geojson";
 import { Pin } from "../pin";
-import { marker } from "leaflet";
+import { colors } from "../../../constants/colors";
 
 function pointToLayer(feature: Feature, latLng: LatLng) {
   const {

@@ -1,33 +1,50 @@
 import { useEffect, useState } from "react";
 
+import { GeoJSON } from "geojson";
+
+type ResponseBody = {
+  files: [{ content: string | GeoJSON }];
+};
+
+const tryParseGist = (responseBody: ResponseBody): GeoJSON | null => {
+  if ("files" in responseBody) {
+    const file = Object.values(responseBody.files)[0];
+    if (typeof file.content === "string") {
+      try {
+        return JSON.parse(file.content);
+      } catch (e) {
+        console.error("Failed to parse Gist file content as JSON:", e);
+        return null;
+      }
+    }
+  }
+  return null;
+};
+
 export default function useGeoJSONData(url: string) {
-  const [data, setData] = useState<GeoJSONFile | null>(null);
+  const [data, setData] = useState<GeoJSON | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchGeoJSON = async () => {
       try {
         const response = await fetch(url);
-        const gistData = await response.json();
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const files = gistData.files;
-        const fileContent = Object.values(files)[0].content;
+        const responseBody = await response.json();
 
-        const geoJSON =
-          typeof fileContent === "string"
-            ? JSON.parse(fileContent)
-            : fileContent;
-
-        setData(geoJSON);
+        const parsedData = tryParseGist(responseBody) ?? responseBody;
+        setData(parsedData);
       } catch (error) {
-        console.error("Error fetching intervention spots:", error);
+        console.error("Error fetching or parsing GeoJSON data:", error);
+        setError((error as Error).message);
       }
     };
 
     fetchGeoJSON();
   }, []);
 
-  return { data };
+  return { data, error };
 }

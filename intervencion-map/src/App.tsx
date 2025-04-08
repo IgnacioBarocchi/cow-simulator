@@ -23,7 +23,6 @@ function App() {
     <Grommet full theme={grommet} themeMode="dark">
       <Page kind="wide">
         <PageContent background="blue-1">
-          {/* <Box flex="grow" pad="small" fill="vertical" gap="medium"> */}
           <PageHeader
             title="Interveción V"
             subtitle={"Registros y mapas de puntos de interés."}

@@ -1,5 +1,5 @@
+import { Box, Tab, Tabs } from "grommet";
 import { Suspense, lazy } from "react";
-import { Tab, Tabs } from "grommet";
 
 const Records = lazy(() => import("./components/records"));
 const CreationForm = lazy(() => import("./features/form"));
@@ -9,18 +9,24 @@ const MainView = () => (
   <Tabs>
     <Tab title="Votación">
       <Suspense>
-        <CreationForm />
+        <Box margin={{ top: "large" }}>
+          <CreationForm />
+        </Box>
       </Suspense>
     </Tab>
     <Tab title="Flyer"></Tab>
     <Tab title="Mapa">
       <Suspense>
-        <MapComponent />
+        <Box margin={{ top: "large" }}>
+          <MapComponent />
+        </Box>
       </Suspense>
     </Tab>
     <Tab title="Registros">
       <Suspense>
-        <Records />
+        <Box margin={{ top: "large" }}>
+          <Records />
+        </Box>
       </Suspense>
     </Tab>
   </Tabs>
