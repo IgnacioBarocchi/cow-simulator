@@ -6,6 +6,7 @@ import {
   pointToLayer,
 } from "../utils/interventionv-spots-utils.tsx";
 
+import { geojsonUrls } from "../../../constants/colors.ts";
 import { getStreetsStyle } from "../utils/styles.ts";
 
 const Tilling = lazy(() => import("../components/tilling.tsx"));
@@ -14,24 +15,24 @@ const Layer = lazy(() => import("../components/layer.tsx"));
 const layers = [
   {
     overlayTitle: "Intervención V",
-    dataURL: import.meta.env.VITE_INTERVENTION_SPOTS_GEO_URL,
+    dataURL: geojsonUrls.vspots,
     onEachFeature,
     pointToLayer,
   },
   {
     overlayTitle: "Barrios",
-    dataURL: import.meta.env.VITE_NEIGHBORHOODS_GEO_URL,
+    dataURL: geojsonUrls.neighborhoods,
     defaultOn: true,
   },
   {
     overlayTitle: "Calles",
-    dataURL: import.meta.env.VITE_STREETS_GEO_URL,
+    dataURL: geojsonUrls.streets,
     style: getStreetsStyle,
   },
 ];
 
 const tilling = {
-  url: "https://servicios.usig.buenosaires.gob.ar/mapcache/tms/1.0.0/amba_con_transporte_3857@GoogleMapsCompatible/{z}/{x}/{-y}.png",
+  url: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", // "https://servicios.usig.buenosaires.gob.ar/mapcache/tms/1.0.0/amba_con_transporte_3857@GoogleMapsCompatible/{z}/{x}/{-y}.png",
   secondUrl: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   minZoom: 13,
   maxZoom: 19,

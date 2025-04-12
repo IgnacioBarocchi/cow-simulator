@@ -11,7 +11,7 @@ interface StreetMapLayerProps {
 }
 
 const Layer: FC<StreetMapLayerProps> = ({ name }) => {
-  const { data } = useGeoJSONData(import.meta.env.VITE_STREETS_GEO_URL);
+  const { data } = useGeoJSONData(import.meta.env.VITE_STREETS_GEO_URL_DEV);
   const { style } = useMainMap();
 
   return (

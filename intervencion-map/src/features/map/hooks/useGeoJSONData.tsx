@@ -21,7 +21,7 @@ const tryParseGist = (responseBody: ResponseBody): GeoJSON | null => {
   return null;
 };
 
-export default function useGeoJSONData(url: string) {
+export default function useGeoJSONData(url: string, resourceName?: string) {
   const [data, setData] = useState<GeoJSON | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,8 +34,10 @@ export default function useGeoJSONData(url: string) {
         }
 
         const responseBody = await response.json();
+        console.log(responseBody);
 
         const parsedData = tryParseGist(responseBody) ?? responseBody;
+        console.log(parsedData);
         setData(parsedData);
       } catch (error) {
         console.error("Error fetching or parsing GeoJSON data:", error);

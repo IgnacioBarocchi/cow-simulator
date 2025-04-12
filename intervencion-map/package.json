@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mono/ui": "workspace:*",
     "@types/geojson": "^7946.0.16",
-    "grommet": "^2.39.0",
     "grommet-icons": "^4.12.1",
     "jotai": "^2.9.1",
     "leaflet": "^1.9.4",
